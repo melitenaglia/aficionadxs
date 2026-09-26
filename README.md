@@ -2,6 +2,12 @@
 
 Static prototype for the AFCNDXS photographic archive.
 
+## Status
+
+- GitHub repository connected to ChatGPT for direct maintenance.
+- Cloudflare deployment is connected to the `main` branch.
+- Current phase: visual/technical MVP with archive, object selector and request cart.
+
 ## Structure
 
 - `public/index.html` — site shell
