@@ -1,0 +1,122 @@
+[
+  {
+    "id": "001",
+    "title": "MADRID BOTÁNICO",
+    "slug": "madrid-botanico",
+    "place": "Real Jardín Botánico",
+    "city": "Madrid",
+    "region": "Comunidad de Madrid",
+    "country": "Spain",
+    "countryCode": "ES",
+    "date": "2025-01-10",
+    "time": "16:11:32",
+    "coordinates": "40.413156, -3.692869",
+    "camera": "iPhone 15 Pro",
+    "lens": "2.22 mm · f/2.2 · 14 mm eq.",
+    "capture": "ISO 40 · 1/640 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/001.webp",
+    "available": [
+      "print",
+      "postcard",
+      "tshirt",
+      "tote"
+    ],
+    "archiveEdition": true
+  },
+  {
+    "id": "002",
+    "title": "TOSSA DE MAR",
+    "slug": "tossa-de-mar",
+    "place": "Tossa de Mar",
+    "city": "Tossa de Mar",
+    "region": "Costa Brava",
+    "country": "Spain",
+    "countryCode": "ES",
+    "date": "2023-09-11",
+    "time": "12:49:25",
+    "coordinates": "41.716178, 2.932683",
+    "camera": "iPhone 12 mini",
+    "lens": "1.55 mm · f/2.4 · 14 mm eq.",
+    "capture": "ISO 25 · 1/1500 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/002.webp",
+    "available": [
+      "print",
+      "postcard",
+      "tshirt"
+    ],
+    "archiveEdition": true
+  },
+  {
+    "id": "003",
+    "title": "PARIS — 1ST ARR.",
+    "slug": "paris-1st-arr",
+    "place": "Musée du Louvre",
+    "city": "Paris",
+    "region": "Île-de-France",
+    "country": "France",
+    "countryCode": "FR",
+    "date": "2025-10-06",
+    "time": "11:30:11",
+    "coordinates": null,
+    "camera": null,
+    "lens": null,
+    "capture": null,
+    "orientation": "portrait",
+    "image": "/assets/photos/003.webp",
+    "available": [
+      "print",
+      "postcard",
+      "tshirt"
+    ],
+    "archiveEdition": true
+  },
+  {
+    "id": "004",
+    "title": "BERLIN — REGIERUNGSVIERTEL",
+    "slug": "berlin-regierungsviertel",
+    "place": "Museum für Film und Fernsehen",
+    "city": "Berlin",
+    "region": "Berlin",
+    "country": "Germany",
+    "countryCode": "DE",
+    "date": "2019-05-19",
+    "time": "09:32:41",
+    "coordinates": "52.508950, 13.387475",
+    "camera": "iPhone 7",
+    "lens": "3.99 mm · f/1.8 · 28 mm eq.",
+    "capture": "ISO 25 · 1/140 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/004.webp",
+    "available": [
+      "print",
+      "postcard"
+    ],
+    "archiveEdition": true
+  },
+  {
+    "id": "005",
+    "title": "PRAGUE 1",
+    "slug": "prague-1",
+    "place": "Absintherie — Jilská 7/A",
+    "city": "Prague",
+    "region": "Staré Město",
+    "country": "Czechia",
+    "countryCode": "CZ",
+    "date": "2018-11-12",
+    "time": "15:04:23",
+    "coordinates": "50.085294, 14.418975",
+    "camera": "iPhone 7",
+    "lens": "3.99 mm · f/1.8 · 28 mm eq.",
+    "capture": "ISO 32 · 1/20 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/005.webp",
+    "available": [
+      "print",
+      "postcard",
+      "tshirt"
+    ],
+    "archiveEdition": true
+  }
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "id": "print",
+    "code": "PR",
+    "name": "PRINT",
+    "description": "Photographic print. Paper, supplier and final size range are being tested.",
+    "price": null,
+    "priceLabel": "PRICE ON REQUEST",
+    "editions": [
+      "PHOTOGRAPH",
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "21 × 30 CM",
+      "30 × 40 CM"
+    ],
+    "colors": []
+  },
+  {
+    "id": "postcard",
+    "code": "PC",
+    "name": "POSTCARD",
+    "description": "101 × 152 mm postcard on coated card stock.",
+    "price": 5,
+    "priceLabel": "5 EUR",
+    "editions": [
+      "PHOTOGRAPH",
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "101 × 152 MM"
+    ],
+    "colors": []
+  },
+  {
+    "id": "tshirt",
+    "code": "TS",
+    "name": "T-SHIRT",
+    "description": "Garment and print method selected per archive edition. Better blanks are under evaluation.",
+    "price": null,
+    "priceLabel": "PRICE ON REQUEST",
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "WHITE",
+      "ANTHRACITE"
+    ]
+  },
+  {
+    "id": "tote",
+    "code": "TO",
+    "name": "TOTE BAG",
+    "description": "Cotton tote. Current prototype: Westford Mill W101.",
+    "price": null,
+    "priceLabel": "PRICE ON REQUEST",
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "colors": [
+      "NATURAL"
+    ]
+  },
+  {
+    "id": "sweatshirt",
+    "code": "SW",
+    "name": "SWEATSHIRT",
+    "description": "On-request format while blanks and print quality are tested.",
+    "price": null,
+    "priceLabel": "PRICE ON REQUEST",
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "TBC"
+    ]
+  }
+]

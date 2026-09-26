@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1efe9">
+  <meta name="description" content="// AFCNDXS ARCHIVE — photographs collected along the way.">
+  <title>// AFCNDXS ARCHIVE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top">// AFCNDXS</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#archive">ARCHIVE</a>
+      <a href="#objects">OBJECTS</a>
+      <a href="#info">INFO</a>
+      <button class="nav-request" id="open-cart" type="button">REQUEST <span id="cart-count">[00]</span></button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-kicker">// AFCNDXS ARCHIVE</div>
+      <h1>PHOTOGRAPHS<br>COLLECTED<br>ALONG THE WAY.</h1>
+      <div class="hero-meta">
+        <span>ONGOING PHOTOGRAPHIC ARCHIVE</span>
+        <span>2018 — NOW</span>
+      </div>
+      <a class="technical-link" href="#archive">EXPLORE ARCHIVE ↓</a>
+    </section>
+
+    <section class="archive-section" id="archive">
+      <div class="section-head">
+        <h2>// ARCHIVE</h2>
+        <div class="archive-controls">
+          <button class="filter active" data-filter="all">ALL</button>
+          <button class="filter" data-filter="ES">ES</button>
+          <button class="filter" data-filter="FR">FR</button>
+          <button class="filter" data-filter="DE">DE</button>
+          <button class="filter" data-filter="CZ">CZ</button>
+        </div>
+      </div>
+      <div class="archive-grid" id="archive-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="objects-section" id="objects">
+      <div class="section-head">
+        <h2>// OBJECTS</h2>
+        <span>MAKE THE ARCHIVE PHYSICAL</span>
+      </div>
+      <div class="object-list" id="object-list"></div>
+      <p class="technical-note">Formats and prices remain flexible while AFCNDXS tests materials, print quality and suppliers. A request is not a payment or an automatic order.</p>
+    </section>
+
+    <section class="info-section" id="info">
+      <div class="section-head"><h2>// INFO</h2></div>
+      <div class="info-grid">
+        <p>AFCNDXS is an ongoing photographic archive. Selected images move from the archive into physical form: prints, postcards, garments and objects.</p>
+        <p>Some pieces exist in stock. Others are produced only after a request. Every photograph remains the starting point; the object comes afterwards.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>// AFCNDXS ARCHIVE</span>
+    <span>PHOTOGRAPHY → OBJECT</span>
+    <span id="footer-year"></span>
+  </footer>
+
+  <dialog class="photo-dialog" id="photo-dialog">
+    <button class="dialog-close" id="close-photo" type="button">×</button>
+    <div id="photo-detail"></div>
+  </dialog>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-head">
+      <h2>// REQUEST</h2>
+      <button id="close-cart" type="button">×</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="request-form">
+      <label>NAME <input id="request-name" autocomplete="name"></label>
+      <label>COUNTRY / POSTCODE <input id="request-location" autocomplete="postal-code"></label>
+      <label>NOTE <textarea id="request-note" rows="3"></textarea></label>
+    </div>
+    <div class="cart-total" id="cart-total"></div>
+    <button class="primary-action" id="send-request" type="button">SEND REQUEST VIA WHATSAPP →</button>
+    <button class="secondary-action" id="clear-cart" type="button">CLEAR REQUEST</button>
+  </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
