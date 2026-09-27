@@ -16,6 +16,7 @@
     <a class="wordmark" href="#top">// AFCNDXS</a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="#archive">ARCHIVE</a>
+      <a href="#editions">EDITIONS</a>
       <a href="#objects">OBJECTS</a>
       <a href="#info">INFO</a>
       <button class="nav-request" id="open-cart" type="button">REQUEST <span id="cart-count">[00]</span></button>
@@ -59,6 +60,15 @@
       </div>
     </section>
 
+    <section class="editions-section" id="editions">
+      <div class="section-head">
+        <h2>// EDITIONS</h2>
+        <span>PHOTO → DESIGN</span>
+      </div>
+      <div class="editions-grid" id="editions-grid"></div>
+      <p class="technical-note">Each edition is linked back to its source photograph. Product applications are separate from the design itself.</p>
+    </section>
+
     <section class="objects-section" id="objects">
       <div class="section-head">
         <h2>// OBJECTS</h2>
@@ -86,6 +96,11 @@
   <dialog class="photo-dialog" id="photo-dialog">
     <button class="dialog-close" id="close-photo" type="button">×</button>
     <div id="photo-detail"></div>
+  </dialog>
+
+  <dialog class="photo-dialog" id="edition-dialog">
+    <button class="dialog-close" id="close-edition" type="button">×</button>
+    <div id="edition-detail"></div>
   </dialog>
 
   <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
