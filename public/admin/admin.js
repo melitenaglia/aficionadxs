@@ -86,6 +86,53 @@ function renderQueue(){
 function reviewButtons(table,id,current){
   return '<div class="review-actions">'+PHOTO_STATUSES.map(s=>'<button type="button" class="mini-button '+(current===s?"active":"")+'" data-action="review" data-table="'+table+'" data-id="'+esc(id)+'" data-status="'+s+'">'+s.replaceAll("_"," ")+'</button>').join("")+'</div>';
 }
+function textarea(name,label,value){return '<label class="field-label field-wide">'+label+'<textarea name="'+name+'" rows="4">'+esc(value||"")+'</textarea></label>'}
+function safeName(name){return String(name||"file").normalize("NFKD").replace(/[^\\w.\\-]+/g,"-").replace(/-+/g,"-")}
+function publicUrl(path){return supabase.storage.from("afcndxs-public").getPublicUrl(path).data.publicUrl}
+function assetForm(type,id,publicValue,privateValue){
+  const pub=type==="production"?"":'<label class="upload-box"><strong>PUBLIC PREVIEW</strong><span>Imagen optimizada · máx. 5 MB</span><input type="file" name="public_file" accept="image/*"><small>'+esc(publicValue||"NO PUBLIC PREVIEW")+'</small></label>';
+  const privLabel=type==="photo"?"PRIVATE ORIGINAL":type==="production"?"PRIVATE PRODUCTION FILE":"PRIVATE MASTER";
+  return '<form class="asset-form" data-form="asset" data-type="'+type+'" data-id="'+esc(id)+'">'+pub+'<label class="upload-box"><strong>'+privLabel+'</strong><span>No se publica en la web.</span><input type="file" name="private_file"><small>'+esc(privateValue||"NO PRIVATE FILE")+'</small></label><button class="secondary-admin" type="submit">UPLOAD FILES →</button></form>';
+}
+async function uploadOne(bucket,path,file,isPublic){
+  if(!file||!file.size)return null;
+  if(isPublic&&(!file.type.startsWith("image/")||file.size>5*1024*1024))throw new Error("El preview público debe ser una imagen de menos de 5 MB.");
+  const {error}=await supabase.storage.from(bucket).upload(path,file,{upsert:true,contentType:file.type||undefined});
+  if(error)throw error;
+  return isPublic?publicUrl(path):path;
+}
+async function uploadAssets(form){
+  const type=form.dataset.type,id=form.dataset.id,fd=new FormData(form),pub=fd.get("public_file"),priv=fd.get("private_file");
+  if((!pub||!pub.size)&&(!priv||!priv.size)){notify("Selecciona al menos un archivo.","bad");return}
+  setBusy(true);
+  try{
+    const stamp=Date.now();
+    if(type==="photo"){
+      const patch={};
+      if(pub&&pub.size){const path="photos/"+id+"/preview/"+stamp+"-"+safeName(pub.name);patch.image_url=await uploadOne("afcndxs-public",path,pub,true)}
+      if(priv&&priv.size){const path="photos/"+id+"/original/"+stamp+"-"+safeName(priv.name);patch.original_file_path=await uploadOne("afcndxs-private",path,priv,false);patch.source_file=priv.name}
+      return updateRow("photos",id,patch,"Photo files uploaded");
+    }
+    if(type==="edition"){
+      const patch={};
+      if(pub&&pub.size){const path="editions/"+id+"/preview/"+stamp+"-"+safeName(pub.name);patch.public_preview=await uploadOne("afcndxs-public",path,pub,true)}
+      if(priv&&priv.size){const path="editions/"+id+"/master/"+stamp+"-"+safeName(priv.name);patch.master_file_path=await uploadOne("afcndxs-private",path,priv,false);patch.source_filename=priv.name}
+      return updateRow("editions",id,patch,"Edition files uploaded");
+    }
+    if(type==="application"){
+      const patch={};
+      if(pub&&pub.size){const path="applications/"+id+"/preview/"+stamp+"-"+safeName(pub.name);patch.public_preview=await uploadOne("afcndxs-public",path,pub,true)}
+      if(priv&&priv.size){const path="applications/"+id+"/master/"+stamp+"-"+safeName(priv.name);patch.master_file_path=await uploadOne("afcndxs-private",path,priv,false);patch.source_filename=priv.name}
+      return updateRow("applications",id,patch,"Application files uploaded");
+    }
+    if(type==="production"){
+      if(!priv||!priv.size)throw new Error("Selecciona el archivo de producción.");
+      const path="production/"+id+"/"+stamp+"-"+safeName(priv.name);
+      const production_file_path=await uploadOne("afcndxs-private",path,priv,false);
+      return updateRow("production_records",id,{production_file_path},"Production file uploaded");
+    }
+  }catch(err){notify(err.message||String(err),"bad");setBusy(false)}
+}
 function renderPhotos(){
   $("#panel").innerHTML=title("PHOTOS","Edita metadatos, estado y publicación. Estos cambios ya se guardan en Supabase.")+'<div class="record-list">'+state.photos.map(p=>`
     <article class="admin-record">
