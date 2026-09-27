@@ -18,12 +18,12 @@
     "image": "/assets/photos/001.webp",
     "available": [
       "print",
-      "postcard",
       "tshirt-regular",
       "tshirt-heavy",
       "tshirt-oversized",
-      "tote",
-      "sweatshirt"
+      "sweatshirt",
+      "postcard",
+      "tote"
     ],
     "archiveEdition": true
   },
@@ -46,12 +46,12 @@
     "image": "/assets/photos/002.webp",
     "available": [
       "print",
-      "postcard",
       "tshirt-regular",
       "tshirt-heavy",
       "tshirt-oversized",
-      "tote",
-      "sweatshirt"
+      "sweatshirt",
+      "postcard",
+      "tote"
     ],
     "archiveEdition": true
   },
@@ -74,12 +74,11 @@
     "image": "/assets/photos/003.webp",
     "available": [
       "print",
-      "postcard",
       "tshirt-regular",
       "tshirt-heavy",
       "tshirt-oversized",
-      "tote",
-      "sweatshirt"
+      "sweatshirt",
+      "postcard"
     ],
     "archiveEdition": true
   },
@@ -102,12 +101,11 @@
     "image": "/assets/photos/004.webp",
     "available": [
       "print",
-      "postcard",
       "tshirt-regular",
       "tshirt-heavy",
       "tshirt-oversized",
-      "tote",
-      "sweatshirt"
+      "sweatshirt",
+      "postcard"
     ],
     "archiveEdition": true
   },
@@ -130,25 +128,25 @@
     "image": "/assets/photos/005.webp",
     "available": [
       "print",
-      "postcard",
       "tshirt-regular",
       "tshirt-heavy",
       "tshirt-oversized",
-      "tote",
-      "sweatshirt"
+      "sweatshirt",
+      "postcard",
+      "notebook"
     ],
     "archiveEdition": true
   },
   {
     "id": "006",
-    "title": "DUBLIN — STAIRWAY",
+    "title": "DUBLIN — STAIRWAY TO HEAVEN",
     "slug": "dublin-stairway",
-    "place": "Stairway to Heaven",
+    "place": "Bad Bobs Temple Bar",
     "city": "Dublin",
-    "region": "County Dublin",
+    "region": "Dublin",
     "country": "Ireland",
     "countryCode": "IE",
-    "date": "2018-11-01",
+    "date": "2018-01-01",
     "time": "13:06:13",
     "coordinates": "53.345097, -6.265914",
     "camera": "iPhone 7",
@@ -165,15 +163,18 @@
     ],
     "archiveEdition": true,
     "published": false,
-    "sourceFile": "75A8E316-68ED-4A9E-B11C-0938E0DBFB6B.heic"
+    "sourceFile": "75A8E316-68ED-4A9E-B11C-0938E0DBFB6B.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING",
+    "address": "St. Andrew's Street"
   },
   {
     "id": "007",
-    "title": "BCN — SAGRADA",
+    "title": "BARCELONA — SAGRADA FAMÍLIA",
     "slug": "bcn-sagrada",
     "place": "Basílica de la Sagrada Família",
     "city": "Barcelona",
-    "region": "Catalonia",
+    "region": "Catalunya",
     "country": "Spain",
     "countryCode": "ES",
     "date": "2024-12-23",
@@ -193,7 +194,9 @@
     ],
     "archiveEdition": true,
     "published": false,
-    "sourceFile": "IMG_1775.heic"
+    "sourceFile": "IMG_1775.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "008",
@@ -201,15 +204,15 @@
     "slug": "aiguablava-bcn",
     "place": "Cala d'Aiguablava",
     "city": "Begur",
-    "region": "Costa Brava · Catalonia",
+    "region": "Costa Brava · Catalunya",
     "country": "Spain",
     "countryCode": "ES",
     "date": "2025-07-12",
-    "time": "14:37:58",
-    "coordinates": null,
+    "time": "14:39:03",
+    "coordinates": "41.9343, 3.2164",
     "camera": "iPhone 15 Pro",
-    "lens": "9 mm · f/2.8 · 77 mm eq.",
-    "capture": "ISO 25 · 1/1200 s",
+    "lens": "77 mm · f/2.8",
+    "capture": "ISO 25 · 1/1600 s",
     "orientation": "portrait",
     "image": null,
     "available": [
@@ -221,15 +224,17 @@
     ],
     "archiveEdition": true,
     "published": false,
-    "sourceFile": "IMG_4401.heic"
+    "sourceFile": "IMG_4401.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "009",
     "title": "GUTENBERG — LLUM BCN 26",
     "slug": "gitenberg-llum",
-    "place": "Plaça Gutenberg · Universitat Pompeu Fabra, Campus del Poblenou",
+    "place": "Plaça Gutenberg · Universitat Pompeu Fabra",
     "city": "Barcelona",
-    "region": "Poblenou · Catalonia",
+    "region": "Poblenou · Catalunya",
     "country": "Spain",
     "countryCode": "ES",
     "date": "2026-02-06",
@@ -250,13 +255,16 @@
     "archiveEdition": true,
     "published": false,
     "sourceFile": "IMG_8142.heic",
-    "event": "Llum BCN 2026 · The Rhythm of the Ocean · Desilence"
+    "event": "Llum BCN 26 · The Rhythm of the Ocean · Desilence Visual Art Studio",
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING",
+    "address": "Campus del Poblenou"
   },
   {
     "id": "010",
     "title": "BRUSSELS — QUATUOR",
     "slug": "brussels-quatuor",
-    "place": "Quatuor",
+    "place": "Quatuor Brussels",
     "city": "Brussels",
     "region": "Brussels-Capital Region",
     "country": "Belgium",
@@ -278,20 +286,24 @@
     ],
     "archiveEdition": true,
     "published": false,
-    "sourceFile": "IMG_5828.heic"
+    "sourceFile": "IMG_5828.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING",
+    "address": "Boulevard Baudouin 30 · 1000 Brussels",
+    "architect": "Jaspers-Eyers Architects"
   },
   {
     "id": "011",
     "title": "LYON — LE PETIT PRINCE",
     "slug": "lyon-le-petit-prince",
-    "place": "Le Petit Prince mural",
+    "place": "Le Petit Prince / Saint-Exupéry mural",
     "city": "Lyon",
     "region": "Auvergne-Rhône-Alpes",
     "country": "France",
     "countryCode": "FR",
     "date": "2023-12-09",
     "time": "10:49:29",
-    "coordinates": "45.767356, 4.834089",
+    "coordinates": "45.7675, 4.8336",
     "camera": "iPhone 15 Pro",
     "lens": "6.86 mm · f/1.8 · 24 mm eq.",
     "capture": "ISO 125 · 1/100 s",
@@ -306,6 +318,9 @@
     ],
     "archiveEdition": true,
     "published": false,
-    "sourceFile": "IMG_3305.heic"
+    "sourceFile": "IMG_3305.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING",
+    "temperature": "8°C"
   }
 ]
