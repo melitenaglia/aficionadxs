@@ -127,7 +127,7 @@ function bindStaticEvents(){
   $("#clear-cart").onclick=()=>{state.cart=[];saveCart();renderCart()};
   $("#send-request").onclick=sendRequest;
 }
-function filteredArchive(){return state.filter==="all"?state.archive:state.archive.filter(p=>p.countryCode===state.filter)}
+function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
 function renderArchive(){
   const list=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
