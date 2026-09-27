@@ -162,8 +162,25 @@ function renderEditions(){
   }).join("");
   $(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
 }
+
+function objectIcon(type){
+  const common='viewBox="0 0 80 80" aria-hidden="true" focusable="false"';
+  const icons={
+    print:'<svg '+common+'><rect x="20" y="10" width="40" height="60" fill="none" stroke="currentColor"/><rect x="27" y="18" width="26" height="34" fill="none" stroke="currentColor"/><line x1="27" y1="58" x2="53" y2="58" stroke="currentColor"/></svg>',
+    postcard:'<svg '+common+'><rect x="10" y="22" width="60" height="36" fill="none" stroke="currentColor"/><line x1="43" y1="22" x2="43" y2="58" stroke="currentColor"/><rect x="51" y="29" width="11" height="9" fill="none" stroke="currentColor"/><line x1="48" y1="45" x2="63" y2="45" stroke="currentColor"/><line x1="48" y1="50" x2="61" y2="50" stroke="currentColor"/></svg>',
+    tshirt:'<svg '+common+'><path d="M25 18 12 28l8 10 7-5v29h26V33l7 5 8-10-13-10-8 4H33z" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M26 17 13 29l8 9 6-5v30h26V33l6 5 8-9-13-12-8 4H34z" fill="none" stroke="currentColor" stroke-linejoin="round"/><line x1="30" y1="57" x2="50" y2="57" stroke="currentColor"/><line x1="34" y1="21" x2="46" y2="21" stroke="currentColor"/></svg>',
+    tote:'<svg '+common+'><path d="M20 28h40l-3 40H23z" fill="none" stroke="currentColor"/><path d="M31 29c0-13 18-13 18 0" fill="none" stroke="currentColor"/></svg>',
+    notebook:'<svg '+common+'><rect x="23" y="12" width="38" height="56" rx="2" fill="none" stroke="currentColor"/><line x1="30" y1="12" x2="30" y2="68" stroke="currentColor"/><line x1="18" y1="20" x2="28" y2="20" stroke="currentColor"/><line x1="18" y1="29" x2="28" y2="29" stroke="currentColor"/><line x1="18" y1="38" x2="28" y2="38" stroke="currentColor"/><line x1="18" y1="47" x2="28" y2="47" stroke="currentColor"/><line x1="18" y1="56" x2="28" y2="56" stroke="currentColor"/></svg>'
+  };
+  return icons[type]||icons.print;
+}
+
 function renderObjects(){
-  $("#object-list").innerHTML=state.products.map(p=>'<div class="object-row"><span>'+p.code+'</span><strong>'+prodName(p)+'</strong><span>'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>').join("");
+  $("#object-list").innerHTML=state.products.map(p=>{
+    const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+(state.lang==="es"?"MODELOS":"MODELS")+'</span>':"";
+    return '<div class="object-row"><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div><span class="object-code">'+p.code+'</span><div><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><span class="object-desc">'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>';
+  }).join("");
 }
 function dataRow(a,b){return'<div class="data-row"><span>'+a+'</span><span>'+(b||"—")+'</span></div>'}
 function openPhoto(id){
