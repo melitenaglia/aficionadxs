@@ -4,8 +4,8 @@
     "code": "PR",
     "name_en": "PRINT",
     "name_es": "PRINT",
-    "description_en": "Photographic print. Paper, supplier and final size range are being tested.",
-    "description_es": "Impresión fotográfica. Papel, proveedor y tamaños finales todavía en prueba.",
+    "description_en": "Photograph or approved AFCNDXS edition, produced to a print-specific file.",
+    "description_es": "Fotografía o edición AFCNDXS aprobada, producida con un archivo específico para impresión.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -14,24 +14,25 @@
       "ARCHIVE EDITION"
     ],
     "sizes": [
-      "21 × 30 CM",
-      "30 × 40 CM"
+      "20 × 30 CM · 2:3",
+      "30 × 40 CM · 3:4"
     ],
-    "colors": []
+    "colors": [],
+    "productionNote_en": "Same composition may be reused, but the production file is regenerated at final print size.",
+    "productionNote_es": "Puede reutilizarse la misma composición, pero el archivo de producción se regenera al tamaño final."
   },
   {
     "id": "postcard",
     "code": "PC",
     "name_en": "POSTCARD",
     "name_es": "POSTAL",
-    "description_en": "101 × 152 mm postcard on coated card stock.",
-    "description_es": "Postal de 101 × 152 mm sobre cartulina estucada.",
+    "description_en": "101 × 152 mm postcard using its approved support-specific artwork.",
+    "description_es": "Postal de 101 × 152 mm con su diseño específico aprobado para este soporte.",
     "price": 5,
     "priceLabel_en": "5 EUR",
     "priceLabel_es": "5 EUR",
     "editions": [
-      "PHOTOGRAPH",
-      "ARCHIVE EDITION"
+      "SUPPORT DESIGN"
     ],
     "sizes": [
       "101 × 152 MM"
@@ -39,85 +40,144 @@
     "colors": []
   },
   {
-    "id": "tshirt-regular",
-    "code": "TS-R",
-    "name_en": "T-SHIRT / REGULAR ORGANIC",
-    "name_es": "CAMISETA / REGULAR ORGÁNICA",
-    "description_en": "Stanley/Stella Creator 2.0 · 180 g/m² · regular fit · 100% organic cotton. The lighter, cleaner regular option.",
-    "description_es": "Stanley/Stella Creator 2.0 · 180 g/m² · corte regular · 100% algodón orgánico. La opción regular más ligera y limpia.",
-    "quality_en": "PREMIUM",
-    "quality_es": "PREMIUM",
-    "supplierCostRef": "14.75 EUR incl. VAT",
+    "id": "tshirt",
+    "code": "TS",
+    "name_en": "T-SHIRT",
+    "name_es": "CAMISETA",
+    "description_en": "Three fits / quality levels. Choose the garment after choosing the photograph.",
+    "description_es": "Tres cortes / niveles de prenda. El modelo se elige después de seleccionar la fotografía.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
     "editions": [
       "ARCHIVE EDITION"
     ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "2XL"
-    ],
-    "colors": [
-      "WHITE",
-      "ANTHRACITE"
+    "models": [
+      {
+        "id": "creator-2",
+        "code": "TS-R",
+        "name_en": "REGULAR ORGANIC · CREATOR 2.0",
+        "name_es": "REGULAR ORGÁNICA · CREATOR 2.0",
+        "description_en": "Stanley/Stella Creator 2.0 · 180 g/m² · regular fit · 100% organic cotton. Cleaner and lighter regular option.",
+        "description_es": "Stanley/Stella Creator 2.0 · 180 g/m² · corte regular · 100% algodón orgánico. Opción regular más limpia y ligera.",
+        "quality_en": "PREMIUM",
+        "quality_es": "PREMIUM",
+        "supplierCostRef": "14.75 EUR incl. VAT",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "colors": [
+          "WHITE",
+          "ANTHRACITE"
+        ],
+        "price": null
+      },
+      {
+        "id": "comfort-colors-1717",
+        "code": "TS-H",
+        "name_en": "HEAVY GARMENT-DYED · 1717",
+        "name_es": "HEAVY GARMENT-DYED · 1717",
+        "description_en": "Comfort Colors 1717 · 206.8 g/m² · relaxed fit · garment-dyed. Heavier and more substantial.",
+        "description_es": "Comfort Colors 1717 · 206,8 g/m² · corte relajado · teñida en prenda. Más pesada y con mayor presencia.",
+        "quality_en": "PREMIUM HEAVY",
+        "quality_es": "PREMIUM HEAVY",
+        "supplierCostRef": "18.45 EUR incl. VAT",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "colors": [
+          "WHITE"
+        ],
+        "price": null
+      },
+      {
+        "id": "blaster-2",
+        "code": "TS-O",
+        "name_en": "OVERSIZED ORGANIC · BLASTER 2.0",
+        "name_es": "OVERSIZE ORGÁNICA · BLASTER 2.0",
+        "description_en": "Stanley/Stella Blaster 2.0 · oversized fit · dropped shoulders · 100% organic cotton.",
+        "description_es": "Stanley/Stella Blaster 2.0 · corte oversize · hombros caídos · 100% algodón orgánico.",
+        "quality_en": "PREMIUM OVERSIZED",
+        "quality_es": "PREMIUM OVERSIZE",
+        "supplierCostRef": "17.22 EUR incl. VAT",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "colors": [
+          "WHITE"
+        ],
+        "price": null
+      }
     ]
   },
   {
-    "id": "tshirt-heavy",
-    "code": "TS-H",
-    "name_en": "T-SHIRT / HEAVY GARMENT-DYED",
-    "name_es": "CAMISETA / HEAVY GARMENT-DYED",
-    "description_en": "Comfort Colors 1717 · 206.8 g/m² · relaxed fit · garment-dyed. Heavier, more structured and substantial.",
-    "description_es": "Comfort Colors 1717 · 206,8 g/m² · corte relajado · teñida en prenda. Más pesada, estructurada y con mayor presencia.",
-    "quality_en": "PREMIUM HEAVY",
-    "quality_es": "PREMIUM HEAVY",
-    "supplierCostRef": "18.45 EUR incl. VAT",
+    "id": "sweatshirt",
+    "code": "SW",
+    "name_en": "SWEATSHIRT",
+    "name_es": "SUDADERA",
+    "description_en": "Two premium crewneck directions: regular and oversized.",
+    "description_es": "Dos direcciones premium de sudadera sin capucha: regular y oversize.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
     "editions": [
       "ARCHIVE EDITION"
     ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "2XL"
-    ],
-    "colors": [
-      "WHITE"
-    ]
-  },
-  {
-    "id": "tshirt-oversized",
-    "code": "TS-O",
-    "name_en": "T-SHIRT / OVERSIZED ORGANIC",
-    "name_es": "CAMISETA / OVERSIZE ORGÁNICA",
-    "description_en": "Stanley/Stella Blaster 2.0 · oversized fit · dropped shoulders · 100% organic cotton. The widest silhouette.",
-    "description_es": "Stanley/Stella Blaster 2.0 · corte oversize · hombros caídos · 100% algodón orgánico. La silueta más amplia.",
-    "quality_en": "PREMIUM OVERSIZED",
-    "quality_es": "PREMIUM OVERSIZE",
-    "supplierCostRef": "17.22 EUR incl. VAT",
-    "price": null,
-    "priceLabel_en": "PRICE ON REQUEST",
-    "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": [
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "2XL"
-    ],
-    "colors": [
-      "WHITE"
+    "models": [
+      {
+        "id": "changer-2",
+        "code": "SW-R",
+        "name_en": "REGULAR ORGANIC · CHANGER 2.0",
+        "name_es": "REGULAR ORGÁNICA · CHANGER 2.0",
+        "description_en": "Stanley/Stella Changer 2.0 · 350 g/m² · regular crewneck · 100% organic cotton.",
+        "description_es": "Stanley/Stella Changer 2.0 · 350 g/m² · cuello redondo regular · 100% algodón orgánico.",
+        "quality_en": "PREMIUM",
+        "quality_es": "PREMIUM",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "colors": [
+          "TBC"
+        ],
+        "price": null
+      },
+      {
+        "id": "radder-2",
+        "code": "SW-O",
+        "name_en": "OVERSIZED ORGANIC · RADDER 2.0",
+        "name_es": "OVERSIZE ORGÁNICA · RADDER 2.0",
+        "description_en": "Stanley/Stella Radder 2.0 · 350 g/m² · oversized crewneck · 100% organic cotton.",
+        "description_es": "Stanley/Stella Radder 2.0 · 350 g/m² · cuello redondo oversize · 100% algodón orgánico.",
+        "quality_en": "PREMIUM OVERSIZED",
+        "quality_es": "PREMIUM OVERSIZE",
+        "sizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "2XL"
+        ],
+        "colors": [
+          "TBC"
+        ],
+        "price": null
+      }
     ]
   },
   {
@@ -125,13 +185,13 @@
     "code": "TO",
     "name_en": "TOTE BAG",
     "name_es": "TOTE BAG",
-    "description_en": "100% cotton · 140 g/m² · 38 × 42 cm · current prototype: Westford Mill W101.",
-    "description_es": "100% algodón · 140 g/m² · 38 × 42 cm · prototipo actual: Westford Mill W101.",
+    "description_en": "Current prototype: Westford Mill W101 · 100% cotton · 140 g/m² · 38 × 42 cm.",
+    "description_es": "Prototipo actual: Westford Mill W101 · 100% algodón · 140 g/m² · 38 × 42 cm.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
     "editions": [
-      "ARCHIVE EDITION"
+      "SUPPORT DESIGN"
     ],
     "sizes": [
       "ONE SIZE"
@@ -141,41 +201,17 @@
     ]
   },
   {
-    "id": "sweatshirt",
-    "code": "SW",
-    "name_en": "SWEATSHIRT",
-    "name_es": "SUDADERA",
-    "description_en": "On-request format while blanks and photographic print quality are tested.",
-    "description_es": "Formato bajo pedido mientras seguimos probando prendas base y calidad de impresión fotográfica.",
-    "price": null,
-    "priceLabel_en": "PRICE ON REQUEST",
-    "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": [
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "2XL"
-    ],
-    "colors": [
-      "TBC"
-    ]
-  },
-  {
     "id": "notebook",
     "code": "NB",
     "name_en": "NOTEBOOK",
     "name_es": "LIBRETA",
-    "description_en": "Notebook format with a dedicated support-specific design.",
-    "description_es": "Libreta con diseño específico adaptado al soporte.",
+    "description_en": "Notebook with a dedicated support-specific approved design.",
+    "description_es": "Libreta con un diseño específico aprobado y adaptado al soporte.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
     "editions": [
-      "ARCHIVE EDITION"
+      "SUPPORT DESIGN"
     ],
     "sizes": [
       "TBC"
