@@ -27,8 +27,8 @@ async function handleSession(session){
   const gate=$("#auth-gate"),app=$("#admin-app"),signOut=$("#sign-out"),authStatus=$("#auth-status");
   if(!session){
     state.profile=null;app.hidden=true;signOut.hidden=true;authStatus.textContent="";gate.hidden=false;
-    gate.innerHTML='<div class="auth-card"><div class="eyebrow">PRIVATE ADMIN</div><h2>ACCESS.</h2><p>Entra con tu email. Supabase enviará un enlace de acceso de un solo uso.</p><form id="login-form"><label>EMAIL<input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label><button class="primary-admin" type="submit">SEND MAGIC LINK →</button><p id="login-msg" class="small"></p></form></div>';
-    $("#login-form").onsubmit=sendMagicLink;return;
+    gate.innerHTML='<div class="auth-card"><div class="eyebrow">PRIVATE ADMIN</div><h2>ACCESS.</h2><p>Acceso privado con email y contraseña.</p><form id="login-form"><label>EMAIL<input type="email" name="email" required autocomplete="email"></label><label>PASSWORD<input type="password" name="password" required autocomplete="current-password"></label><button class="primary-admin" type="submit">SIGN IN →</button><p id="login-msg" class="small"></p></form></div>';
+    $("#login-form").onsubmit=signInWithPassword;return;
   }
   authStatus.textContent=session.user.email||"SIGNED IN";signOut.hidden=false;
   const {data:profile,error}=await supabase.from("profiles").select("id,display_name,role").eq("id",session.user.id).maybeSingle();
@@ -41,10 +41,12 @@ async function handleSession(session){
   }
   gate.hidden=true;app.hidden=false;await loadData();
 }
-async function sendMagicLink(ev){
-  ev.preventDefault();const email=new FormData(ev.currentTarget).get("email"),msg=$("#login-msg");msg.textContent="SENDING…";
-  const {error}=await supabase.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+"/admin/",shouldCreateUser:true}});
-  msg.textContent=error?error.message:"Check your inbox. Open the AFCNDXS access link on this device.";
+async function signInWithPassword(ev){
+  ev.preventDefault();
+  const form=new FormData(ev.currentTarget),email=form.get("email"),password=form.get("password"),msg=$("#login-msg");
+  msg.textContent="SIGNING IN…";
+  const {error}=await supabase.auth.signInWithPassword({email,password});
+  msg.textContent=error?"Email o contraseña incorrectos.":"";
 }
 async function loadData(){
   setBusy(true);
