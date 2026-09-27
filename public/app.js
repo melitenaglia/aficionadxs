@@ -313,4 +313,4 @@ function sendRequest(){
   const base=WHATSAPP_NUMBER?"https://wa.me/"+WHATSAPP_NUMBER:"https://wa.me/";
   window.open(base+"?text="+encodeURIComponent(lines.join("\n")),"_blank","noopener,noreferrer");
 }
-init().catch(e=>{console.error(e);$("#archive-grid").innerHTML="<p>ARCHIVE DATA COULD NOT BE LOADED.</p>"});
+init().catch(e=>{console.error("AFCNDXS init failed",e);const g=$("#archive-grid");if(g)g.innerHTML="<p>ARCHIVE TEMPORARILY UNAVAILABLE.</p>"});
