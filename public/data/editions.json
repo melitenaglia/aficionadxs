@@ -4,7 +4,12 @@
     "archiveId": "001",
     "title": "MADRID BOTÁNICO",
     "variant": "BLACK",
-    "sourceFilename": "Propuestas AFCNDXS26_madrid_botanico_black.png",
+    "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_black.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -13,7 +18,12 @@
     "archiveId": "001",
     "title": "MADRID BOTÁNICO",
     "variant": "WHITE",
-    "sourceFilename": "Propuestas AFCNDXS26_madrid_botanico_white.png",
+    "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_white.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -21,8 +31,13 @@
     "id": "002-A",
     "archiveId": "002",
     "title": "TOSSA DE MAR",
-    "variant": "ORIGINAL",
-    "sourceFilename": "Propuestas AFCNDXS26_tossa.png",
+    "variant": "BLACK",
+    "sourceFilename": "Propuestas AFCNDXS26_002_tossa_black.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -31,7 +46,12 @@
     "archiveId": "002",
     "title": "TOSSA DE MAR",
     "variant": "WHITE",
-    "sourceFilename": "Propuestas AFCNDXS26_tossa_white.png",
+    "sourceFilename": "Propuestas AFCNDXS26_002_tossa_white.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -40,7 +60,12 @@
     "archiveId": "003",
     "title": "PARIS — LOUVRE",
     "variant": "BLACK",
-    "sourceFilename": "Propuestas AFCNDXS26_paris_louvre_black.png",
+    "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_black.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -49,7 +74,12 @@
     "archiveId": "003",
     "title": "PARIS — LOUVRE",
     "variant": "WHITE",
-    "sourceFilename": "Propuestas AFCNDXS26_paris_louvre_white.png",
+    "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_white.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -58,7 +88,12 @@
     "archiveId": "004",
     "title": "BERLIN — FILM",
     "variant": "WHITE",
-    "sourceFilename": "Propuestas AFCNDXS26_berlin_film_white.png",
+    "sourceFilename": "Propuestas AFCNDXS26_004_berlin_film_white.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   },
@@ -67,7 +102,96 @@
     "archiveId": "005",
     "title": "PRAGUE — ABSINTHERIE",
     "variant": "WHITE",
-    "sourceFilename": "Propuestas AFCNDXS26_prague_abs_white.png",
+    "sourceFilename": "Propuestas AFCNDXS26_005_prague_abs_white.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "006-A",
+    "archiveId": "006",
+    "title": "DUBLIN — STAIRWAY",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_006_dublin_stairway.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "007-A",
+    "archiveId": "007",
+    "title": "BCN — SAGRADA",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_007_bcn_sagrada.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "008-A",
+    "archiveId": "008",
+    "title": "AIGUABLAVA — BCN",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_008_aiguablava_bcn.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "009-A",
+    "archiveId": "009",
+    "title": "GITENBERG — LLUM",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_009_gitenberg_llum.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "010-A",
+    "archiveId": "010",
+    "title": "BRUSSELS — QUATUOR",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_010_brussels_quatuor_be.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "011-A",
+    "archiveId": "011",
+    "title": "LYON — LE PETIT PRINCE",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_011_lyon_tlprince.png",
+    "designFamily": "APPAREL",
+    "supportedObjects": [
+      "tshirt",
+      "sweatshirt"
+    ],
     "publicPreview": null,
     "approved": true
   }
