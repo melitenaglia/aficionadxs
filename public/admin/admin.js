@@ -1,14 +1,15 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const state={archive:[],editions:[],applications:[],products:[],costing:null,tab:"queue"};
+const state={archive:[],editions:[],applications:[],products:[],costing:null,production:null,tab:"queue"};
 async function init(){
-  const [a,e,s,p,c]=await Promise.all([
+  const [a,e,s,p,c,prod]=await Promise.all([
     fetch("/data/archive.json").then(r=>r.json()),
     fetch("/data/editions.json").then(r=>r.json()),
     fetch("/data/support-designs.json").then(r=>r.json()),
     fetch("/data/products.json").then(r=>r.json()),
-    fetch("/data/costing.json").then(r=>r.json())
+    fetch("/data/costing.json").then(r=>r.json()),
+    fetch("/data/production.json").then(r=>r.json())
   ]);
-  state.archive=a;state.editions=e;state.applications=s;state.products=p;state.costing=c;
+  state.archive=a;state.editions=e;state.applications=s;state.products=p;state.costing=c;state.production=prod;
   bind();renderSummary();render();
 }
 function bind(){
@@ -32,6 +33,7 @@ function render(){
   if(state.tab==="applications")return renderApplications();
   if(state.tab==="physicals")return renderPhysicals();
   if(state.tab==="costing")return renderCosting();
+  if(state.tab==="production")return renderProduction();
   renderQueue();
 }
 function renderQueue(){
