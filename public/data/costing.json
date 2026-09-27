@@ -1,0 +1,170 @@
+{
+  "asOf": "2026-09-27",
+  "destination": "Barcelona, Spain",
+  "currency": "EUR",
+  "vatBasis": "Public Printful EU catalog prices shown incl. VAT where available.",
+  "shippingPolicy": "Initial AFCNDXS phase: charge shipping separately / confirm on request. Shipping figures below are current public EU-facing proxies, not a final Barcelona checkout quote.",
+  "caveats": [
+    "Printful states product prices vary by fulfillment location, technique, placement, color, size, taxes and shipping.",
+    "Posters and notebooks can ship separately from mixed orders; do not assume one combined shipping charge.",
+    "Final PVP must be checked again against an actual Barcelona checkout quote before publication."
+  ],
+  "items": [
+    {
+      "id": "postcard-standard",
+      "label": "POSTCARD · STANDARD",
+      "productCost": 1.58,
+      "shippingProxy": 3.69,
+      "landedSingleProxy": 5.27,
+      "printIncluded": true,
+      "pvpScenarios": [
+        5,
+        6,
+        7
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "print-21x30",
+      "label": "PRINT · ENHANCED MATTE · 21×30",
+      "productCost": 8.58,
+      "shippingProxy": 4.99,
+      "landedSingleProxy": 13.57,
+      "printIncluded": true,
+      "pvpScenarios": [
+        18,
+        20,
+        22
+      ],
+      "status": "PROVISIONAL",
+      "ratioNote": "21×30 is 7:10, so it does not match the 2:3 postcard layout exactly."
+    },
+    {
+      "id": "print-30x40",
+      "label": "PRINT · ENHANCED MATTE · 30×40",
+      "productCost": null,
+      "shippingProxy": 4.99,
+      "landedSingleProxy": null,
+      "printIncluded": true,
+      "pvpScenarios": [
+        25,
+        28,
+        30
+      ],
+      "status": "CHECKOUT_PRICE_PENDING",
+      "ratioNote": "30×40 is 3:4 and matches the current 3600×4800 apparel composition."
+    },
+    {
+      "id": "tote-w101",
+      "label": "TOTE · WESTFORD MILL W101",
+      "productCost": 10.93,
+      "shippingProxy": 4.49,
+      "landedSingleProxy": 15.42,
+      "printIncluded": true,
+      "pvpScenarios": [
+        24,
+        26,
+        28
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "tshirt-creator",
+      "label": "T-SHIRT · CREATOR 2.0",
+      "productCost": 14.75,
+      "shippingProxy": 4.49,
+      "landedSingleProxy": 19.24,
+      "printIncluded": true,
+      "pvpScenarios": [
+        35,
+        38,
+        40
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "tshirt-comfort",
+      "label": "T-SHIRT · COMFORT COLORS 1717",
+      "productCost": 18.45,
+      "shippingProxy": 4.49,
+      "landedSingleProxy": 22.94,
+      "printIncluded": true,
+      "pvpScenarios": [
+        40,
+        42,
+        45
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "tshirt-blaster",
+      "label": "T-SHIRT · BLASTER 2.0",
+      "productCost": 17.22,
+      "shippingProxy": 4.49,
+      "landedSingleProxy": 21.71,
+      "printIncluded": true,
+      "pvpScenarios": [
+        40,
+        42,
+        45
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "sweat-changer",
+      "label": "SWEATSHIRT · CHANGER 2.0",
+      "productCost": 36.41,
+      "shippingProxy": 6.59,
+      "landedSingleProxy": 43,
+      "printIncluded": true,
+      "pvpScenarios": [
+        65,
+        69,
+        72
+      ],
+      "status": "PROVISIONAL_SHIPPING_PROXY"
+    },
+    {
+      "id": "sweat-raddler",
+      "label": "SWEATSHIRT · RADDLER 2.0",
+      "productCost": 30.29,
+      "shippingProxy": 6.59,
+      "landedSingleProxy": 36.88,
+      "printIncluded": true,
+      "pvpScenarios": [
+        60,
+        65,
+        69
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "notebook-spiral",
+      "label": "NOTEBOOK · SPIRAL",
+      "productCost": 13.89,
+      "shippingProxy": 4.99,
+      "landedSingleProxy": 18.88,
+      "printIncluded": true,
+      "pvpScenarios": [
+        28,
+        30,
+        32
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "notebook-journalbook",
+      "label": "NOTEBOOK · HARDCOVER JOURNALBOOK",
+      "productCost": 14.22,
+      "shippingProxy": 9.99,
+      "landedSingleProxy": 24.21,
+      "printIncluded": true,
+      "pvpScenarios": [
+        30,
+        32,
+        35
+      ],
+      "status": "PROVISIONAL"
+    }
+  ]
+}
