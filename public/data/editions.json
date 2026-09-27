@@ -11,8 +11,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "001-B",
@@ -26,8 +26,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "002-A",
@@ -41,8 +41,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "002-B",
@@ -56,8 +56,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "003-A",
@@ -71,8 +71,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "003-B",
@@ -86,8 +86,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "004-A",
@@ -101,8 +101,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "005-A",
@@ -116,8 +116,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "approved": true,
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "006-A",
@@ -131,9 +131,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
+    "approved": true,
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "007-A",
@@ -147,9 +147,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
+    "approved": true,
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "008-A",
@@ -163,9 +163,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
+    "approved": true,
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "009-A",
@@ -179,9 +179,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
+    "approved": true,
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "010-A",
@@ -195,9 +195,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
+    "approved": true,
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "011-A",
@@ -211,8 +211,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": false,
+    "approved": true,
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   }
 ]
