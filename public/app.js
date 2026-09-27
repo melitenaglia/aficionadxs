@@ -12,21 +12,6 @@ const state={
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
 };
 const WHATSAPP_NUMBER="";
-const SUPABASE_URL="https://psuhxbvsyhyiipaqijkp.supabase.co";
-const SUPABASE_KEY="sb_publishable_4BYHLxgRiykemrZo9RLIbA_G4KGx8ll";
-
-async function sb(path){
-  const r=await fetch(SUPABASE_URL+"/rest/v1/"+path,{headers:{apikey:SUPABASE_KEY}});
-  if(!r.ok) throw new Error("Supabase "+r.status);
-  return r.json();
-}
-function mapPhoto(p){const local=/^\\d{3}$/.test(String(p.id))?"/assets/photos/"+p.id+".webp":p.image_url;return {...p,countryCode:p.country_code,date:p.photo_date,time:p.photo_time,image:local,archiveEdition:p.archive_edition,sourceMatchVerified:p.source_match_verified,reviewStatus:p.review_status}}
-function mapEdition(e){return {...e,archiveId:e.archive_id,sourceFilename:e.source_filename,designFamily:e.design_family,supportedObjects:e.supported_objects||[],publicPreview:e.public_preview,sourceMatchVerified:e.source_match_verified,reviewStatus:e.review_status}}
-function mapApplication(a){return {...a,archiveId:a.archive_id,sourceFilename:a.source_filename,publicPreview:a.public_preview,reviewStatus:a.review_status}}
-function mapPhysical(p){
-  const c=p.config||{};
-  return {...c,id:p.id,code:p.code||c.code,name_es:p.name_es||c.name_es,name_en:p.name_en||c.name_en,description_es:p.description_es||c.description_es,description_en:p.description_en||c.description_en,price:p.price??c.price??null,currency:p.currency||c.currency||"EUR",supplier:p.supplier||c.supplier,sourceUrl:p.source_url||c.sourceUrl,active:p.active};
-}
 
 const T={
   es:{
@@ -44,7 +29,7 @@ const T={
     sendWhatsapp:"ENVIAR SOLICITUD POR WHATSAPP →",clearRequest:"VACIAR SOLICITUD",
     request:"SOLICITUD",emptyRequest:"NO HAY ARTÍCULOS EN LA SOLICITUD.",
     estimatedTotal:"TOTAL ESTIMADO",toConfirm:"A CONFIRMAR",itemsToConfirm:" + ARTÍCULOS A CONFIRMAR",
-    date:"FECHA",time:"HORA",region:"REGIÓN",coord:"COORD.",camera:"CÁMARA",lens:"LENTE",capture:"CAPTURA",address:"DIRECCIÓN",event:"EVENTO",architect:"ARQUITECTURA",temperature:"TEMPERATURA",
+    date:"FECHA",time:"HORA",region:"REGIÓN",coord:"COORD.",camera:"CÁMARA",lens:"LENTE",capture:"CAPTURA",
     relatedEditions:"EDICIONES RELACIONADAS",format:"SOPORTE",edition:"EDICIÓN",size:"TALLA / TAMAÑO",color:"COLOR",
     addRequest:"AÑADIR A SOLICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
     viewSource:"VER FOTO ORIGINAL →",editionNote:"La edición es la composición gráfica. El objeto físico se elige por separado.",
@@ -66,7 +51,7 @@ const T={
     sendWhatsapp:"SEND REQUEST VIA WHATSAPP →",clearRequest:"CLEAR REQUEST",
     request:"REQUEST",emptyRequest:"NO ITEMS IN REQUEST.",
     estimatedTotal:"ESTIMATED TOTAL",toConfirm:"TO CONFIRM",itemsToConfirm:" + ITEMS TO CONFIRM",
-    date:"DATE",time:"TIME",region:"REGION",coord:"COORD.",camera:"CAMERA",lens:"LENS",capture:"CAPTURE",address:"ADDRESS",event:"EVENT",architect:"ARCHITECT",temperature:"TEMPERATURE",
+    date:"DATE",time:"TIME",region:"REGION",coord:"COORD.",camera:"CAMERA",lens:"LENS",capture:"CAPTURE",
     relatedEditions:"RELATED EDITIONS",format:"FORMAT",edition:"EDITION",size:"SIZE",color:"COLOR",
     addRequest:"ADD TO REQUEST →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
     viewSource:"VIEW SOURCE PHOTO →",editionNote:"The edition is the graphic composition. The physical object is chosen separately.",
@@ -101,23 +86,12 @@ const editionVariant=e=>{
 };
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([
-    fetch("/data/archive.json"),
-    fetch("/data/editions.json"),
-    fetch("/data/support-designs.json"),
-    fetch("/data/products.json")
-  ]);
-  state.archive=await a.json();
-  state.editions=await e.json();
-  state.applications=await s.json();
-  state.products=await p.json();
-  bindStaticEvents();
-  applyLanguage();
-  renderAll();
-  const fy=$("#footer-year"); if(fy) fy.textContent=new Date().getFullYear();
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
+  state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
+  bindStaticEvents();applyLanguage();renderAll();
+  $("#footer-year").textContent=new Date().getFullYear();
   document.addEventListener("keydown",ev=>{
-    const pd=$("#photo-dialog"),ed=$("#edition-dialog"),cart=$("#cart-drawer");
-    if(state.view==="carousel"&&!(pd&&pd.open)&&!(ed&&ed.open)&&!(cart&&cart.classList.contains("open"))){
+    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#edition-dialog").open&&!$("#cart-drawer").classList.contains("open")){
       if(ev.key==="ArrowLeft")moveCarousel(-1);
       if(ev.key==="ArrowRight")moveCarousel(1);
     }
@@ -143,7 +117,7 @@ function bindStaticEvents(){
     state.filter=b.dataset.filter;state.carouselIndex=0;
     $$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderArchive();
   }));
-  $$$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
+  $$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
     state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
     renderArchive();
   }));
@@ -156,29 +130,14 @@ function bindStaticEvents(){
   $("#clear-cart").onclick=()=>{state.cart=[];saveCart();renderCart()};
   $("#send-request").onclick=sendRequest;
 }
-function archiveCountries(){
-  return [...new Set(state.archive.filter(p=>p.published!==false&&p.countryCode).map(p=>p.countryCode))].sort();
-}
-function renderArchiveFilters(){
-  const box=$(".archive-controls"); if(!box)return;
-  const countries=archiveCountries();
-  if(state.filter!=="all"&&!countries.includes(state.filter))state.filter="all";
-  box.innerHTML='<button class="filter '+(state.filter==="all"?"active":"")+'" data-filter="all">'+t("all")+'</button>'+
-    countries.map(code=>'<button class="filter '+(state.filter===code?"active":"")+'" data-filter="'+code+'">'+code+'</button>').join("");
-  $$(".filter",box).forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;state.carouselIndex=0;renderArchive()});
-}
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
 function renderArchive(){
-  renderArchiveFilters();
-  const full=filteredArchive(),isArchivePage=document.body.dataset.page==="archive";
-  const list=isArchivePage?full:full.slice(0,8),grid=$("#archive-grid"),carousel=$("#archive-carousel");
+  const list=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>').join("");
-  grid.onclick=ev=>{const card=ev.target.closest(".archive-card");if(card)openPhoto(card.dataset.id)};
-  grid.onkeydown=ev=>{const card=ev.target.closest(".archive-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openPhoto(card.dataset.id)}};
-  const more=$("#archive-more"); if(more) more.hidden=isArchivePage||full.length<=list.length;
+  $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
 }
 function renderCarousel(list=filteredArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>NO PHOTOGRAPHS.</p>";return}
@@ -193,9 +152,7 @@ function editionArtwork(e,source){
   return '<div class="'+cls+'"><div class="edition-artwork-head"><span class="edition-artwork-title">['+e.id+'] '+e.title+'</span><span class="edition-cross">+</span></div><div class="edition-artwork-photo"><img src="'+source.image+'" alt="'+source.title+'"></div><div class="edition-artwork-foot"><span>'+source.city+' · '+formatDate(source.date)+'</span><span>// AFICIONADXS</span></div></div>';
 }
 function renderEditions(){
-  const full=state.editions.filter(e=>e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK");
-  const isEditionsPage=document.body.dataset.page==="editions";
-  const approved=isEditionsPage?full:full.slice(0,6);
+  const approved=state.editions.filter(e=>e.approved&&e.publicPreview);
   if(!approved.length){
     $("#editions-grid").innerHTML='<p class="technical-note">APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.</p>';
     return;
@@ -203,18 +160,17 @@ function renderEditions(){
   $("#editions-grid").innerHTML=approved.map(e=>{
     return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.publicPreview+'" alt="'+e.title+' '+e.variant+'" loading="lazy"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
   }).join("");
-  const eg=$("#editions-grid"); eg.onclick=ev=>{const card=ev.target.closest(".edition-card");if(card)openEdition(card.dataset.id)}; eg.onkeydown=ev=>{const card=ev.target.closest(".edition-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openEdition(card.dataset.id)}};
-  const more=$("#editions-more"); if(more) more.hidden=isEditionsPage||full.length<=approved.length;
+  $$(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
 }
 
 function objectIcon(type){
   const common='viewBox="0 0 80 80" aria-hidden="true" focusable="false"';
   const icons={
-    print:'<svg '+common+'><circle cx="40" cy="7" r="1.5" fill="currentColor"/><path d="M40 9 31 16h18z" fill="none" stroke="currentColor"/><rect x="17" y="16" width="46" height="56" rx="1" fill="none" stroke="currentColor"/><rect x="23" y="22" width="34" height="42" fill="none" stroke="currentColor"/><circle cx="47" cy="32" r="3" fill="none" stroke="currentColor"/><path d="M25 58 34 47l7 7 5-6 9 10" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    postcard:'<svg '+common+'><rect x="9" y="23" width="62" height="34" rx="1" fill="none" stroke="currentColor"/><path d="M14 51 27 39l9 7 7-8 23 13" fill="none" stroke="currentColor" stroke-linejoin="round"/><circle cx="55" cy="33" r="3" fill="none" stroke="currentColor"/></svg>',
+    print:'<svg '+common+'><rect x="20" y="10" width="40" height="60" fill="none" stroke="currentColor"/><rect x="27" y="18" width="26" height="34" fill="none" stroke="currentColor"/><line x1="27" y1="58" x2="53" y2="58" stroke="currentColor"/></svg>',
+    postcard:'<svg '+common+'><rect x="10" y="22" width="60" height="36" fill="none" stroke="currentColor"/><line x1="43" y1="22" x2="43" y2="58" stroke="currentColor"/><rect x="51" y="29" width="11" height="9" fill="none" stroke="currentColor"/><line x1="48" y1="45" x2="63" y2="45" stroke="currentColor"/><line x1="48" y1="50" x2="61" y2="50" stroke="currentColor"/></svg>',
     tshirt:'<svg '+common+'><path d="M25 18 12 28l8 10 7-5v29h26V33l7 5 8-10-13-10-8 4H33z" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    sweatshirt:'<svg '+common+'><path d="M30 16 19 21 8 31 2 55l11 3 8-19 6-7v32h26V32l6 7 8 19 11-3-6-24-11-10-11-5-5 5H35z" fill="none" stroke="currentColor" stroke-linejoin="round"/><path d="M35 18c1 6 9 6 10 0" fill="none" stroke="currentColor"/><line x1="28" y1="58" x2="52" y2="58" stroke="currentColor"/><line x1="3" y1="53" x2="13" y2="56" stroke="currentColor"/><line x1="67" y1="56" x2="77" y2="53" stroke="currentColor"/></svg>',
-    tote:'<svg '+common+'><path d="M17 37h46l-4 34H21z" fill="none" stroke="currentColor"/><path d="M27 38V23C27 10 32 4 40 4s13 6 13 19v15" fill="none" stroke="currentColor"/><path d="M32 38V23c0-9 3-14 8-14s8 5 8 14v15" fill="none" stroke="currentColor"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M26 17 13 29l8 9 6-5v30h26V33l6 5 8-9-13-12-8 4H34z" fill="none" stroke="currentColor" stroke-linejoin="round"/><line x1="30" y1="57" x2="50" y2="57" stroke="currentColor"/><line x1="34" y1="21" x2="46" y2="21" stroke="currentColor"/></svg>',
+    tote:'<svg '+common+'><path d="M20 28h40l-3 40H23z" fill="none" stroke="currentColor"/><path d="M31 29c0-13 18-13 18 0" fill="none" stroke="currentColor"/></svg>',
     notebook:'<svg '+common+'><rect x="23" y="12" width="38" height="56" rx="2" fill="none" stroke="currentColor"/><line x1="30" y1="12" x2="30" y2="68" stroke="currentColor"/><line x1="18" y1="20" x2="28" y2="20" stroke="currentColor"/><line x1="18" y1="29" x2="28" y2="29" stroke="currentColor"/><line x1="18" y1="38" x2="28" y2="38" stroke="currentColor"/><line x1="18" y1="47" x2="28" y2="47" stroke="currentColor"/><line x1="18" y1="56" x2="28" y2="56" stroke="currentColor"/></svg>'
   };
   return icons[type]||icons.print;
@@ -226,21 +182,15 @@ function renderObjects(){
     return '<div class="object-row"><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div><span class="object-code">'+p.code+'</span><div><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><span class="object-desc">'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>';
   }).join("");
 }
-function dataRow(a,b){return b?'<div class="data-row"><span>'+a+'</span><span>'+b+'</span></div>':""}
+function dataRow(a,b){return'<div class="data-row"><span>'+a+'</span><span>'+(b||"—")+'</span></div>'}
 function openPhoto(id){
-  state.activePhoto=state.archive.find(p=>String(p.id)===String(id));
-  if(!state.activePhoto)return;
-  state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
-  renderPhotoDetail();
-  const ed=$("#edition-dialog"),dlg=$("#photo-dialog");
-  if(ed&&ed.open)ed.close();
-  if(dlg){ if(typeof dlg.showModal==="function") dlg.showModal(); else dlg.setAttribute("open",""); }
+  state.activePhoto=state.archive.find(p=>p.id===id);state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
+  renderPhotoDetail();if($("#edition-dialog").open)$("#edition-dialog").close();$("#photo-dialog").showModal();
 }
 function renderPhotoDetail(){
-  const p=state.activePhoto,avail=(p.available||[]).map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=state.editions.filter(e=>String(e.archiveId)===String(p.id)&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK");
+  const p=state.activePhoto,avail=p.available.map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=state.editions.filter(e=>e.archiveId===p.id);
   const relatedHtml=related.length?'<div class="related-editions"><h3>'+t("relatedEditions")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
-  const meta=dataRow(t("date"),p.date?formatDate(p.date):null)+dataRow(t("time"),p.time)+dataRow(t("address"),p.address)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+dataRow(t("temperature"),p.temperature)+dataRow(t("architect"),p.architect)+dataRow(t("event"),p.event);
-  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual photo-detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+[p.place,p.city+" / "+countryName(p)].filter(Boolean).join("<br>")+'</div><div class="data-table">'+meta+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
+  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+countryName(p)+'</div><div class="data-table">'+dataRow(t("date"),formatDate(p.date))+dataRow(t("time"),p.time)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
   $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
   $$(".product-choice").forEach(b=>b.onclick=()=>{
     state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);
@@ -260,8 +210,7 @@ function renderEditionDetail(){
   const e=state.activeEdition,source=state.archive.find(p=>p.id===e.archiveId);
   const appRows=state.applications.filter(a=>a.archiveId===e.archiveId&&a.approved);
   const apps=appRows.map(a=>'<span class="application-tag">'+a.support.toUpperCase()+'</span>').join("");
-  const preview=e.publicPreview?'<img class="edition-preview-full" src="'+e.publicPreview+'" alt="'+e.title+' '+editionVariant(e)+'">':'';
-  $("#edition-detail").innerHTML='<div class="detail-shell"><div class="detail-visual edition-preview-stage">'+preview+'</div><div class="detail-panel"><div class="detail-id">['+e.id+'] // AFICIONADXS EDITION</div><h2>'+e.title+'</h2><div>'+editionVariant(e)+'</div><div class="data-table">'+dataRow(t("sourcePhoto"),"["+source.id+"] "+source.title)+dataRow(t("place"),source.city+" / "+countryName(source))+dataRow(t("date"),formatDate(source.date))+'</div><button class="source-link" id="view-source" type="button">'+t("viewSource")+'</button><div class="related-editions"><h3>'+t("applications")+'</h3><div class="application-list">'+apps+'</div></div><p class="technical-note">'+t("editionNote")+'</p></div></div>';
+  $("#edition-detail").innerHTML='<div class="detail-shell"><div class="detail-visual">'+editionArtwork(e,source)+'</div><div class="detail-panel"><div class="detail-id">['+e.id+'] // AFICIONADXS EDITION</div><h2>'+e.title+'</h2><div>'+editionVariant(e)+'</div><div class="data-table">'+dataRow(t("sourcePhoto"),"["+source.id+"] "+source.title)+dataRow(t("place"),source.city+" / "+countryName(source))+dataRow(t("date"),formatDate(source.date))+'</div><button class="source-link" id="view-source" type="button">'+t("viewSource")+'</button><div class="related-editions"><h3>'+t("applications")+'</h3><div class="application-list">'+apps+'</div></div><p class="technical-note">'+t("editionNote")+'</p></div></div>';
   $("#view-source").onclick=()=>{$("#edition-dialog").close();openPhoto(source.id)};
 }
 function renderConfigurator(){
@@ -313,4 +262,4 @@ function sendRequest(){
   const base=WHATSAPP_NUMBER?"https://wa.me/"+WHATSAPP_NUMBER:"https://wa.me/";
   window.open(base+"?text="+encodeURIComponent(lines.join("\n")),"_blank","noopener,noreferrer");
 }
-init().catch(e=>{console.error("AFCNDXS init failed",e);const g=$("#archive-grid");if(g)g.innerHTML="<p>ARCHIVE TEMPORARILY UNAVAILABLE.</p>"});
+init().catch(e=>{console.error(e);$("#archive-grid").innerHTML="<p>ARCHIVE DATA COULD NOT BE LOADED.</p>"});
