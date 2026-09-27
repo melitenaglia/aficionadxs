@@ -12,6 +12,21 @@ const state={
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
 };
 const WHATSAPP_NUMBER="";
+const SUPABASE_URL="https://psuhxbvsyhyiipaqijkp.supabase.co";
+const SUPABASE_KEY="sb_publishable_4BYHLxgRiykemrZo9RLIbA_G4KGx8ll";
+
+async function sb(path){
+  const r=await fetch(SUPABASE_URL+"/rest/v1/"+path,{headers:{apikey:SUPABASE_KEY}});
+  if(!r.ok) throw new Error("Supabase "+r.status);
+  return r.json();
+}
+function mapPhoto(p){return {...p,countryCode:p.country_code,date:p.photo_date,time:p.photo_time,image:p.image_url,archiveEdition:p.archive_edition,sourceMatchVerified:p.source_match_verified,reviewStatus:p.review_status}}
+function mapEdition(e){return {...e,archiveId:e.archive_id,sourceFilename:e.source_filename,designFamily:e.design_family,supportedObjects:e.supported_objects||[],publicPreview:e.public_preview,sourceMatchVerified:e.source_match_verified,reviewStatus:e.review_status}}
+function mapApplication(a){return {...a,archiveId:a.archive_id,sourceFilename:a.source_filename,publicPreview:a.public_preview,reviewStatus:a.review_status}}
+function mapPhysical(p){
+  const c=p.config||{};
+  return {...c,id:p.id,code:p.code||c.code,name_es:p.name_es||c.name_es,name_en:p.name_en||c.name_en,description_es:p.description_es||c.description_es,description_en:p.description_en||c.description_en,price:p.price??c.price??null,currency:p.currency||c.currency||"EUR",supplier:p.supplier||c.supplier,sourceUrl:p.source_url||c.sourceUrl,active:p.active};
+}
 
 const T={
   es:{
@@ -86,8 +101,19 @@ const editionVariant=e=>{
 };
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
-  state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
+  try{
+    const[a,e,s,p]=await Promise.all([
+      sb("photos?select=*&order=sort_order.asc"),
+      sb("editions?select=*&order=sort_order.asc"),
+      sb("applications?select=*&order=sort_order.asc"),
+      sb("physicals?select=*&order=sort_order.asc")
+    ]);
+    state.archive=a.map(mapPhoto);state.editions=e.map(mapEdition);state.applications=s.map(mapApplication);state.products=p.map(mapPhysical);
+  }catch(err){
+    console.warn("Supabase unavailable, using static fallback",err);
+    const[a,e,s,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
+    state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
+  }
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
   document.addEventListener("keydown",ev=>{
@@ -166,16 +192,15 @@ function renderEditions(){
 function objectIcon(type){
   const common='viewBox="0 0 80 80" aria-hidden="true" focusable="false"';
   const icons={
-    print:'<svg '+common+'><rect x="18" y="8" width="44" height="64" fill="none" stroke="currentColor"/><rect x="24" y="15" width="32" height="43" fill="none" stroke="currentColor"/><circle cx="47" cy="25" r="3" fill="none" stroke="currentColor"/><path d="M25 51l10-12 7 8 5-6 9 10" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    postcard:'<svg '+common+'><rect x="9" y="22" width="62" height="36" fill="none" stroke="currentColor"/><path d="M10 52l15-13 10 8 9-10 16 15" fill="none" stroke="currentColor" stroke-linejoin="round"/><circle cx="57" cy="31" r="3" fill="none" stroke="currentColor"/></svg>',
+    print:'<svg '+common+'><rect x="19" y="8" width="42" height="64" rx="1" fill="none" stroke="currentColor"/><rect x="25" y="15" width="30" height="42" fill="none" stroke="currentColor"/><path d="M25 47l8-9 7 6 6-9 9 12" fill="none" stroke="currentColor" stroke-linejoin="round"/><line x1="25" y1="63" x2="45" y2="63" stroke="currentColor"/></svg>',
+    postcard:'<svg '+common+'><rect x="10" y="22" width="60" height="36" rx="1" fill="none" stroke="currentColor"/><rect x="17" y="29" width="46" height="22" fill="none" stroke="currentColor"/><path d="M17 46l10-9 8 6 8-8 20 11" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
     tshirt:'<svg '+common+'><path d="M25 18 12 28l8 10 7-5v29h26V33l7 5 8-10-13-10-8 4H33z" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    sweatshirt:'<svg '+common+'><path d="M31 17 20 22 7 42l10 7 10-13v28h26V36l10 13 10-7-13-20-11-5-5 4H36z" fill="none" stroke="currentColor" stroke-linejoin="round"/><path d="M35 21c2 3 8 3 10 0" fill="none" stroke="currentColor"/><line x1="29" y1="58" x2="51" y2="58" stroke="currentColor"/></svg>',
-    tote:'<svg '+common+'><path d="M18 31h44l-3 38H21z" fill="none" stroke="currentColor"/><path d="M28 32C28 11 52 11 52 32" fill="none" stroke="currentColor"/><path d="M34 32C34 18 46 18 46 32" fill="none" stroke="currentColor"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M29 17 17 22 6 43l10 5 10-16v31h28V32l10 16 10-5-11-21-12-5-7 4H36z" fill="none" stroke="currentColor" stroke-linejoin="round"/><path d="M35 20c1 5 9 5 10 0" fill="none" stroke="currentColor"/><line x1="29" y1="57" x2="51" y2="57" stroke="currentColor"/><line x1="7" y1="43" x2="16" y2="47" stroke="currentColor"/><line x1="64" y1="47" x2="73" y2="43" stroke="currentColor"/></svg>',
+    tote:'<svg '+common+'><path d="M18 30h44l-4 39H22z" fill="none" stroke="currentColor"/><path d="M28 31V20c0-15 24-15 24 0v11" fill="none" stroke="currentColor"/><path d="M32 31V20c0-10 16-10 16 0v11" fill="none" stroke="currentColor"/></svg>',
     notebook:'<svg '+common+'><rect x="23" y="12" width="38" height="56" rx="2" fill="none" stroke="currentColor"/><line x1="30" y1="12" x2="30" y2="68" stroke="currentColor"/><line x1="18" y1="20" x2="28" y2="20" stroke="currentColor"/><line x1="18" y1="29" x2="28" y2="29" stroke="currentColor"/><line x1="18" y1="38" x2="28" y2="38" stroke="currentColor"/><line x1="18" y1="47" x2="28" y2="47" stroke="currentColor"/><line x1="18" y1="56" x2="28" y2="56" stroke="currentColor"/></svg>'
   };
   return icons[type]||icons.print;
 }
-
 function renderObjects(){
   $("#object-list").innerHTML=state.products.map(p=>{
     const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+(state.lang==="es"?"MODELOS":"MODELS")+'</span>':"";
