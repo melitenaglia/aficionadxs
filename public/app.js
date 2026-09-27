@@ -101,23 +101,23 @@ const editionVariant=e=>{
 };
 
 async function init(){
-  try{
-    const[a,e,s,p]=await Promise.all([
-      sb("photos?select=*&order=sort_order.asc"),
-      sb("editions?select=*&order=sort_order.asc"),
-      sb("applications?select=*&order=sort_order.asc"),
-      sb("physicals?select=*&order=sort_order.asc")
-    ]);
-    state.archive=a.map(mapPhoto);state.editions=e.map(mapEdition);state.applications=s.map(mapApplication);state.products=p.map(mapPhysical);
-  }catch(err){
-    console.warn("Supabase unavailable, using static fallback",err);
-    const[a,e,s,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
-    state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
-  }
-  bindStaticEvents();applyLanguage();renderAll();
-  $("#footer-year").textContent=new Date().getFullYear();
+  const[a,e,s,p]=await Promise.all([
+    fetch("/data/archive.json"),
+    fetch("/data/editions.json"),
+    fetch("/data/support-designs.json"),
+    fetch("/data/products.json")
+  ]);
+  state.archive=await a.json();
+  state.editions=await e.json();
+  state.applications=await s.json();
+  state.products=await p.json();
+  bindStaticEvents();
+  applyLanguage();
+  renderAll();
+  const fy=$("#footer-year"); if(fy) fy.textContent=new Date().getFullYear();
   document.addEventListener("keydown",ev=>{
-    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#edition-dialog").open&&!$("#cart-drawer").classList.contains("open")){
+    const pd=$("#photo-dialog"),ed=$("#edition-dialog"),cart=$("#cart-drawer");
+    if(state.view==="carousel"&&!(pd&&pd.open)&&!(ed&&ed.open)&&!(cart&&cart.classList.contains("open"))){
       if(ev.key==="ArrowLeft")moveCarousel(-1);
       if(ev.key==="ArrowRight")moveCarousel(1);
     }
