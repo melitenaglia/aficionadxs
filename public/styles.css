@@ -119,3 +119,17 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
   .detail-visual{border-right:0;border-bottom:1px solid var(--line);padding:10px}
   .detail-visual img{width:auto;max-width:100%;height:auto;max-height:62svh;object-fit:contain}
 }
+
+/* Archive preview / design state */
+.archive-image{position:relative}
+.design-ribbon{position:absolute;z-index:2;top:8px;left:8px;background:var(--ink);color:var(--paper);padding:5px 7px;font-size:8px;line-height:1;letter-spacing:.02em}
+.carousel-frame{position:relative}
+.carousel-ribbon{top:8px;left:8px}
+.archive-more{display:block;margin:22px auto 4px;padding:9px 0;border-bottom:1px solid var(--ink);font-size:10px}
+.archive-more[hidden]{display:none!important}
+.design-available-box{border-top:1px solid var(--ink);padding-top:14px}
+.design-available-box h3{color:var(--ink)}
+@media(max-width:560px){
+  .design-ribbon{top:6px;left:6px;padding:4px 5px;font-size:7px}
+  .archive-more{margin-top:14px}
+}
