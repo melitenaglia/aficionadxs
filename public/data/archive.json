@@ -197,9 +197,9 @@
   },
   {
     "id": "008",
-    "title": "AIGUABLAVA — BCN",
+    "title": "AIGUABLAVA — COSTA BRAVA",
     "slug": "aiguablava-bcn",
-    "place": "Aiguablava",
+    "place": "Cala d'Aiguablava",
     "city": "Begur",
     "region": "Costa Brava · Catalonia",
     "country": "Spain",
@@ -225,11 +225,11 @@
   },
   {
     "id": "009",
-    "title": "GITENBERG — LLUM",
+    "title": "GUTENBERG — LLUM BCN 26",
     "slug": "gitenberg-llum",
-    "place": "Barcelona",
+    "place": "Plaça Gutenberg · Universitat Pompeu Fabra, Campus del Poblenou",
     "city": "Barcelona",
-    "region": "Catalonia",
+    "region": "Poblenou · Catalonia",
     "country": "Spain",
     "countryCode": "ES",
     "date": "2026-02-06",
@@ -249,7 +249,8 @@
     ],
     "archiveEdition": true,
     "published": false,
-    "sourceFile": "IMG_8142.heic"
+    "sourceFile": "IMG_8142.heic",
+    "event": "Llum BCN 2026 · The Rhythm of the Ocean · Desilence"
   },
   {
     "id": "010",
