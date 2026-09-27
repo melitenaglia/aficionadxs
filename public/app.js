@@ -44,7 +44,7 @@ const T={
     sendWhatsapp:"ENVIAR SOLICITUD POR WHATSAPP →",clearRequest:"VACIAR SOLICITUD",
     request:"SOLICITUD",emptyRequest:"NO HAY ARTÍCULOS EN LA SOLICITUD.",
     estimatedTotal:"TOTAL ESTIMADO",toConfirm:"A CONFIRMAR",itemsToConfirm:" + ARTÍCULOS A CONFIRMAR",
-    date:"FECHA",time:"HORA",region:"REGIÓN",coord:"COORD.",camera:"CÁMARA",lens:"LENTE",capture:"CAPTURA",
+    date:"FECHA",time:"HORA",region:"REGIÓN",coord:"COORD.",camera:"CÁMARA",lens:"LENTE",capture:"CAPTURA",address:"DIRECCIÓN",event:"EVENTO",architect:"ARQUITECTURA",temperature:"TEMPERATURA",
     relatedEditions:"EDICIONES RELACIONADAS",format:"SOPORTE",edition:"EDICIÓN",size:"TALLA / TAMAÑO",color:"COLOR",
     addRequest:"AÑADIR A SOLICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
     viewSource:"VER FOTO ORIGINAL →",editionNote:"La edición es la composición gráfica. El objeto físico se elige por separado.",
@@ -66,7 +66,7 @@ const T={
     sendWhatsapp:"SEND REQUEST VIA WHATSAPP →",clearRequest:"CLEAR REQUEST",
     request:"REQUEST",emptyRequest:"NO ITEMS IN REQUEST.",
     estimatedTotal:"ESTIMATED TOTAL",toConfirm:"TO CONFIRM",itemsToConfirm:" + ITEMS TO CONFIRM",
-    date:"DATE",time:"TIME",region:"REGION",coord:"COORD.",camera:"CAMERA",lens:"LENS",capture:"CAPTURE",
+    date:"DATE",time:"TIME",region:"REGION",coord:"COORD.",camera:"CAMERA",lens:"LENS",capture:"CAPTURE",address:"ADDRESS",event:"EVENT",architect:"ARCHITECT",temperature:"TEMPERATURE",
     relatedEditions:"RELATED EDITIONS",format:"FORMAT",edition:"EDITION",size:"SIZE",color:"COLOR",
     addRequest:"ADD TO REQUEST →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
     viewSource:"VIEW SOURCE PHOTO →",editionNote:"The edition is the graphic composition. The physical object is chosen separately.",
@@ -226,7 +226,7 @@ function renderObjects(){
     return '<div class="object-row"><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div><span class="object-code">'+p.code+'</span><div><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><span class="object-desc">'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>';
   }).join("");
 }
-function dataRow(a,b){return'<div class="data-row"><span>'+a+'</span><span>'+(b||"—")+'</span></div>'}
+function dataRow(a,b){return b?'<div class="data-row"><span>'+a+'</span><span>'+b+'</span></div>':""}
 function openPhoto(id){
   state.activePhoto=state.archive.find(p=>String(p.id)===String(id));
   if(!state.activePhoto)return;
@@ -239,7 +239,8 @@ function openPhoto(id){
 function renderPhotoDetail(){
   const p=state.activePhoto,avail=(p.available||[]).map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=state.editions.filter(e=>String(e.archiveId)===String(p.id)&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK");
   const relatedHtml=related.length?'<div class="related-editions"><h3>'+t("relatedEditions")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
-  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+countryName(p)+'</div><div class="data-table">'+dataRow(t("date"),formatDate(p.date))+dataRow(t("time"),p.time)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
+  const meta=dataRow(t("date"),p.date?formatDate(p.date):null)+dataRow(t("time"),p.time)+dataRow(t("address"),p.address)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+dataRow(t("temperature"),p.temperature)+dataRow(t("architect"),p.architect)+dataRow(t("event"),p.event);
+  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual photo-detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+[p.place,p.city+" / "+countryName(p)].filter(Boolean).join("<br>")+'</div><div class="data-table">'+meta+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
   $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
   $$(".product-choice").forEach(b=>b.onclick=()=>{
     state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);
