@@ -14,12 +14,19 @@
       "ARCHIVE EDITION"
     ],
     "sizes": [
-      "20 × 30 CM · 2:3",
-      "30 × 40 CM · 3:4"
+      "21 × 30 CM",
+      "30 × 40 CM"
     ],
     "colors": [],
-    "productionNote_en": "Same composition may be reused, but the production file is regenerated at final print size.",
-    "productionNote_es": "Puede reutilizarse la misma composición, pero el archivo de producción se regenera al tamaño final."
+    "productionNote_en": "Edition layouts require a print-specific production file. Do not crop automatically.",
+    "productionNote_es": "Los diseños de Edition requieren un archivo específico para print. No recortar automáticamente.",
+    "model": "Enhanced Matte Paper Poster (cm)",
+    "supplier": "Printful",
+    "technique": "Digital printing",
+    "material": "189 g/m² matte paper",
+    "thumbnailType": "print",
+    "supplierCostRef": "FROM 6.79 EUR incl. VAT · EU catalog reference",
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/wall-art/posters/enhanced-matte-paper-poster-cm"
   },
   {
     "id": "postcard",
@@ -37,7 +44,14 @@
     "sizes": [
       "101 × 152 MM"
     ],
-    "colors": []
+    "colors": [],
+    "model": "Standard Postcard",
+    "supplier": "Printful",
+    "technique": "Digital printing",
+    "material": "260–350 g/m² coated cardboard",
+    "thumbnailType": "postcard",
+    "supplierCostRef": "1.61 EUR incl. VAT · EU catalog reference",
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/postcards/standard-postcard"
   },
   {
     "id": "tshirt",
@@ -120,7 +134,8 @@
         ],
         "price": null
       }
-    ]
+    ],
+    "thumbnailType": "tshirt"
   },
   {
     "id": "sweatshirt",
@@ -178,7 +193,8 @@
         ],
         "price": null
       }
-    ]
+    ],
+    "thumbnailType": "sweatshirt"
   },
   {
     "id": "tote",
@@ -198,26 +214,69 @@
     ],
     "colors": [
       "NATURAL"
-    ]
+    ],
+    "model": "Westford Mill W101",
+    "supplier": "Printful",
+    "technique": "DTFlex / embroidery available",
+    "thumbnailType": "tote",
+    "supplierCostRef": "10.93 EUR incl. VAT · EU catalog reference",
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/bags/totes/cotton-color-tote-bag-westford-mill-w101"
   },
   {
     "id": "notebook",
     "code": "NB",
     "name_en": "NOTEBOOK",
     "name_es": "LIBRETA",
-    "description_en": "Notebook with a dedicated support-specific approved design.",
-    "description_es": "Libreta con un diseño específico aprobado y adaptado al soporte.",
+    "description_en": "Two notebook constructions. Choose the notebook after choosing the approved support-specific design.",
+    "description_es": "Dos construcciones de libreta. El modelo se elige después de seleccionar el diseño específico aprobado.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
     "editions": [
       "SUPPORT DESIGN"
     ],
-    "sizes": [
-      "TBC"
-    ],
-    "colors": [
-      "TBC"
+    "sizes": [],
+    "colors": [],
+    "thumbnailType": "notebook",
+    "models": [
+      {
+        "id": "spiral-notebook",
+        "code": "NB-S",
+        "name_en": "SPIRAL NOTEBOOK",
+        "name_es": "LIBRETA DE ESPIRAL",
+        "description_en": "Printful Spiral Notebook · 5.5 × 8.5 in (13 × 21 cm) · soft-touch covers · metal spiral.",
+        "description_es": "Printful Spiral Notebook · 5,5 × 8,5 in (13 × 21 cm) · tapas soft-touch · espiral metálica.",
+        "supplier": "Printful",
+        "technique": "Digital printing",
+        "supplierCostRef": "13.89 EUR incl. VAT · EU catalog reference",
+        "sizes": [
+          "13 × 21 CM"
+        ],
+        "colors": [
+          "TBC"
+        ],
+        "price": null,
+        "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/spiral-notebook"
+      },
+      {
+        "id": "journalbook-hardcover",
+        "code": "NB-H",
+        "name_en": "HARDCOVER · JOURNALBOOK",
+        "name_es": "TAPA DURA · JOURNALBOOK",
+        "description_en": "JournalBook hardcover · 5.5 × 8.5 in (13.97 × 21.59 cm) · 80 lined cream pages · elastic closure and ribbon marker.",
+        "description_es": "JournalBook de tapa dura · 5,5 × 8,5 in (13,97 × 21,59 cm) · 80 páginas rayadas color crema · cierre elástico y marcapáginas.",
+        "supplier": "Printful",
+        "technique": "UV printing",
+        "supplierCostRef": "14.22 EUR incl. VAT · EU catalog reference",
+        "sizes": [
+          "13.97 × 21.59 CM"
+        ],
+        "colors": [
+          "TBC"
+        ],
+        "price": null,
+        "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/hardcover-bound-notebook-journalbook"
+      }
     ]
   }
 ]
