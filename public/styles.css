@@ -81,3 +81,31 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
   .main-nav{gap:10px}
   .language-switch{margin-left:auto}
 }
+
+/* Mobile physicals refinement */
+.object-thumb{width:84px;height:84px;display:grid;place-items:center;background:var(--paper-2);align-self:start}
+.object-thumb svg{width:62px;height:62px}
+.object-models{display:block;margin-top:5px;color:var(--muted);font-size:8px;font-weight:400}
+@media(max-width:560px){
+  .objects-section{padding-left:14px;padding-right:14px}
+  .objects-section .section-head{padding-bottom:12px}
+  .object-row{
+    grid-template-columns:64px minmax(0,1fr);
+    grid-template-areas:
+      "thumb code"
+      "thumb title"
+      "desc desc"
+      "price price";
+    gap:4px 12px;
+    padding:16px 0;
+    align-items:start;
+  }
+  .object-thumb{grid-area:thumb;width:64px;height:76px;margin:0}
+  .object-thumb svg{width:46px;height:46px}
+  .object-code{grid-area:code;color:var(--muted);font-size:9px;line-height:1.2;padding-top:2px}
+  .object-row>div:nth-child(3){grid-area:title;min-width:0}
+  .object-row>div:nth-child(3)>strong{display:block;font-size:12px;line-height:1.25}
+  .object-models{margin-top:3px}
+  .object-desc{grid-area:desc!important;margin-top:9px;font-size:9px;line-height:1.45;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .object-price{grid-area:price!important;text-align:left!important;margin-top:7px;font-size:11px;font-weight:500;color:var(--ink)!important}
+}
