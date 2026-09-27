@@ -137,3 +137,18 @@ body[data-page="editions"] .info-section{display:none}
 body[data-page="editions"] .editions-section{padding-top:clamp(72px,8vw,120px);min-height:calc(100svh - 64px)}
 body[data-page="editions"] #editions-more{display:none!important}
 @media(max-width:560px){.section-more{text-align:left;padding-top:14px}}
+
+/* Photo detail: preserve the photograph and make metadata readable on mobile */
+.photo-detail-visual{background:var(--paper);align-content:center}
+.photo-detail-visual img{width:auto;height:auto;max-width:100%;max-height:78vh;object-fit:contain}
+@media(max-width:560px){
+  .photo-dialog{width:calc(100vw - 12px);max-height:calc(100svh - 12px)}
+  .detail-shell{display:block;min-height:0}
+  .photo-detail-visual{min-height:0;padding:0;border-bottom:1px solid var(--line)}
+  .photo-detail-visual img{display:block;width:100%;height:auto;max-height:62svh;object-fit:contain;margin:0 auto}
+  .detail-panel{padding:22px 16px 34px}
+  .detail-panel h2{font-size:28px;line-height:1;margin-bottom:18px}
+  .data-table{margin:22px 0}
+  .data-row{grid-template-columns:92px minmax(0,1fr);gap:10px;padding:9px 0}
+  .dialog-close{position:sticky;top:8px;margin:8px 8px -42px 0}
+}
