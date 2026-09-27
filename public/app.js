@@ -166,11 +166,11 @@ function renderEditions(){
 function objectIcon(type){
   const common='viewBox="0 0 80 80" aria-hidden="true" focusable="false"';
   const icons={
-    print:'<svg '+common+'><rect x="20" y="10" width="40" height="60" fill="none" stroke="currentColor"/><rect x="27" y="18" width="26" height="34" fill="none" stroke="currentColor"/><line x1="27" y1="58" x2="53" y2="58" stroke="currentColor"/></svg>',
-    postcard:'<svg '+common+'><rect x="10" y="22" width="60" height="36" fill="none" stroke="currentColor"/><line x1="43" y1="22" x2="43" y2="58" stroke="currentColor"/><rect x="51" y="29" width="11" height="9" fill="none" stroke="currentColor"/><line x1="48" y1="45" x2="63" y2="45" stroke="currentColor"/><line x1="48" y1="50" x2="61" y2="50" stroke="currentColor"/></svg>',
+    print:'<svg '+common+'><rect x="18" y="8" width="44" height="64" fill="none" stroke="currentColor"/><rect x="24" y="15" width="32" height="43" fill="none" stroke="currentColor"/><circle cx="47" cy="25" r="3" fill="none" stroke="currentColor"/><path d="M25 51l10-12 7 8 5-6 9 10" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
+    postcard:'<svg '+common+'><rect x="9" y="22" width="62" height="36" fill="none" stroke="currentColor"/><path d="M10 52l15-13 10 8 9-10 16 15" fill="none" stroke="currentColor" stroke-linejoin="round"/><circle cx="57" cy="31" r="3" fill="none" stroke="currentColor"/></svg>',
     tshirt:'<svg '+common+'><path d="M25 18 12 28l8 10 7-5v29h26V33l7 5 8-10-13-10-8 4H33z" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    sweatshirt:'<svg '+common+'><path d="M26 17 13 29l8 9 6-5v30h26V33l6 5 8-9-13-12-8 4H34z" fill="none" stroke="currentColor" stroke-linejoin="round"/><line x1="30" y1="57" x2="50" y2="57" stroke="currentColor"/><line x1="34" y1="21" x2="46" y2="21" stroke="currentColor"/></svg>',
-    tote:'<svg '+common+'><path d="M20 28h40l-3 40H23z" fill="none" stroke="currentColor"/><path d="M31 29c0-13 18-13 18 0" fill="none" stroke="currentColor"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M31 17 20 22 7 42l10 7 10-13v28h26V36l10 13 10-7-13-20-11-5-5 4H36z" fill="none" stroke="currentColor" stroke-linejoin="round"/><path d="M35 21c2 3 8 3 10 0" fill="none" stroke="currentColor"/><line x1="29" y1="58" x2="51" y2="58" stroke="currentColor"/></svg>',
+    tote:'<svg '+common+'><path d="M18 31h44l-3 38H21z" fill="none" stroke="currentColor"/><path d="M28 32C28 11 52 11 52 32" fill="none" stroke="currentColor"/><path d="M34 32C34 18 46 18 46 32" fill="none" stroke="currentColor"/></svg>',
     notebook:'<svg '+common+'><rect x="23" y="12" width="38" height="56" rx="2" fill="none" stroke="currentColor"/><line x1="30" y1="12" x2="30" y2="68" stroke="currentColor"/><line x1="18" y1="20" x2="28" y2="20" stroke="currentColor"/><line x1="18" y1="29" x2="28" y2="29" stroke="currentColor"/><line x1="18" y1="38" x2="28" y2="38" stroke="currentColor"/><line x1="18" y1="47" x2="28" y2="47" stroke="currentColor"/><line x1="18" y1="56" x2="28" y2="56" stroke="currentColor"/></svg>'
   };
   return icons[type]||icons.print;
