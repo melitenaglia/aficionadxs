@@ -149,11 +149,15 @@ function editionArtwork(e,source){
   return '<div class="'+cls+'"><div class="edition-artwork-head"><span class="edition-artwork-title">['+e.id+'] '+e.title+'</span><span class="edition-cross">+</span></div><div class="edition-artwork-photo"><img src="'+source.image+'" alt="'+source.title+'"></div><div class="edition-artwork-foot"><span>'+source.city+' · '+formatDate(source.date)+'</span><span>// AFICIONADXS</span></div></div>';
 }
 function renderEditions(){
-  $("#editions-grid").innerHTML=state.editions.map(e=>{
-    const source=state.archive.find(p=>p.id===e.archiveId);if(!source)return"";
-    return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image">'+editionArtwork(e,source)+'</div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
+  const approved=state.editions.filter(e=>e.approved&&e.publicPreview);
+  if(!approved.length){
+    $("#editions-grid").innerHTML='<p class="technical-note">APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.</p>';
+    return;
+  }
+  $("#editions-grid").innerHTML=approved.map(e=>{
+    return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.publicPreview+'" alt="'+e.title+' '+e.variant+'" loading="lazy"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
   }).join("");
-  $$(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  $(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
 }
 function renderObjects(){
   $("#object-list").innerHTML=state.products.map(p=>'<div class="object-row"><span>'+p.code+'</span><strong>'+prodName(p)+'</strong><span>'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>').join("");
