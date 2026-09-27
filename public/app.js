@@ -143,7 +143,7 @@ function bindStaticEvents(){
     state.filter=b.dataset.filter;state.carouselIndex=0;
     $$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderArchive();
   }));
-  $$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
+  $$$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
     state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
     renderArchive();
   }));
@@ -165,14 +165,14 @@ function renderArchiveFilters(){
   if(state.filter!=="all"&&!countries.includes(state.filter))state.filter="all";
   box.innerHTML='<button class="filter '+(state.filter==="all"?"active":"")+'" data-filter="all">'+t("all")+'</button>'+
     countries.map(code=>'<button class="filter '+(state.filter===code?"active":"")+'" data-filter="'+code+'">'+code+'</button>').join("");
-  $(".filter",box).forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;state.carouselIndex=0;renderArchive()});
+  $$(".filter",box).forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;state.carouselIndex=0;renderArchive()});
 }
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
 function renderArchive(){
   renderArchiveFilters();
   const full=filteredArchive(),isArchivePage=document.body.dataset.page==="archive";
   const list=isArchivePage?full:full.slice(0,8),grid=$("#archive-grid"),carousel=$("#archive-carousel");
-  $(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
+  $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>').join("");
