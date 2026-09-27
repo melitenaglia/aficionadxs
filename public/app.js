@@ -164,7 +164,7 @@ function renderArchive(){
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>').join("");
-  $(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
   const more=$("#archive-more"); if(more) more.hidden=isArchivePage||full.length<=list.length;
 }
 function renderCarousel(list=filteredArchive()){
@@ -190,7 +190,7 @@ function renderEditions(){
   $("#editions-grid").innerHTML=approved.map(e=>{
     return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.publicPreview+'" alt="'+e.title+' '+e.variant+'" loading="lazy"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
   }).join("");
-  $(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  $$(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
   const more=$("#editions-more"); if(more) more.hidden=isEditionsPage||full.length<=approved.length;
 }
 
@@ -223,7 +223,7 @@ function renderPhotoDetail(){
   const relatedHtml=related.length?'<div class="related-editions"><h3>'+t("relatedEditions")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
   $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+countryName(p)+'</div><div class="data-table">'+dataRow(t("date"),formatDate(p.date))+dataRow(t("time"),p.time)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
   $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
-  $(".product-choice").forEach(b=>b.onclick=()=>{
+  $$(".product-choice").forEach(b=>b.onclick=()=>{
     state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);
     const q=state.selectedProduct,m=q.models?.[0]||null;
     state.config={
@@ -232,7 +232,7 @@ function renderPhotoDetail(){
       size:(m?.sizes||q.sizes||[])[0]||null,
       color:(m?.colors||q.colors||[])[0]||null
     };
-    $(".product-choice").forEach(x=>x.classList.toggle("active",x===b));
+    $$(".product-choice").forEach(x=>x.classList.toggle("active",x===b));
     renderConfigurator();
   });
 }
@@ -255,14 +255,14 @@ function renderConfigurator(){
   const sizes=m?.sizes||p.sizes||[],colors=m?.colors||p.colors||[];
   const displayPrice=m?.price!=null?money(m.price):prodPriceLabel(p);
   $("#config-area").innerHTML=modelBlock+detail+g(t("edition"),"edition",p.editions,true)+g(t("size"),"size",sizes)+g(t("color"),"color",colors)+'<div class="config-price">'+displayPrice+'</div><button class="primary-action" id="add-request">'+t("addRequest")+'</button>';
-  $(".model-choice").forEach(b=>b.onclick=()=>{
+  $$(".model-choice").forEach(b=>b.onclick=()=>{
     state.config.model=b.dataset.model;
     const nm=selectedModel(p);
     state.config.size=(nm?.sizes||p.sizes||[])[0]||null;
     state.config.color=(nm?.colors||p.colors||[])[0]||null;
     renderConfigurator();
   });
-  $(".config-choice").forEach(b=>b.onclick=()=>{state.config[b.dataset.field]=b.dataset.value;renderConfigurator()});
+  $$(".config-choice").forEach(b=>b.onclick=()=>{state.config[b.dataset.field]=b.dataset.value;renderConfigurator()});
   $("#add-request").onclick=addToRequest;
 }
 function addToRequest(){
