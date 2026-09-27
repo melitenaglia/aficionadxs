@@ -165,7 +165,7 @@
     "published": false,
     "sourceFile": "75A8E316-68ED-4A9E-B11C-0938E0DBFB6B.heic",
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING",
+    "reviewStatus": "APPROVED",
     "address": "St. Andrew's Street"
   },
   {
@@ -196,7 +196,7 @@
     "published": false,
     "sourceFile": "IMG_1775.heic",
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "008",
@@ -226,7 +226,7 @@
     "published": false,
     "sourceFile": "IMG_4401.heic",
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING"
+    "reviewStatus": "APPROVED"
   },
   {
     "id": "009",
@@ -257,7 +257,7 @@
     "sourceFile": "IMG_8142.heic",
     "event": "Llum BCN 26 · The Rhythm of the Ocean · Desilence Visual Art Studio",
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING",
+    "reviewStatus": "APPROVED",
     "address": "Campus del Poblenou"
   },
   {
@@ -288,7 +288,7 @@
     "published": false,
     "sourceFile": "IMG_5828.heic",
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING",
+    "reviewStatus": "APPROVED",
     "address": "Boulevard Baudouin 30 · 1000 Brussels",
     "architect": "Jaspers-Eyers Architects"
   },
@@ -320,7 +320,7 @@
     "published": false,
     "sourceFile": "IMG_3305.heic",
     "sourceMatchVerified": true,
-    "reviewStatus": "USER_APPROVAL_PENDING",
+    "reviewStatus": "APPROVED",
     "temperature": "8°C"
   }
 ]
