@@ -114,7 +114,7 @@
   {
     "id": "006-A",
     "archiveId": "006",
-    "title": "DUBLIN — STAIRWAY",
+    "title": "DUBLIN — STAIRWAY TO HEAVEN",
     "variant": "ORIGINAL",
     "sourceFilename": "Propuestas AFCNDXS26_006_dublin_stairway.png",
     "designFamily": "APPAREL",
@@ -123,12 +123,14 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": true,
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "007-A",
     "archiveId": "007",
-    "title": "BCN — SAGRADA",
+    "title": "BARCELONA — SAGRADA FAMÍLIA",
     "variant": "ORIGINAL",
     "sourceFilename": "Propuestas AFCNDXS26_007_bcn_sagrada.png",
     "designFamily": "APPAREL",
@@ -137,12 +139,14 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": true,
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "008-A",
     "archiveId": "008",
-    "title": "AIGUABLAVA — BCN",
+    "title": "AIGUABLAVA — COSTA BRAVA",
     "variant": "ORIGINAL",
     "sourceFilename": "Propuestas AFCNDXS26_008_aiguablava_bcn.png",
     "designFamily": "APPAREL",
@@ -151,12 +155,14 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": true,
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "009-A",
     "archiveId": "009",
-    "title": "GITENBERG — LLUM",
+    "title": "GUTENBERG — LLUM BCN 26",
     "variant": "ORIGINAL",
     "sourceFilename": "Propuestas AFCNDXS26_009_gitenberg_llum.png",
     "designFamily": "APPAREL",
@@ -165,7 +171,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": true,
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "010-A",
@@ -179,7 +187,9 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": true,
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "011-A",
@@ -193,6 +203,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": true,
+    "sourceMatchVerified": true,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   }
 ]
