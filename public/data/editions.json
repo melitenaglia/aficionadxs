@@ -3,40 +3,72 @@
     "id": "001-A",
     "archiveId": "001",
     "title": "MADRID BOTÁNICO",
-    "variant": "ARCHIVE EDITION / WHITE",
-    "image": "/assets/editions/001-a.jpg",
-    "applications": ["PRINT", "POSTCARD", "T-SHIRT", "TOTE BAG"]
+    "variant": "BLACK",
+    "sourceFilename": "Propuestas AFCNDXS26_madrid_botanico_black.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "001-B",
+    "archiveId": "001",
+    "title": "MADRID BOTÁNICO",
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_madrid_botanico_white.png",
+    "publicPreview": null,
+    "approved": true
   },
   {
     "id": "002-A",
     "archiveId": "002",
     "title": "TOSSA DE MAR",
-    "variant": "ARCHIVE EDITION / WHITE",
-    "image": "/assets/editions/002-a.jpg",
-    "applications": ["PRINT", "POSTCARD", "T-SHIRT", "TOTE BAG"]
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_tossa.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "002-B",
+    "archiveId": "002",
+    "title": "TOSSA DE MAR",
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_tossa_white.png",
+    "publicPreview": null,
+    "approved": true
   },
   {
     "id": "003-A",
     "archiveId": "003",
     "title": "PARIS — LOUVRE",
-    "variant": "ARCHIVE EDITION / WHITE",
-    "image": "/assets/editions/003-a.jpg",
-    "applications": ["PRINT", "POSTCARD", "T-SHIRT"]
+    "variant": "BLACK",
+    "sourceFilename": "Propuestas AFCNDXS26_paris_louvre_black.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "003-B",
+    "archiveId": "003",
+    "title": "PARIS — LOUVRE",
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_paris_louvre_white.png",
+    "publicPreview": null,
+    "approved": true
   },
   {
     "id": "004-A",
     "archiveId": "004",
     "title": "BERLIN — FILM",
-    "variant": "ARCHIVE EDITION / WHITE",
-    "image": "/assets/editions/004-a.jpg",
-    "applications": ["PRINT", "POSTCARD", "T-SHIRT"]
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_berlin_film_white.png",
+    "publicPreview": null,
+    "approved": true
   },
   {
     "id": "005-A",
     "archiveId": "005",
     "title": "PRAGUE — ABSINTHERIE",
-    "variant": "ARCHIVE EDITION / WHITE",
-    "image": "/assets/editions/005-a.jpg",
-    "applications": ["PRINT", "POSTCARD", "T-SHIRT"]
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_prague_abs_white.png",
+    "publicPreview": null,
+    "approved": true
   }
 ]
