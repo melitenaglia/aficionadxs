@@ -28,7 +28,11 @@
     "supplierCostRef": "FROM 6.79 EUR incl. VAT · EU catalog reference",
     "sourceUrl": "https://www.printful.com/es/dashboard/custom/wall-art/posters/enhanced-matte-paper-poster-cm",
     "shippingRegion": "Europe · includes Spain",
-    "shippingRef": "5.79 EUR first small poster · +0.30 additional · current flat-rate reference"
+    "shippingRef": "5.79 EUR first small poster · +0.30 additional · current flat-rate reference",
+    "supplierCostRefNumeric": 6.79,
+    "shippingSingleRefNumeric": 5.79,
+    "referenceLandedSingle": 12.58,
+    "referenceOnly": true
   },
   {
     "id": "postcard",
@@ -55,7 +59,11 @@
     "supplierCostRef": "1.61 EUR incl. VAT · EU catalog reference",
     "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/postcards/standard-postcard",
     "shippingRegion": "Europe · includes Spain",
-    "shippingRef": "4.29 EUR first · +0.10 additional · current flat-rate reference"
+    "shippingRef": "4.29 EUR first · +0.10 additional · current flat-rate reference",
+    "supplierCostRefNumeric": 1.61,
+    "shippingSingleRefNumeric": 4.29,
+    "referenceLandedSingle": 5.9,
+    "referenceOnly": true
   },
   {
     "id": "tshirt",
@@ -92,7 +100,11 @@
           "WHITE",
           "ANTHRACITE"
         ],
-        "price": null
+        "price": null,
+        "supplierCostRefNumeric": 14.75,
+        "shippingSingleRefNumeric": 4.99,
+        "referenceLandedSingle": 19.74,
+        "referenceOnly": true
       },
       {
         "id": "comfort-colors-1717",
@@ -114,7 +126,11 @@
         "colors": [
           "WHITE"
         ],
-        "price": null
+        "price": null,
+        "supplierCostRefNumeric": 18.45,
+        "shippingSingleRefNumeric": 4.99,
+        "referenceLandedSingle": 23.44,
+        "referenceOnly": true
       },
       {
         "id": "blaster-2",
@@ -136,7 +152,11 @@
         "colors": [
           "WHITE"
         ],
-        "price": null
+        "price": null,
+        "supplierCostRefNumeric": 17.22,
+        "shippingSingleRefNumeric": 4.99,
+        "referenceLandedSingle": 22.21,
+        "referenceOnly": true
       }
     ],
     "thumbnailType": "tshirt",
@@ -177,7 +197,11 @@
           "TBC"
         ],
         "price": null,
-        "shippingRef": "Uses sweatshirt Europe rate · 7.29 EUR first · +2.40 additional"
+        "shippingRef": "Uses sweatshirt Europe rate · 7.29 EUR first · +2.40 additional",
+        "supplierCostRefNumeric": null,
+        "shippingSingleRefNumeric": 7.29,
+        "referenceLandedSingle": null,
+        "referenceOnly": true
       },
       {
         "id": "radder-2",
@@ -200,7 +224,11 @@
         ],
         "price": null,
         "supplierCostRef": "30.29 EUR incl. VAT · EU catalog reference",
-        "shippingRef": "Uses sweatshirt Europe rate · 7.29 EUR first · +2.40 additional"
+        "shippingRef": "Uses sweatshirt Europe rate · 7.29 EUR first · +2.40 additional",
+        "supplierCostRefNumeric": 30.29,
+        "shippingSingleRefNumeric": 7.29,
+        "referenceLandedSingle": 37.58,
+        "referenceOnly": true
       }
     ],
     "thumbnailType": "sweatshirt",
@@ -233,7 +261,11 @@
     "supplierCostRef": "10.93 EUR incl. VAT · EU catalog reference",
     "sourceUrl": "https://www.printful.com/es/dashboard/custom/bags/totes/cotton-color-tote-bag-westford-mill-w101",
     "shippingRegion": "Europe · Spain supported",
-    "shippingRef": "FROM 4.49 EUR shown on current product page · exact Barcelona checkout to validate"
+    "shippingRef": "FROM 4.49 EUR shown on current product page · exact Barcelona checkout to validate",
+    "supplierCostRefNumeric": 10.93,
+    "shippingSingleRefNumeric": 4.49,
+    "referenceLandedSingle": 15.42,
+    "referenceOnly": true
   },
   {
     "id": "notebook",
@@ -270,7 +302,11 @@
         ],
         "price": null,
         "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/spiral-notebook",
-        "shippingRef": "4.99 EUR first · +1.45 additional · Europe notebook rate"
+        "shippingRef": "4.99 EUR first · +1.45 additional · Europe notebook rate",
+        "supplierCostRefNumeric": 13.89,
+        "shippingSingleRefNumeric": 4.99,
+        "referenceLandedSingle": 18.88,
+        "referenceOnly": true
       },
       {
         "id": "journalbook-hardcover",
@@ -290,7 +326,11 @@
         ],
         "price": null,
         "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/hardcover-bound-notebook-journalbook",
-        "shippingRef": "10.39 EUR first · +3.50 additional · Europe JournalBook rate"
+        "shippingRef": "10.39 EUR first · +3.50 additional · Europe JournalBook rate",
+        "supplierCostRefNumeric": 14.22,
+        "shippingSingleRefNumeric": 10.39,
+        "referenceLandedSingle": 24.61,
+        "referenceOnly": true
       }
     ],
     "shippingRegion": "Europe · includes Spain"
