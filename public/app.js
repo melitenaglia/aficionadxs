@@ -158,12 +158,14 @@ function bindStaticEvents(){
 }
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
 function renderArchive(){
-  const list=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
+  const full=filteredArchive(),isArchivePage=document.body.dataset.page==="archive";
+  const list=isArchivePage?full:full.slice(0,8),grid=$("#archive-grid"),carousel=$("#archive-carousel");
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>').join("");
-  $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  $(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  const more=$("#archive-more"); if(more) more.hidden=isArchivePage||full.length<=list.length;
 }
 function renderCarousel(list=filteredArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>NO PHOTOGRAPHS.</p>";return}
@@ -178,7 +180,9 @@ function editionArtwork(e,source){
   return '<div class="'+cls+'"><div class="edition-artwork-head"><span class="edition-artwork-title">['+e.id+'] '+e.title+'</span><span class="edition-cross">+</span></div><div class="edition-artwork-photo"><img src="'+source.image+'" alt="'+source.title+'"></div><div class="edition-artwork-foot"><span>'+source.city+' · '+formatDate(source.date)+'</span><span>// AFICIONADXS</span></div></div>';
 }
 function renderEditions(){
-  const approved=state.editions.filter(e=>e.approved&&e.publicPreview);
+  const full=state.editions.filter(e=>e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK");
+  const isEditionsPage=document.body.dataset.page==="editions";
+  const approved=isEditionsPage?full:full.slice(0,6);
   if(!approved.length){
     $("#editions-grid").innerHTML='<p class="technical-note">APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.</p>';
     return;
@@ -187,6 +191,7 @@ function renderEditions(){
     return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.publicPreview+'" alt="'+e.title+' '+e.variant+'" loading="lazy"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
   }).join("");
   $(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  const more=$("#editions-more"); if(more) more.hidden=isEditionsPage||full.length<=approved.length;
 }
 
 function objectIcon(type){
