@@ -8,7 +8,7 @@ const state={
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
   carouselIndex:0,
   activePhoto:null,activeEdition:null,selectedProduct:null,
-  config:{edition:null,size:null,color:null},
+  config:{model:null,edition:null,size:null,color:null},
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
 };
 const WHATSAPP_NUMBER="";
@@ -75,6 +75,9 @@ const formatDate=v=>{
 const prodName=p=>p["name_"+state.lang]||p.name_en||p.name||p.id;
 const prodDesc=p=>p["description_"+state.lang]||p.description_en||p.description||"";
 const prodPriceLabel=p=>p["priceLabel_"+state.lang]||p.priceLabel_en||p.priceLabel||t("toConfirm");
+const modelName=m=>m?m["name_"+state.lang]||m.name_en||m.name||m.id:"";
+const modelDesc=m=>m?m["description_"+state.lang]||m.description_en||m.description||"":"";
+const selectedModel=p=>p?.models?.find(m=>m.id===state.config.model)||p?.models?.[0]||null;
 const money=v=>v==null?t("toConfirm"):v.toFixed(0)+" EUR";
 const editionVariant=e=>{
   let v=e.variant||"";
@@ -164,7 +167,7 @@ function renderObjects(){
 }
 function dataRow(a,b){return'<div class="data-row"><span>'+a+'</span><span>'+(b||"—")+'</span></div>'}
 function openPhoto(id){
-  state.activePhoto=state.archive.find(p=>p.id===id);state.selectedProduct=null;state.config={edition:null,size:null,color:null};
+  state.activePhoto=state.archive.find(p=>p.id===id);state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
   renderPhotoDetail();if($("#edition-dialog").open)$("#edition-dialog").close();$("#photo-dialog").showModal();
 }
 function renderPhotoDetail(){
@@ -172,7 +175,18 @@ function renderPhotoDetail(){
   const relatedHtml=related.length?'<div class="related-editions"><h3>'+t("relatedEditions")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
   $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+countryName(p)+'</div><div class="data-table">'+dataRow(t("date"),formatDate(p.date))+dataRow(t("time"),p.time)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
   $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
-  $$(".product-choice").forEach(b=>b.onclick=()=>{state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);const q=state.selectedProduct;state.config={edition:q.editions[0]||null,size:q.sizes[0]||null,color:q.colors[0]||null};$$(".product-choice").forEach(x=>x.classList.toggle("active",x===b));renderConfigurator()});
+  $(".product-choice").forEach(b=>b.onclick=()=>{
+    state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);
+    const q=state.selectedProduct,m=q.models?.[0]||null;
+    state.config={
+      model:m?.id||null,
+      edition:q.editions?.[0]||null,
+      size:(m?.sizes||q.sizes||[])[0]||null,
+      color:(m?.colors||q.colors||[])[0]||null
+    };
+    $(".product-choice").forEach(x=>x.classList.toggle("active",x===b));
+    renderConfigurator();
+  });
 }
 function openEdition(id){state.activeEdition=state.editions.find(e=>e.id===id);renderEditionDetail();if($("#photo-dialog").open)$("#photo-dialog").close();$("#edition-dialog").showModal()}
 function renderEditionDetail(){
@@ -182,14 +196,28 @@ function renderEditionDetail(){
 }
 function renderConfigurator(){
   const p=state.selectedProduct;if(!p)return;
-  const translateEdition=v=>state.lang==="es"?v.replace("PHOTOGRAPH",t("photograph")).replace("ARCHIVE EDITION",t("archiveEdition")):v;
+  const m=selectedModel(p);
+  const translateEdition=v=>state.lang==="es"?v.replace("PHOTOGRAPH",t("photograph")).replace("ARCHIVE EDITION",t("archiveEdition")).replace("SUPPORT DESIGN","DISEÑO DEL SOPORTE"):v;
   const g=(label,field,vals,translate=false)=>!vals?.length?"":'<div class="choice-group"><span class="choice-label">'+label+'</span><div class="choice-buttons">'+vals.map(v=>'<button class="choice-button config-choice '+(state.config[field]===v?"active":"")+'" data-field="'+field+'" data-value="'+v+'">'+(translate?translateEdition(v):v)+'</button>').join("")+'</div></div>';
-  $("#config-area").innerHTML=g(t("edition"),"edition",p.editions,true)+g(t("size"),"size",p.sizes)+g(t("color"),"color",p.colors)+'<div class="config-price">'+prodPriceLabel(p)+'</div><button class="primary-action" id="add-request">'+t("addRequest")+'</button>';
-  $$(".config-choice").forEach(b=>b.onclick=()=>{state.config[b.dataset.field]=b.dataset.value;renderConfigurator()});$("#add-request").onclick=addToRequest;
+  const modelBlock=!p.models?.length?"":'<div class="choice-group"><span class="choice-label">'+(state.lang==="es"?"MODELO":"MODEL")+'</span><div class="choice-buttons">'+p.models.map(x=>'<button class="choice-button model-choice '+(state.config.model===x.id?"active":"")+'" data-model="'+x.id+'">'+modelName(x)+'</button>').join("")+'</div></div>';
+  const detail=m?'<div class="technical-note">'+modelDesc(m)+'</div>':"";
+  const sizes=m?.sizes||p.sizes||[],colors=m?.colors||p.colors||[];
+  const displayPrice=m?.price!=null?money(m.price):prodPriceLabel(p);
+  $("#config-area").innerHTML=modelBlock+detail+g(t("edition"),"edition",p.editions,true)+g(t("size"),"size",sizes)+g(t("color"),"color",colors)+'<div class="config-price">'+displayPrice+'</div><button class="primary-action" id="add-request">'+t("addRequest")+'</button>';
+  $(".model-choice").forEach(b=>b.onclick=()=>{
+    state.config.model=b.dataset.model;
+    const nm=selectedModel(p);
+    state.config.size=(nm?.sizes||p.sizes||[])[0]||null;
+    state.config.color=(nm?.colors||p.colors||[])[0]||null;
+    renderConfigurator();
+  });
+  $(".config-choice").forEach(b=>b.onclick=()=>{state.config[b.dataset.field]=b.dataset.value;renderConfigurator()});
+  $("#add-request").onclick=addToRequest;
 }
 function addToRequest(){
   const a=state.activePhoto,p=state.selectedProduct;
-  state.cart.push({key:crypto.randomUUID(),photoId:a.id,title:a.title,productId:p.id,edition:state.config.edition,size:state.config.size,color:state.config.color,price:p.price});
+  const m=selectedModel(p);
+  state.cart.push({key:crypto.randomUUID(),photoId:a.id,title:a.title,productId:p.id,modelId:m?.id||null,edition:state.config.edition,size:state.config.size,color:state.config.color,price:m?.price??p.price});
   saveCart();renderCart();$("#photo-dialog").close();openCart();
 }
 function saveCart(){localStorage.setItem("afcndxs-request",JSON.stringify(state.cart))}
@@ -197,7 +225,8 @@ function renderCart(){
   $("#cart-count").textContent="["+String(state.cart.length).padStart(2,"0")+"]";
   $("#cart-items").innerHTML=state.cart.length?state.cart.map(i=>{
     const p=state.products.find(x=>x.id===i.productId);
-    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+'</p><p>'+[i.edition,i.color,i.size].filter(Boolean).join(" / ")+'</p><p>'+money(i.price)+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
+    const m=p?.models?.find(x=>x.id===i.modelId);
+    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+(m?' · '+modelName(m):'')+'</p><p>'+[i.edition,i.color,i.size].filter(Boolean).join(" / ")+'</p><p>'+money(i.price)+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
   }).join(""):'<div class="empty-cart">'+t("emptyRequest")+'</div>';
   $$(".remove-item").forEach(b=>b.onclick=()=>{state.cart=state.cart.filter(x=>x.key!==b.dataset.key);saveCart();renderCart()});
   const known=state.cart.filter(x=>x.price!=null).reduce((s,x)=>s+x.price,0),unknown=state.cart.some(x=>x.price==null);
@@ -208,7 +237,7 @@ function closeCart(){$("#cart-drawer").classList.remove("open");$("#drawer-backd
 function sendRequest(){
   if(!state.cart.length)return;
   const name=$("#request-name").value.trim(),loc=$("#request-location").value.trim(),note=$("#request-note").value.trim(),lines=["// AFICIONADXS "+t("request"),""];
-  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+" · "+[i.edition,i.color,i.size].filter(Boolean).join(" · "));lines.push(money(i.price));lines.push("")});
+  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId),m=p?.models?.find(x=>x.id===i.modelId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+(m?" · "+modelName(m):"")+" · "+[i.edition,i.color,i.size].filter(Boolean).join(" · "));lines.push(money(i.price));lines.push("")});
   if(name)lines.push(t("name")+" · "+name);if(loc)lines.push(t("countryPostcode")+" · "+loc);if(note)lines.push(t("note")+" · "+note);
   lines.push("");lines.push(t("requestConfirm"));
   const base=WHATSAPP_NUMBER?"https://wa.me/"+WHATSAPP_NUMBER:"https://wa.me/";
