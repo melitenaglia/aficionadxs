@@ -37,3 +37,63 @@ body.is-busy{cursor:progress}body.is-busy button,body.is-busy input,body.is-busy
 .admin-preview{display:block;max-width:180px;max-height:240px;object-fit:contain;border:1px solid var(--line);margin:12px 0}
 .model-stack{display:grid;gap:8px}.model-editor{border:1px solid var(--line);padding:8px 10px}.model-editor summary{color:var(--ink)}
 @media(max-width:680px){.asset-form{grid-template-columns:1fr}}
+
+/* MOBILE-FIRST PHYSICALS */
+.physical-list{display:grid;gap:12px}
+.physical-card{border:1px solid var(--line);background:var(--paper);overflow:hidden}
+.physical-card-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;padding:18px}
+.physical-card-head h3{font-size:13px;margin:5px 0 6px;line-height:1.25}
+.physical-price{font-size:10px;font-weight:500}
+.compact-toggle{margin:0;white-space:nowrap}
+.physical-editor{margin:0;border-top:1px solid var(--line)}
+.physical-editor>summary,.model-editor>summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 18px;min-height:44px;color:var(--ink);font-size:9px;cursor:pointer}
+.physical-editor>summary::-webkit-details-marker,.model-editor>summary::-webkit-details-marker{display:none}
+.physical-editor[open]>summary .summary-hint,.model-editor[open]>summary .summary-hint{font-size:0}
+.physical-editor[open]>summary .summary-hint:after,.model-editor[open]>summary .summary-hint:after{content:"CLOSE ↑";font-size:8px}
+.summary-hint{color:var(--muted);font-size:8px}
+.physical-form{padding:16px 18px 20px;border-top:1px solid var(--line)}
+.form-section-title{font-size:8px;letter-spacing:.08em;color:var(--muted);padding:14px 0 3px;border-top:1px solid var(--line);margin-top:4px}
+.physical-form>.form-section-title:first-child{border-top:0;padding-top:0}
+.models-block{margin-top:8px}
+.model-editor{margin:8px 0;border:1px solid var(--line);padding:0}
+.model-editor>summary{padding:11px 12px}
+.model-edit-form{padding:12px;border-top:1px solid var(--line)}
+.mobile-save-bar{padding-top:10px}
+.save-physical{margin:0}
+@media(max-width:680px){
+  body{font-size:11px}
+  .admin-header{padding:12px 14px}
+  main{padding:0 14px}
+  .intro{min-height:0;padding:24px 0 20px;display:block}
+  .intro h1{font-size:46px;line-height:.88;margin:18px 0 0}
+  .intro-note{display:none}
+  .summary{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .metric{min-width:118px;flex:0 0 118px;border-right:1px solid var(--line)!important;border-bottom:0!important;padding:12px}
+  .metric:first-child{padding-left:12px}
+  .metric strong{font-size:22px;margin-top:5px}
+  .tabs{position:sticky;top:53px;z-index:8;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:6px;padding:10px 0;background:rgba(241,239,233,.97);-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;min-height:38px;padding:8px 10px}
+  #panel{padding-top:16px}
+  .section-title{display:block;margin-bottom:12px}
+  .section-title h2{font-size:12px}
+  .section-title p{text-align:left;margin-top:6px;max-width:none}
+  .physical-list{gap:10px}
+  .physical-card{border-radius:0}
+  .physical-card-head{padding:14px}
+  .physical-card-head h3{font-size:12px;max-width:230px}
+  .compact-toggle{min-height:44px;align-items:center}
+  .physical-editor>summary{padding:12px 14px}
+  .physical-form{display:grid!important;grid-template-columns:1fr!important;gap:11px;padding:14px}
+  .physical-form .field-label,.model-edit-form .field-label{grid-column:1/-1}
+  .field-label input,.field-label select,.field-label textarea{font-size:16px!important;min-height:44px;padding:11px}
+  .field-label textarea{min-height:110px}
+  .form-section-title{padding-top:16px;margin-top:3px}
+  .models-block{margin-top:2px}
+  .model-editor{margin:7px 0}
+  .model-edit-form{display:grid!important;grid-template-columns:1fr!important;gap:10px}
+  .mobile-save-bar{position:sticky;bottom:8px;z-index:4;padding:8px 0 0;background:linear-gradient(to bottom,rgba(241,239,233,0),var(--paper) 24%)}
+  .save-physical{width:100%;min-height:48px;font-size:10px}
+  .object-grid{grid-template-columns:1fr}
+  footer{padding:14px}
+}
