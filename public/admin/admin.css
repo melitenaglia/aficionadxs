@@ -97,3 +97,20 @@ body.is-busy{cursor:progress}body.is-busy button,body.is-busy input,body.is-busy
   .object-grid{grid-template-columns:1fr}
   footer{padding:14px}
 }
+
+@media(max-width:560px){
+  main{padding-left:14px;padding-right:14px}
+  .admin-header{padding-left:14px;padding-right:14px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;padding:14px 0;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto}
+  .admin-record{padding:14px 0}.record-top{gap:8px}
+  .record-top>div:last-child{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .toggle-line{margin-top:0}
+  .edit-form{gap:8px}.field-label input,.field-label select,.field-label textarea{font-size:16px;padding:11px 10px}
+  .review-actions{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;margin:10px 0}.mini-button{flex:0 0 auto}
+  .asset-form{padding:9px;margin:10px 0}.upload-box{padding:9px}
+  .object-grid{display:block;background:transparent}.object-card{border-bottom:1px solid var(--line);min-height:0;padding:15px 0}
+  .model-editor .edit-form{grid-template-columns:1fr}
+  .primary-admin,.secondary-admin{width:100%;justify-self:stretch;text-align:center;padding:13px}
+  .admin-preview{max-width:128px;max-height:170px}
+}
