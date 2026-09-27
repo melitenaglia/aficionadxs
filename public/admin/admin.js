@@ -39,8 +39,11 @@ function renderQueue(){
   const issues=[];
   if(missing.length)issues.push(['bad','SOURCE PHOTOS TO REGISTER','IDs '+missing.join(", ")+' have apparel designs but are not yet present in archive.json. Validate the original-photo mapping before publication.']);
   else issues.push(['ok','SOURCE PHOTO LINKS','All apparel editions currently point to registered source photos.']);
-  const pending=state.archive.filter(p=>p.reviewStatus==="USER_APPROVAL_PENDING").map(p=>p.id);
-  if(pending.length)issues.push(['warn','USER APPROVAL PENDING','Review photos '+pending.join(", ")+' in PHOTOS. Their source-photo/design matches have been checked, but they remain hidden from the public archive until approved.']);
+  const pendingPhotos=state.archive.filter(p=>p.reviewStatus==="USER_APPROVAL_PENDING").map(p=>p.id);
+  if(pendingPhotos.length)issues.push(['warn','PHOTO APPROVAL PENDING','Review photos '+pendingPhotos.join(", ")+' in PHOTOS.']);
+  else issues.push(['ok','PHOTO VALIDATION COMPLETE','Archive metadata 001–011 is structurally registered. Draft photos 006–011 remain unpublished only because their public web image assets are still pending.']);
+  const pendingEditions=state.editions.filter(e=>e.reviewStatus==="USER_APPROVAL_PENDING").length;
+  if(pendingEditions)issues.push(['warn','NEXT · APPAREL EDITIONS',pendingEditions+' apparel designs are waiting for visual approval against the exact PROPUESTAS files.']);
   if(noPreview)issues.push(['warn','APPAREL PREVIEWS TO IMPORT',noPreview+' approved design records still need a web preview generated from the exact files in PROPUESTAS.zip.']);
   if(noAppPreview)issues.push(['warn','APPLICATION PREVIEWS TO IMPORT',noAppPreview+' postcard / notebook / tote records still need web previews from their exact source files.']);
   issues.push(['ok','CLASSIFICATION RULE','Untagged proposal files = apparel. pc = postcard · nb = notebook · tote = tote application.']);
