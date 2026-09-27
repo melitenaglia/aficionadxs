@@ -18,11 +18,9 @@
     "image": "/assets/photos/001.webp",
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
-      "sweatshirt",
       "postcard",
+      "tshirt",
+      "sweatshirt",
       "tote"
     ],
     "archiveEdition": true
@@ -46,11 +44,9 @@
     "image": "/assets/photos/002.webp",
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
-      "sweatshirt",
       "postcard",
+      "tshirt",
+      "sweatshirt",
       "tote"
     ],
     "archiveEdition": true
@@ -74,11 +70,9 @@
     "image": "/assets/photos/003.webp",
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
-      "sweatshirt",
-      "postcard"
+      "postcard",
+      "tshirt",
+      "sweatshirt"
     ],
     "archiveEdition": true
   },
@@ -101,11 +95,9 @@
     "image": "/assets/photos/004.webp",
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
-      "sweatshirt",
-      "postcard"
+      "postcard",
+      "tshirt",
+      "sweatshirt"
     ],
     "archiveEdition": true
   },
@@ -128,11 +120,9 @@
     "image": "/assets/photos/005.webp",
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
-      "sweatshirt",
       "postcard",
+      "tshirt",
+      "sweatshirt",
       "notebook"
     ],
     "archiveEdition": true
@@ -156,9 +146,7 @@
     "image": null,
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
+      "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
@@ -187,9 +175,7 @@
     "image": null,
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
+      "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
@@ -217,9 +203,7 @@
     "image": null,
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
+      "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
@@ -247,9 +231,7 @@
     "image": null,
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
+      "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
@@ -279,9 +261,7 @@
     "image": null,
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
+      "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
@@ -311,9 +291,7 @@
     "image": null,
     "available": [
       "print",
-      "tshirt-regular",
-      "tshirt-heavy",
-      "tshirt-oversized",
+      "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
