@@ -1,18 +1,18 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const state={archive:[],products:[],filter:"all",view:localStorage.getItem("afcndxs-archive-view")||"grid",carouselIndex:0,activePhoto:null,selectedProduct:null,config:{edition:null,size:null,color:null},cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")};
+const state={archive:[],editions:[],products:[],filter:"all",view:localStorage.getItem("afcndxs-archive-view")||"grid",carouselIndex:0,activePhoto:null,activeEdition:null,selectedProduct:null,config:{edition:null,size:null,color:null},cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")};
 const WHATSAPP_NUMBER="";
-const formatDate=v=>{if(!v)return"—";if(/^\\d{4}-\\d{2}$/.test(v)){const[y,m]=v.split("-");return m+"."+y}const[y,m,d]=v.split("-");return[d,m,y].filter(Boolean).join(".")};
+const formatDate=v=>{if(!v)return"—";if(/^\d{4}-\d{2}$/.test(v)){const[y,m]=v.split("-");return m+"."+y}const[y,m,d]=v.split("-");return[d,m,y].filter(Boolean).join(".")};
 const money=v=>v==null?"PRICE ON REQUEST":v.toFixed(0)+" EUR";
 
 async function init(){
-  const[a,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/products.json")]);
-  state.archive=await a.json(); state.products=await p.json();
-  renderArchive(); renderObjects(); renderCart(); bindStaticEvents();
+  const[a,e,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/products.json")]);
+  state.archive=await a.json(); state.editions=await e.json(); state.products=await p.json();
+  renderArchive(); renderEditions(); renderObjects(); renderCart(); bindStaticEvents();
   $("#footer-year").textContent=new Date().getFullYear();
-  document.addEventListener("keydown",e=>{
-    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#cart-drawer").classList.contains("open")){
-      if(e.key==="ArrowLeft")moveCarousel(-1);
-      if(e.key==="ArrowRight")moveCarousel(1);
+  document.addEventListener("keydown",ev=>{
+    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#edition-dialog").open&&!$("#cart-drawer").classList.contains("open")){
+      if(ev.key==="ArrowLeft")moveCarousel(-1);
+      if(ev.key==="ArrowRight")moveCarousel(1);
     }
   });
 }
@@ -29,7 +29,9 @@ function bindStaticEvents(){
   $("#carousel-next").onclick=()=>moveCarousel(1);
   $("#open-cart").onclick=openCart; $("#close-cart").onclick=closeCart; $("#drawer-backdrop").onclick=closeCart;
   $("#close-photo").onclick=()=>$("#photo-dialog").close();
-  $("#photo-dialog").addEventListener("click",e=>{if(e.target===$("#photo-dialog"))$("#photo-dialog").close()});
+  $("#close-edition").onclick=()=>$("#edition-dialog").close();
+  $("#photo-dialog").addEventListener("click",ev=>{if(ev.target===$("#photo-dialog"))$("#photo-dialog").close()});
+  $("#edition-dialog").addEventListener("click",ev=>{if(ev.target===$("#edition-dialog"))$("#edition-dialog").close()});
   $("#clear-cart").onclick=()=>{state.cart=[];saveCart();renderCart()};
   $("#send-request").onclick=sendRequest;
 }
@@ -40,7 +42,7 @@ function renderArchive(){
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+p.country.toUpperCase()+' · '+formatDate(p.date)+'</span></div></article>').join("");
-  $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();o()}}});
+  $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
 }
 function renderCarousel(list=filteredArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>NO PHOTOGRAPHS.</p>";return}
@@ -54,18 +56,37 @@ function moveCarousel(delta){
   const list=filteredArchive(); if(!list.length)return;
   state.carouselIndex=(state.carouselIndex+delta+list.length)%list.length; renderCarousel(list);
 }
+function renderEditions(){
+  $("#editions-grid").innerHTML=state.editions.map(e=>'<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.image+'" alt="'+e.title+' '+e.variant+'" loading="lazy"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+e.variant+'</span></div></article>').join("");
+  $$(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+}
 function renderObjects(){
   $("#object-list").innerHTML=state.products.map(p=>'<div class="object-row"><span>'+p.code+'</span><strong>'+p.name+'</strong><span>'+p.description+'</span><span class="object-price">'+p.priceLabel+'</span></div>').join("");
 }
 function dataRow(a,b){return'<div class="data-row"><span>'+a+'</span><span>'+(b||"—")+'</span></div>'}
 function openPhoto(id){
   state.activePhoto=state.archive.find(p=>p.id===id); state.selectedProduct=null;
-  state.config={edition:null,size:null,color:null}; renderPhotoDetail(); $("#photo-dialog").showModal();
+  state.config={edition:null,size:null,color:null}; renderPhotoDetail();
+  if($("#edition-dialog").open)$("#edition-dialog").close();
+  $("#photo-dialog").showModal();
 }
 function renderPhotoDetail(){
   const p=state.activePhoto,avail=p.available.map(id=>state.products.find(x=>x.id===id)).filter(Boolean);
-  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFCNDXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+p.country.toUpperCase()+'</div><div class="data-table">'+dataRow("DATE",formatDate(p.date))+dataRow("TIME",p.time)+dataRow("REGION",p.region)+dataRow("COORD.",p.coordinates)+dataRow("CAMERA",p.camera)+dataRow("LENS",p.lens)+dataRow("CAPTURE",p.capture)+'</div><div class="physical-box"><h3>// MAKE IT PHYSICAL</h3><div class="choice-group"><span class="choice-label">FORMAT</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+x.name+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
+  const related=state.editions.filter(e=>e.archiveId===p.id);
+  const relatedHtml=related.length?'<div class="related-editions"><h3>RELATED EDITIONS</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+e.variant+'</button>').join("")+'</div></div>':"";
+  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFCNDXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+p.country.toUpperCase()+'</div><div class="data-table">'+dataRow("DATE",formatDate(p.date))+dataRow("TIME",p.time)+dataRow("REGION",p.region)+dataRow("COORD.",p.coordinates)+dataRow("CAMERA",p.camera)+dataRow("LENS",p.lens)+dataRow("CAPTURE",p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// MAKE IT PHYSICAL</h3><div class="choice-group"><span class="choice-label">FORMAT</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+x.name+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
+  $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
   $$(".product-choice").forEach(b=>b.onclick=()=>{state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);const q=state.selectedProduct;state.config={edition:q.editions[0]||null,size:q.sizes[0]||null,color:q.colors[0]||null};$$(".product-choice").forEach(x=>x.classList.toggle("active",x===b));renderConfigurator()});
+}
+function openEdition(id){
+  state.activeEdition=state.editions.find(e=>e.id===id);
+  const e=state.activeEdition;
+  const source=state.archive.find(p=>p.id===e.archiveId);
+  const apps=e.applications.map(a=>'<span class="application-tag">'+a+'</span>').join("");
+  $("#edition-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+e.image+'" alt="'+e.title+' '+e.variant+'"></div><div class="detail-panel"><div class="detail-id">['+e.id+'] // AFCNDXS EDITION</div><h2>'+e.title+'</h2><div>'+e.variant+'</div><div class="data-table">'+dataRow("SOURCE PHOTO","["+source.id+"] "+source.title)+dataRow("PLACE",source.city+" / "+source.country.toUpperCase())+dataRow("DATE",formatDate(source.date))+'</div><button class="source-link" id="view-source" type="button">VIEW SOURCE PHOTO →</button><div class="related-editions"><h3>APPLICATIONS</h3><div class="application-list">'+apps+'</div></div><p class="technical-note">The edition is the graphic composition. The physical object is chosen separately.</p></div></div>';
+  $("#view-source").onclick=()=>{ $("#edition-dialog").close(); openPhoto(source.id); };
+  if($("#photo-dialog").open)$("#photo-dialog").close();
+  $("#edition-dialog").showModal();
 }
 function renderConfigurator(){
   const p=state.selectedProduct;if(!p)return;
