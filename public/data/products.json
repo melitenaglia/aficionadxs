@@ -2,94 +2,108 @@
   {
     "id": "print",
     "code": "PR",
-    "name": "PRINT",
-    "description": "Photographic print. Paper, supplier and final size range are being tested.",
+    "name_en": "PRINT",
+    "name_es": "PRINT",
+    "description_en": "Photographic print. Paper, supplier and final size range are being tested.",
+    "description_es": "Impresión fotográfica. Papel, proveedor y tamaños finales todavía en prueba.",
     "price": null,
-    "priceLabel": "PRICE ON REQUEST",
-    "editions": [
-      "PHOTOGRAPH",
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "21 × 30 CM",
-      "30 × 40 CM"
-    ],
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": ["PHOTOGRAPH", "ARCHIVE EDITION"],
+    "sizes": ["21 × 30 CM", "30 × 40 CM"],
     "colors": []
   },
   {
     "id": "postcard",
     "code": "PC",
-    "name": "POSTCARD",
-    "description": "101 × 152 mm postcard on coated card stock.",
+    "name_en": "POSTCARD",
+    "name_es": "POSTAL",
+    "description_en": "101 × 152 mm postcard on coated card stock.",
+    "description_es": "Postal de 101 × 152 mm sobre cartulina estucada.",
     "price": 5,
-    "priceLabel": "5 EUR",
-    "editions": [
-      "PHOTOGRAPH",
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "101 × 152 MM"
-    ],
+    "priceLabel_en": "5 EUR",
+    "priceLabel_es": "5 EUR",
+    "editions": ["PHOTOGRAPH", "ARCHIVE EDITION"],
+    "sizes": ["101 × 152 MM"],
     "colors": []
   },
   {
-    "id": "tshirt",
-    "code": "TS",
-    "name": "T-SHIRT",
-    "description": "Garment and print method selected per archive edition. Better blanks are under evaluation.",
+    "id": "tshirt-regular",
+    "code": "TS-R",
+    "name_en": "T-SHIRT / REGULAR ORGANIC",
+    "name_es": "CAMISETA / REGULAR ORGÁNICA",
+    "description_en": "Stanley/Stella Creator 2.0 · 180 g/m² · regular fit · 100% organic cotton. The lighter, cleaner regular option.",
+    "description_es": "Stanley/Stella Creator 2.0 · 180 g/m² · corte regular · 100% algodón orgánico. La opción regular más ligera y limpia.",
+    "quality_en": "PREMIUM",
+    "quality_es": "PREMIUM",
+    "supplierCostRef": "14.75 EUR incl. VAT",
     "price": null,
-    "priceLabel": "PRICE ON REQUEST",
-    "editions": [
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "colors": [
-      "WHITE",
-      "ANTHRACITE"
-    ]
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": ["ARCHIVE EDITION"],
+    "sizes": ["S", "M", "L", "XL", "2XL"],
+    "colors": ["WHITE", "ANTHRACITE"]
+  },
+  {
+    "id": "tshirt-heavy",
+    "code": "TS-H",
+    "name_en": "T-SHIRT / HEAVY GARMENT-DYED",
+    "name_es": "CAMISETA / HEAVY GARMENT-DYED",
+    "description_en": "Comfort Colors 1717 · 206.8 g/m² · relaxed fit · garment-dyed. Heavier, more structured and substantial.",
+    "description_es": "Comfort Colors 1717 · 206,8 g/m² · corte relajado · teñida en prenda. Más pesada, estructurada y con mayor presencia.",
+    "quality_en": "PREMIUM HEAVY",
+    "quality_es": "PREMIUM HEAVY",
+    "supplierCostRef": "18.45 EUR incl. VAT",
+    "price": null,
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": ["ARCHIVE EDITION"],
+    "sizes": ["S", "M", "L", "XL", "2XL"],
+    "colors": ["WHITE"]
+  },
+  {
+    "id": "tshirt-oversized",
+    "code": "TS-O",
+    "name_en": "T-SHIRT / OVERSIZED ORGANIC",
+    "name_es": "CAMISETA / OVERSIZE ORGÁNICA",
+    "description_en": "Stanley/Stella Blaster 2.0 · oversized fit · dropped shoulders · 100% organic cotton. The widest silhouette.",
+    "description_es": "Stanley/Stella Blaster 2.0 · corte oversize · hombros caídos · 100% algodón orgánico. La silueta más amplia.",
+    "quality_en": "PREMIUM OVERSIZED",
+    "quality_es": "PREMIUM OVERSIZE",
+    "supplierCostRef": "17.22 EUR incl. VAT",
+    "price": null,
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": ["ARCHIVE EDITION"],
+    "sizes": ["S", "M", "L", "XL", "2XL"],
+    "colors": ["WHITE"]
   },
   {
     "id": "tote",
     "code": "TO",
-    "name": "TOTE BAG",
-    "description": "Cotton tote. Current prototype: Westford Mill W101.",
+    "name_en": "TOTE BAG",
+    "name_es": "TOTE BAG",
+    "description_en": "100% cotton · 140 g/m² · 38 × 42 cm · current prototype: Westford Mill W101.",
+    "description_es": "100% algodón · 140 g/m² · 38 × 42 cm · prototipo actual: Westford Mill W101.",
     "price": null,
-    "priceLabel": "PRICE ON REQUEST",
-    "editions": [
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "ONE SIZE"
-    ],
-    "colors": [
-      "NATURAL"
-    ]
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": ["ARCHIVE EDITION"],
+    "sizes": ["ONE SIZE"],
+    "colors": ["NATURAL"]
   },
   {
     "id": "sweatshirt",
     "code": "SW",
-    "name": "SWEATSHIRT",
-    "description": "On-request format while blanks and print quality are tested.",
+    "name_en": "SWEATSHIRT",
+    "name_es": "SUDADERA",
+    "description_en": "On-request format while blanks and photographic print quality are tested.",
+    "description_es": "Formato bajo pedido mientras seguimos probando prendas base y calidad de impresión fotográfica.",
     "price": null,
-    "priceLabel": "PRICE ON REQUEST",
-    "editions": [
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "S",
-      "M",
-      "L",
-      "XL",
-      "XXL"
-    ],
-    "colors": [
-      "TBC"
-    ]
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": ["ARCHIVE EDITION"],
+    "sizes": ["S", "M", "L", "XL", "2XL"],
+    "colors": ["TBC"]
   }
 ]
