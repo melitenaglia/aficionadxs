@@ -44,6 +44,9 @@ function renderQueue(){
   else issues.push(['ok','PHOTO VALIDATION COMPLETE','Archive metadata 001–011 is structurally registered. Draft photos 006–011 remain unpublished only because their public web image assets are still pending.']);
   const pendingEditions=state.editions.filter(e=>e.reviewStatus==="USER_APPROVAL_PENDING").length;
   if(pendingEditions)issues.push(['warn','NEXT · APPAREL EDITIONS',pendingEditions+' apparel designs are waiting for visual approval against the exact PROPUESTAS files.']);
+  else issues.push(['ok','APPAREL EDITIONS APPROVED','All current apparel editions 001–011 are approved as source designs. Production readiness will be validated later per Printful template.']);
+  const pendingApps=state.applications.filter(a=>a.reviewStatus==="USER_APPROVAL_PENDING").length;
+  if(pendingApps)issues.push(['warn','NEXT · SUPPORT APPLICATIONS',pendingApps+' postcard / notebook / tote designs are waiting for visual approval.']);
   if(noPreview)issues.push(['warn','APPAREL PREVIEWS TO IMPORT',noPreview+' approved design records still need a web preview generated from the exact files in PROPUESTAS.zip.']);
   if(noAppPreview)issues.push(['warn','APPLICATION PREVIEWS TO IMPORT',noAppPreview+' postcard / notebook / tote records still need web previews from their exact source files.']);
   issues.push(['ok','CLASSIFICATION RULE','Untagged proposal files = apparel. pc = postcard · nb = notebook · tote = tote application.']);
