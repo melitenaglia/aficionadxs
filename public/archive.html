@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1efe9">
+  <meta name="description" content="// AFICIONADXS ARCHIVE — ongoing photographic archive.">
+  <title>// AFICIONADXS — ARCHIVE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body data-page="archive">
+  <header class="site-header">
+    <a class="wordmark" href="#top">// AFICIONADXS</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="/archive.html" data-i18n="navArchive">ARCHIVO</a>
+      <a href="/editions.html" data-i18n="navEditions">EDICIONES</a>
+      <a href="#objects" data-i18n="navObjects">OBJETOS</a>
+      <a href="#info">INFO</a>
+      <div class="language-switch" aria-label="Language">
+        <button class="lang-toggle" data-lang="es" type="button">ES</button>
+        <span>/</span>
+        <button class="lang-toggle" data-lang="en" type="button">EN</button>
+      </div>
+      <button class="nav-request" id="open-cart" type="button"><span id="request-label">SOLICITUD</span> <span id="cart-count">[00]</span></button>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-kicker">// AFCNDXS ARCHIVE</div>
+      <h1 data-i18n-html="heroTitle">FOTOGRAFÍAS<br>RECOGIDAS<br>EN EL CAMINO.</h1>
+      <div class="hero-meta">
+        <span data-i18n="heroMeta">ARCHIVO FOTOGRÁFICO EN CURSO</span>
+        <span>2018 — NOW</span>
+      </div>
+      <a class="technical-link" href="#archive" data-i18n="exploreArchive">EXPLORAR ARCHIVO ↓</a>
+    </section>
+
+    <section class="archive-section" id="archive">
+      <div class="section-head">
+        <h2 data-i18n="archiveHeading">// ARCHIVO</h2>
+        <div class="archive-toolbar">
+          <div class="archive-controls">
+            <button class="filter active" data-filter="all" data-i18n="all">TODAS</button>
+            <button class="filter" data-filter="ES">ES</button>
+            <button class="filter" data-filter="FR">FR</button>
+            <button class="filter" data-filter="DE">DE</button>
+            <button class="filter" data-filter="CZ">CZ</button>
+          </div>
+          <div class="view-controls" aria-label="Archive view">
+            <span data-i18n="view">VISTA</span>
+            <button class="view-toggle active" data-view="grid" type="button">GRID</button>
+            <button class="view-toggle" data-view="carousel" type="button">CAROUSEL</button>
+          </div>
+        </div>
+      </div>
+      <div class="archive-grid" id="archive-grid" aria-live="polite"></div><div class="section-more" id="archive-more"><a href="/archive.html">VER TODO EL ARCHIVO →</a></div>
+      <div class="archive-carousel" id="archive-carousel" hidden aria-live="polite">
+        <button class="carousel-nav carousel-prev" id="carousel-prev" type="button" aria-label="Previous photograph">←</button>
+        <div class="carousel-stage" id="carousel-stage"></div>
+        <button class="carousel-nav carousel-next" id="carousel-next" type="button" aria-label="Next photograph">→</button>
+      </div>
+    </section>
+
+    <section class="editions-section" id="editions">
+      <div class="section-head">
+        <h2 data-i18n="editionsHeading">// EDICIONES</h2>
+        <span data-i18n="photoDesign">FOTO → DISEÑO</span>
+      </div>
+      <div class="editions-grid" id="editions-grid"></div><div class="section-more" id="editions-more"><a href="/editions.html">VER TODAS LAS EDICIONES →</a></div>
+      <p class="technical-note" data-i18n="editionsNote">Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.</p>
+    </section>
+
+    <section class="objects-section" id="objects">
+      <div class="section-head">
+        <h2 data-i18n="objectsHeading">// OBJETOS</h2>
+        <span data-i18n="makePhysical">LLEVAR EL ARCHIVO A LO FÍSICO</span>
+      </div>
+      <div class="object-list" id="object-list"></div>
+      <p class="technical-note" data-i18n="objectsNote">Formatos y precios siguen en prueba mientras AFICIONADXS compara materiales, impresión y proveedores. Una solicitud no es un pago ni un pedido automático.</p>
+    </section>
+
+    <section class="info-section" id="info">
+      <div class="section-head"><h2>// INFO</h2></div>
+      <div class="info-grid">
+        <p data-i18n="info1">AFICIONADXS es un archivo fotográfico en curso. Algunas imágenes salen del archivo para convertirse en prints, postales, prendas y objetos.</p>
+        <p data-i18n="info2">Algunas piezas existen en stock. Otras se producen solo después de una solicitud. La fotografía sigue siendo siempre el punto de partida.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>// AFICIONADXS ARCHIVE</span>
+    <span data-i18n="footerLine">FOTOGRAFÍA → OBJETO</span>
+    <span id="footer-year"></span>
+  </footer>
+
+  <dialog class="photo-dialog" id="photo-dialog">
+    <button class="dialog-close" id="close-photo" type="button">×</button>
+    <div id="photo-detail"></div>
+  </dialog>
+
+  <dialog class="photo-dialog" id="edition-dialog">
+    <button class="dialog-close" id="close-edition" type="button">×</button>
+    <div id="edition-detail"></div>
+  </dialog>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-head">
+      <h2 id="request-heading">// SOLICITUD</h2>
+      <button id="close-cart" type="button">×</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="request-form">
+      <label><span data-i18n="name">NOMBRE</span> <input id="request-name" autocomplete="name"></label>
+      <label><span data-i18n="countryPostcode">PAÍS / CÓDIGO POSTAL</span> <input id="request-location" autocomplete="postal-code"></label>
+      <label><span data-i18n="note">NOTA</span> <textarea id="request-note" rows="3"></textarea></label>
+    </div>
+    <div class="cart-total" id="cart-total"></div>
+    <button class="primary-action" id="send-request" type="button" data-i18n="sendWhatsapp">ENVIAR SOLICITUD POR WHATSAPP →</button>
+    <button class="secondary-action" id="clear-cart" type="button" data-i18n="clearRequest">VACIAR SOLICITUD</button>
+  </aside>
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
