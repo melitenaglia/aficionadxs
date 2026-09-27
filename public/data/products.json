@@ -26,7 +26,9 @@
     "material": "189 g/m² matte paper",
     "thumbnailType": "print",
     "supplierCostRef": "FROM 6.79 EUR incl. VAT · EU catalog reference",
-    "sourceUrl": "https://www.printful.com/es/dashboard/custom/wall-art/posters/enhanced-matte-paper-poster-cm"
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/wall-art/posters/enhanced-matte-paper-poster-cm",
+    "shippingRegion": "Europe · includes Spain",
+    "shippingRef": "5.79 EUR first small poster · +0.30 additional · current flat-rate reference"
   },
   {
     "id": "postcard",
@@ -51,7 +53,9 @@
     "material": "260–350 g/m² coated cardboard",
     "thumbnailType": "postcard",
     "supplierCostRef": "1.61 EUR incl. VAT · EU catalog reference",
-    "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/postcards/standard-postcard"
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/postcards/standard-postcard",
+    "shippingRegion": "Europe · includes Spain",
+    "shippingRef": "4.29 EUR first · +0.10 additional · current flat-rate reference"
   },
   {
     "id": "tshirt",
@@ -135,7 +139,9 @@
         "price": null
       }
     ],
-    "thumbnailType": "tshirt"
+    "thumbnailType": "tshirt",
+    "shippingRegion": "Europe · includes Spain",
+    "shippingRef": "4.99 EUR first · +1.45 additional · current flat-rate reference"
   },
   {
     "id": "sweatshirt",
@@ -170,7 +176,8 @@
         "colors": [
           "TBC"
         ],
-        "price": null
+        "price": null,
+        "shippingRef": "Uses sweatshirt Europe rate · 7.29 EUR first · +2.40 additional"
       },
       {
         "id": "radder-2",
@@ -191,10 +198,14 @@
         "colors": [
           "TBC"
         ],
-        "price": null
+        "price": null,
+        "supplierCostRef": "30.29 EUR incl. VAT · EU catalog reference",
+        "shippingRef": "Uses sweatshirt Europe rate · 7.29 EUR first · +2.40 additional"
       }
     ],
-    "thumbnailType": "sweatshirt"
+    "thumbnailType": "sweatshirt",
+    "shippingRegion": "Europe · includes Spain",
+    "shippingRef": "7.29 EUR first · +2.40 additional · current flat-rate reference"
   },
   {
     "id": "tote",
@@ -220,7 +231,9 @@
     "technique": "DTFlex / embroidery available",
     "thumbnailType": "tote",
     "supplierCostRef": "10.93 EUR incl. VAT · EU catalog reference",
-    "sourceUrl": "https://www.printful.com/es/dashboard/custom/bags/totes/cotton-color-tote-bag-westford-mill-w101"
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/bags/totes/cotton-color-tote-bag-westford-mill-w101",
+    "shippingRegion": "Europe · Spain supported",
+    "shippingRef": "FROM 4.49 EUR shown on current product page · exact Barcelona checkout to validate"
   },
   {
     "id": "notebook",
@@ -256,7 +269,8 @@
           "TBC"
         ],
         "price": null,
-        "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/spiral-notebook"
+        "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/spiral-notebook",
+        "shippingRef": "4.99 EUR first · +1.45 additional · Europe notebook rate"
       },
       {
         "id": "journalbook-hardcover",
@@ -275,8 +289,10 @@
           "TBC"
         ],
         "price": null,
-        "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/hardcover-bound-notebook-journalbook"
+        "sourceUrl": "https://www.printful.com/es/dashboard/custom/stationery/notebooks/hardcover-bound-notebook-journalbook",
+        "shippingRef": "10.39 EUR first · +3.50 additional · Europe JournalBook rate"
       }
-    ]
+    ],
+    "shippingRegion": "Europe · includes Spain"
   }
 ]
