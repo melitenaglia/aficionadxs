@@ -143,14 +143,14 @@
     "lens": "3.99 mm · f/1.8 · 28 mm eq.",
     "capture": "ISO 100 · 1/5 s",
     "orientation": "landscape",
-    "image": null,
+    "image": "/assets/photos/006.webp",
     "available": [
       "print",
       "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
-    "published": false,
+    "published": true,
     "sourceFile": "75A8E316-68ED-4A9E-B11C-0938E0DBFB6B.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED",
@@ -172,14 +172,14 @@
     "lens": "9 mm · f/2.8 · 77 mm eq.",
     "capture": "ISO 640 · 1/60 s",
     "orientation": "portrait",
-    "image": null,
+    "image": "/assets/photos/007.webp",
     "available": [
       "print",
       "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
-    "published": false,
+    "published": true,
     "sourceFile": "IMG_1775.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
@@ -200,14 +200,14 @@
     "lens": "77 mm · f/2.8",
     "capture": "ISO 25 · 1/1600 s",
     "orientation": "portrait",
-    "image": null,
+    "image": "/assets/photos/008.webp",
     "available": [
       "print",
       "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
-    "published": false,
+    "published": true,
     "sourceFile": "IMG_4401.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
@@ -228,14 +228,14 @@
     "lens": "6.765 mm · f/1.8 · 24 mm eq.",
     "capture": "ISO 1250 · 1/30 s",
     "orientation": "portrait",
-    "image": null,
+    "image": "/assets/photos/009.webp",
     "available": [
       "print",
       "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
-    "published": false,
+    "published": true,
     "sourceFile": "IMG_8142.heic",
     "event": "Llum BCN 26 · The Rhythm of the Ocean · Desilence Visual Art Studio",
     "sourceMatchVerified": true,
@@ -258,14 +258,14 @@
     "lens": "9 mm · f/2.8 · 144 mm eq.",
     "capture": "ISO 25 · 1/190 s",
     "orientation": "portrait",
-    "image": null,
+    "image": "/assets/photos/010.webp",
     "available": [
       "print",
       "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
-    "published": false,
+    "published": true,
     "sourceFile": "IMG_5828.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED",
@@ -288,14 +288,14 @@
     "lens": "6.86 mm · f/1.8 · 24 mm eq.",
     "capture": "ISO 125 · 1/100 s",
     "orientation": "portrait",
-    "image": null,
+    "image": "/assets/photos/011.webp",
     "available": [
       "print",
       "tshirt",
       "sweatshirt"
     ],
     "archiveEdition": true,
-    "published": false,
+    "published": true,
     "sourceFile": "IMG_3305.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED",
