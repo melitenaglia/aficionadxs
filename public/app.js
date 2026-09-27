@@ -156,15 +156,28 @@ function bindStaticEvents(){
   $("#clear-cart").onclick=()=>{state.cart=[];saveCart();renderCart()};
   $("#send-request").onclick=sendRequest;
 }
+function archiveCountries(){
+  return [...new Set(state.archive.filter(p=>p.published!==false&&p.countryCode).map(p=>p.countryCode))].sort();
+}
+function renderArchiveFilters(){
+  const box=$(".archive-controls"); if(!box)return;
+  const countries=archiveCountries();
+  if(state.filter!=="all"&&!countries.includes(state.filter))state.filter="all";
+  box.innerHTML='<button class="filter '+(state.filter==="all"?"active":"")+'" data-filter="all">'+t("all")+'</button>'+
+    countries.map(code=>'<button class="filter '+(state.filter===code?"active":"")+'" data-filter="'+code+'">'+code+'</button>').join("");
+  $(".filter",box).forEach(b=>b.onclick=()=>{state.filter=b.dataset.filter;state.carouselIndex=0;renderArchive()});
+}
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
 function renderArchive(){
+  renderArchiveFilters();
   const full=filteredArchive(),isArchivePage=document.body.dataset.page==="archive";
   const list=isArchivePage?full:full.slice(0,8),grid=$("#archive-grid"),carousel=$("#archive-carousel");
-  $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
+  $(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>').join("");
-  $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  grid.onclick=ev=>{const card=ev.target.closest(".archive-card");if(card)openPhoto(card.dataset.id)};
+  grid.onkeydown=ev=>{const card=ev.target.closest(".archive-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openPhoto(card.dataset.id)}};
   const more=$("#archive-more"); if(more) more.hidden=isArchivePage||full.length<=list.length;
 }
 function renderCarousel(list=filteredArchive()){
@@ -190,7 +203,7 @@ function renderEditions(){
   $("#editions-grid").innerHTML=approved.map(e=>{
     return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.publicPreview+'" alt="'+e.title+' '+e.variant+'" loading="lazy"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
   }).join("");
-  $$(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  const eg=$("#editions-grid"); eg.onclick=ev=>{const card=ev.target.closest(".edition-card");if(card)openEdition(card.dataset.id)}; eg.onkeydown=ev=>{const card=ev.target.closest(".edition-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openEdition(card.dataset.id)}};
   const more=$("#editions-more"); if(more) more.hidden=isEditionsPage||full.length<=approved.length;
 }
 
@@ -215,11 +228,16 @@ function renderObjects(){
 }
 function dataRow(a,b){return'<div class="data-row"><span>'+a+'</span><span>'+(b||"—")+'</span></div>'}
 function openPhoto(id){
-  state.activePhoto=state.archive.find(p=>p.id===id);state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
-  renderPhotoDetail();if($("#edition-dialog").open)$("#edition-dialog").close();$("#photo-dialog").showModal();
+  state.activePhoto=state.archive.find(p=>String(p.id)===String(id));
+  if(!state.activePhoto)return;
+  state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
+  renderPhotoDetail();
+  const ed=$("#edition-dialog"),dlg=$("#photo-dialog");
+  if(ed&&ed.open)ed.close();
+  if(dlg){ if(typeof dlg.showModal==="function") dlg.showModal(); else dlg.setAttribute("open",""); }
 }
 function renderPhotoDetail(){
-  const p=state.activePhoto,avail=p.available.map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=state.editions.filter(e=>e.archiveId===p.id);
+  const p=state.activePhoto,avail=(p.available||[]).map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=state.editions.filter(e=>String(e.archiveId)===String(p.id)&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK");
   const relatedHtml=related.length?'<div class="related-editions"><h3>'+t("relatedEditions")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
   $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+countryName(p)+'</div><div class="data-table">'+dataRow(t("date"),formatDate(p.date))+dataRow(t("time"),p.time)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
   $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
