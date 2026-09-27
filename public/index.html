@@ -9,14 +9,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=stable-20260927-2">
+  <link rel="stylesheet" href="/styles.css?v=stable-20260927-3">
 </head>
 <body>
   <header class="site-header">
     <a class="wordmark" href="#top">// AFICIONADXS</a>
     <nav class="main-nav" aria-label="Main navigation">
       <a href="#archive" data-i18n="navArchive">ARCHIVO</a>
-      <a href="#editions" data-i18n="navEditions">EDICIONES</a>
+      <a href="#editions" data-i18n="navEditions" hidden>EDICIONES</a>
       <a href="#objects" data-i18n="navObjects">OBJETOS</a>
       <a href="#info">INFO</a>
       <div class="language-switch" aria-label="Language">
@@ -60,6 +60,7 @@
         </div>
       </div>
       <div class="archive-grid" id="archive-grid" aria-live="polite"></div>
+      <button class="archive-more" id="archive-more" type="button" hidden>MOSTRAR MÁS</button>
       <div class="archive-carousel" id="archive-carousel" hidden aria-live="polite">
         <button class="carousel-nav carousel-prev" id="carousel-prev" type="button" aria-label="Previous photograph">←</button>
         <div class="carousel-stage" id="carousel-stage"></div>
@@ -67,7 +68,7 @@
       </div>
     </section>
 
-    <section class="editions-section" id="editions">
+    <section class="editions-section" id="editions" hidden>
       <div class="section-head">
         <h2 data-i18n="editionsHeading">// EDICIONES</h2>
         <span data-i18n="photoDesign">FOTO → DISEÑO</span>
@@ -127,6 +128,6 @@
   </aside>
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
-  <script type="module" src="/app.js?v=stable-20260927-2"></script>
+  <script type="module" src="/app.js?v=stable-20260927-3"></script>
 </body>
 </html>
