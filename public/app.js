@@ -6,7 +6,7 @@ const state={
   filter:"all",
   view:localStorage.getItem("afcndxs-archive-view")||"grid",
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
-  carouselIndex:0,
+  carouselIndex:0,archiveExpanded:false,
   activePhoto:null,activeEdition:null,selectedProduct:null,
   config:{model:null,edition:null,size:null,color:null},
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
@@ -34,7 +34,7 @@ const T={
     addRequest:"AÑADIR A SOLICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
     viewSource:"VER FOTO ORIGINAL →",editionNote:"La edición es la composición gráfica. El objeto físico se elige por separado.",
     remove:"QUITAR",requestConfirm:"Confírmame disponibilidad, precio final y envío.",
-    photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",white:"BLANCO",black:"NEGRO"
+    photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",white:"BLANCO",black:"NEGRO",designAvailable:"DISEÑO DISPONIBLE",showMore:"MOSTRAR MÁS",showLess:"MOSTRAR MENOS"
   },
   en:{
     navArchive:"ARCHIVE",navEditions:"EDITIONS",navObjects:"OBJECTS",
@@ -56,7 +56,7 @@ const T={
     addRequest:"ADD TO REQUEST →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
     viewSource:"VIEW SOURCE PHOTO →",editionNote:"The edition is the graphic composition. The physical object is chosen separately.",
     remove:"REMOVE",requestConfirm:"Please confirm availability, final price and shipping.",
-    photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",white:"WHITE",black:"BLACK"
+    photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",white:"WHITE",black:"BLACK",designAvailable:"DESIGN AVAILABLE",showMore:"SHOW MORE",showLess:"SHOW LESS"
   }
 };
 const t=k=>T[state.lang][k]||k;
@@ -121,6 +121,7 @@ function bindStaticEvents(){
     state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
     renderArchive();
   }));
+  const more=$("#archive-more");if(more)more.onclick=()=>{state.archiveExpanded=!state.archiveExpanded;renderArchive()};
   $("#carousel-prev").onclick=()=>moveCarousel(-1);
   $("#carousel-next").onclick=()=>moveCarousel(1);
   $("#open-cart").onclick=openCart;$("#close-cart").onclick=closeCart;$("#drawer-backdrop").onclick=closeCart;
@@ -131,19 +132,32 @@ function bindStaticEvents(){
   $("#send-request").onclick=sendRequest;
 }
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
+function photoEditions(photoId){return state.editions.filter(e=>e.archiveId===photoId&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK")}
+function photoHasEdition(photoId){return photoEditions(photoId).length>0}
 function renderArchive(){
-  const list=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
+  const full=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
+  const list=state.archiveExpanded?full:full.slice(0,6);
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
-  if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(list);return}
+  if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);updateArchiveMore(full.length);return}
   grid.hidden=false;carousel.hidden=true;
-  grid.innerHTML=list.map(p=>'<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image"><img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>').join("");
+  grid.innerHTML=list.map(p=>{
+    const ribbon=photoHasEdition(p.id)?'<span class="design-ribbon">'+t("designAvailable")+'</span>':"";
+    return '<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image">'+ribbon+'<img src="'+p.image+'" alt="'+p.title+'" loading="lazy"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>';
+  }).join("");
   $$(".archive-card",grid).forEach(c=>{const o=()=>openPhoto(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
+  updateArchiveMore(full.length);
+}
+function updateArchiveMore(total){
+  const b=$("#archive-more");if(!b)return;
+  b.hidden=total<=6||state.view==="carousel";
+  b.textContent=state.archiveExpanded?t("showLess"):t("showMore");
 }
 function renderCarousel(list=filteredArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>NO PHOTOGRAPHS.</p>";return}
   if(state.carouselIndex>=list.length)state.carouselIndex=0;if(state.carouselIndex<0)state.carouselIndex=list.length-1;
   const p=list[state.carouselIndex],pos=String(state.carouselIndex+1).padStart(2,"0"),total=String(list.length).padStart(2,"0");
-  $("#carousel-stage").innerHTML='<div class="carousel-frame"><button type="button" class="carousel-photo" data-id="'+p.id+'"><img src="'+p.image+'" alt="'+p.title+'"></button><div class="carousel-meta"><span>['+p.id+']</span><span>'+p.title+'<br>'+p.city+' / '+countryName(p)+'</span><span>'+pos+' / '+total+'</span></div></div>';
+  const ribbon=photoHasEdition(p.id)?'<span class="design-ribbon carousel-ribbon">'+t("designAvailable")+'</span>':"";
+  $("#carousel-stage").innerHTML='<div class="carousel-frame">'+ribbon+'<button type="button" class="carousel-photo" data-id="'+p.id+'"><img src="'+p.image+'" alt="'+p.title+'"></button><div class="carousel-meta"><span>['+p.id+']</span><span>'+p.title+'<br>'+p.city+' / '+countryName(p)+'</span><span>'+pos+' / '+total+'</span></div></div>';
   $(".carousel-photo").onclick=()=>openPhoto(p.id);
 }
 function moveCarousel(delta){const list=filteredArchive();if(!list.length)return;state.carouselIndex=(state.carouselIndex+delta+list.length)%list.length;renderCarousel(list)}
@@ -166,11 +180,11 @@ function renderEditions(){
 function objectIcon(type){
   const common='viewBox="0 0 80 80" aria-hidden="true" focusable="false"';
   const icons={
-    print:'<svg '+common+'><rect x="20" y="10" width="40" height="60" fill="none" stroke="currentColor"/><rect x="27" y="18" width="26" height="34" fill="none" stroke="currentColor"/><line x1="27" y1="58" x2="53" y2="58" stroke="currentColor"/></svg>',
-    postcard:'<svg '+common+'><rect x="10" y="22" width="60" height="36" fill="none" stroke="currentColor"/><line x1="43" y1="22" x2="43" y2="58" stroke="currentColor"/><rect x="51" y="29" width="11" height="9" fill="none" stroke="currentColor"/><line x1="48" y1="45" x2="63" y2="45" stroke="currentColor"/><line x1="48" y1="50" x2="61" y2="50" stroke="currentColor"/></svg>',
+    print:'<svg '+common+'><circle cx="40" cy="7" r="1.5" fill="currentColor"/><path d="M40 9 31 16h18z" fill="none" stroke="currentColor"/><rect x="17" y="16" width="46" height="56" rx="1" fill="none" stroke="currentColor"/><rect x="23" y="22" width="34" height="42" fill="none" stroke="currentColor"/><circle cx="47" cy="32" r="3" fill="none" stroke="currentColor"/><path d="M25 58 34 47l7 7 5-6 9 10" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
+    postcard:'<svg '+common+'><rect x="9" y="23" width="62" height="34" rx="1" fill="none" stroke="currentColor"/><path d="M14 51 27 39l9 7 7-8 23 13" fill="none" stroke="currentColor" stroke-linejoin="round"/><circle cx="55" cy="33" r="3" fill="none" stroke="currentColor"/></svg>',
     tshirt:'<svg '+common+'><path d="M25 18 12 28l8 10 7-5v29h26V33l7 5 8-10-13-10-8 4H33z" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    sweatshirt:'<svg '+common+'><path d="M26 17 13 29l8 9 6-5v30h26V33l6 5 8-9-13-12-8 4H34z" fill="none" stroke="currentColor" stroke-linejoin="round"/><line x1="30" y1="57" x2="50" y2="57" stroke="currentColor"/><line x1="34" y1="21" x2="46" y2="21" stroke="currentColor"/></svg>',
-    tote:'<svg '+common+'><path d="M20 28h40l-3 40H23z" fill="none" stroke="currentColor"/><path d="M31 29c0-13 18-13 18 0" fill="none" stroke="currentColor"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M30 16 19 21 8 31 2 55l11 3 8-19 6-7v32h26V32l6 7 8 19 11-3-6-24-11-10-11-5-5 5H35z" fill="none" stroke="currentColor" stroke-linejoin="round"/><path d="M35 18c1 6 9 6 10 0" fill="none" stroke="currentColor"/><line x1="28" y1="58" x2="52" y2="58" stroke="currentColor"/><line x1="3" y1="53" x2="13" y2="56" stroke="currentColor"/><line x1="67" y1="56" x2="77" y2="53" stroke="currentColor"/></svg>',
+    tote:'<svg '+common+'><path d="M17 37h46l-4 34H21z" fill="none" stroke="currentColor"/><path d="M27 38V23C27 10 32 4 40 4s13 6 13 19v15" fill="none" stroke="currentColor"/><path d="M32 38V23c0-9 3-14 8-14s8 5 8 14v15" fill="none" stroke="currentColor"/></svg>',
     notebook:'<svg '+common+'><rect x="23" y="12" width="38" height="56" rx="2" fill="none" stroke="currentColor"/><line x1="30" y1="12" x2="30" y2="68" stroke="currentColor"/><line x1="18" y1="20" x2="28" y2="20" stroke="currentColor"/><line x1="18" y1="29" x2="28" y2="29" stroke="currentColor"/><line x1="18" y1="38" x2="28" y2="38" stroke="currentColor"/><line x1="18" y1="47" x2="28" y2="47" stroke="currentColor"/><line x1="18" y1="56" x2="28" y2="56" stroke="currentColor"/></svg>'
   };
   return icons[type]||icons.print;
@@ -188,8 +202,8 @@ function openPhoto(id){
   renderPhotoDetail();if($("#edition-dialog").open)$("#edition-dialog").close();$("#photo-dialog").showModal();
 }
 function renderPhotoDetail(){
-  const p=state.activePhoto,avail=p.available.map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=state.editions.filter(e=>e.archiveId===p.id);
-  const relatedHtml=related.length?'<div class="related-editions"><h3>'+t("relatedEditions")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
+  const p=state.activePhoto,avail=(p.available||[]).map(id=>state.products.find(x=>x.id===id)).filter(Boolean),related=photoEditions(p.id);
+  const relatedHtml=related.length?'<div class="related-editions design-available-box"><h3>// '+t("designAvailable")+'</h3><div class="related-edition-list">'+related.map(e=>'<button class="choice-button related-edition" data-edition="'+e.id+'">['+e.id+'] '+editionVariant(e)+'</button>').join("")+'</div></div>':"";
   $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual"><img src="'+p.image+'" alt="'+p.title+'"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+p.place+'<br>'+p.city+' / '+countryName(p)+'</div><div class="data-table">'+dataRow(t("date"),formatDate(p.date))+dataRow(t("time"),p.time)+dataRow(t("region"),p.region)+dataRow(t("coord"),p.coordinates)+dataRow(t("camera"),p.camera)+dataRow(t("lens"),p.lens)+dataRow(t("capture"),p.capture)+'</div>'+relatedHtml+'<div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
   $$(".related-edition").forEach(b=>b.onclick=()=>openEdition(b.dataset.edition));
   $$(".product-choice").forEach(b=>b.onclick=()=>{
