@@ -17,10 +17,16 @@
       <div class="brand">// AFICIONADXS</div>
       <div class="sub">ADMIN · REVIEW MODE</div>
     </div>
-    <a href="/" class="back">VIEW PUBLIC SITE →</a>
+    <div class="admin-actions">
+      <span id="auth-status" class="sub"></span>
+      <button id="sign-out" class="text-button" type="button" hidden>SIGN OUT</button>
+      <a href="/" class="back">VIEW PUBLIC SITE →</a>
+    </div>
   </header>
 
   <main>
+    <section id="auth-gate" class="auth-gate" hidden></section>
+    <div id="admin-app">
     <section class="intro">
       <div>
         <span class="eyebrow">VALIDATION WORKSPACE</span>
@@ -46,6 +52,7 @@
     </nav>
 
     <section id="panel"></section>
+    </div>
   </main>
 
   <footer>
