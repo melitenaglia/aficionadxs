@@ -11,7 +11,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "001-B",
@@ -25,7 +26,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "002-A",
@@ -39,7 +41,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "002-B",
@@ -53,7 +56,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "003-A",
@@ -67,7 +71,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "003-B",
@@ -81,7 +86,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "004-A",
@@ -95,7 +101,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "005-A",
@@ -109,7 +116,8 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true
+    "approved": false,
+    "reviewStatus": "USER_APPROVAL_PENDING"
   },
   {
     "id": "006-A",
@@ -123,7 +131,7 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true,
+    "approved": false,
     "sourceMatchVerified": true,
     "reviewStatus": "USER_APPROVAL_PENDING"
   },
@@ -139,7 +147,7 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true,
+    "approved": false,
     "sourceMatchVerified": true,
     "reviewStatus": "USER_APPROVAL_PENDING"
   },
@@ -155,7 +163,7 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true,
+    "approved": false,
     "sourceMatchVerified": true,
     "reviewStatus": "USER_APPROVAL_PENDING"
   },
@@ -171,7 +179,7 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true,
+    "approved": false,
     "sourceMatchVerified": true,
     "reviewStatus": "USER_APPROVAL_PENDING"
   },
@@ -187,7 +195,7 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true,
+    "approved": false,
     "sourceMatchVerified": true,
     "reviewStatus": "USER_APPROVAL_PENDING"
   },
@@ -203,7 +211,7 @@
       "sweatshirt"
     ],
     "publicPreview": null,
-    "approved": true,
+    "approved": false,
     "sourceMatchVerified": true,
     "reviewStatus": "USER_APPROVAL_PENDING"
   }
