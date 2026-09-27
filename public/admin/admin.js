@@ -199,7 +199,32 @@ function bindPanel(){
   const panel=$("#panel");if(!panel)return;
   panel.onclick=async ev=>{const b=ev.target.closest('[data-action="review"]');if(!b||state.busy)return;await setReview(b.dataset.table,b.dataset.id,b.dataset.status)};
   panel.onchange=async ev=>{const el=ev.target,action=el.dataset.action;if(!action||state.busy)return;if(action==="publish")await updateRow("photos",el.dataset.id,{published:el.checked},"Publication updated");if(action==="physical-active")await updateRow("physicals",el.dataset.id,{active:el.checked},"Physical updated");if(action==="production-status")await updateRow("production_records",el.dataset.id,{status:el.value},"Production status updated")};
-  panel.onsubmit=async ev=>{const form=ev.target.closest('form[data-form="photo"]');if(!form)return;ev.preventDefault();const d=Object.fromEntries(new FormData(form).entries());for(const k of Object.keys(d))if(d[k]==="")d[k]=null;await updateRow("photos",form.dataset.id,d,"Photo saved")};
+  panel.onsubmit=async ev=>{
+    const form=ev.target.closest("form");if(!form)return;ev.preventDefault();
+    const kind=form.dataset.form;
+    if(kind==="asset")return uploadAssets(form);
+    const d=Object.fromEntries(new FormData(form).entries());
+    for(const k of Object.keys(d))if(d[k]==="")d[k]=null;
+    if(kind==="photo")return updateRow("photos",form.dataset.id,d,"Photo saved");
+    if(kind==="physical"){
+      const current=state.physicals.find(x=>x.id===form.dataset.id),cfg=structuredClone(current&&current.config?current.config:{}),patch={};
+      for(const [k,v] of Object.entries(d)){if(k.startsWith("cfg__"))cfg[k.slice(5)]=v;else if(!k.startsWith("model__"))patch[k]=v}
+      const models=cfg.models||[];
+      for(const [k,v] of Object.entries(d)){
+        if(!k.startsWith("model__"))continue;
+        const parts=k.split("__"),i=Number(parts[1]),key=parts[2];if(!models[i])continue;
+        if(key==="sizes"||key==="colors")models[i][key]=String(v||"").split(",").map(x=>x.trim()).filter(Boolean);
+        else if(key==="price")models[i][key]=v==null?null:Number(v);
+        else models[i][key]=v;
+      }
+      cfg.models=models;
+      patch.price=patch.price==null?null:Number(patch.price);
+      cfg.priceLabel_es=patch.price==null?"PRECIO A CONSULTAR":patch.price+" EUR";
+      cfg.priceLabel_en=patch.price==null?"PRICE ON REQUEST":patch.price+" EUR";
+      patch.config=cfg;
+      return updateRow("physicals",form.dataset.id,patch,"Physical saved");
+    }
+  };
 }
 async function setReview(table,id,review_status){const patch={review_status};if(table==="editions"||table==="applications")patch.approved=review_status==="APPROVED";await updateRow(table,id,patch,"Review status updated")}
 async function updateRow(table,id,patch,message){setBusy(true);const {error}=await supabase.from(table).update(patch).eq("id",id);if(error){notify(error.message,"bad");setBusy(false);return}notify(message,"ok");await loadData()}
