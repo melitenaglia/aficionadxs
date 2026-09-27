@@ -162,25 +162,40 @@ function renderEditions(){
 function renderApplications(){
   $("#panel").innerHTML=title("APPLICATIONS","Postcard / notebook / tote. Cada adaptación mantiene su propio estado.")+'<div class="record-list">'+state.applications.map(a=>`<article class="admin-record"><div class="record-top"><div><span class="small">[${esc(a.id)}]</span><h3>${esc(a.title)} · ${esc(a.support.toUpperCase())}</h3><p class="small">${esc(a.source_filename)}</p></div>${status(a.review_status,statusType(a.review_status))}</div>${reviewButtons("applications",a.id,a.review_status)}${a.public_preview?`<img class="admin-preview" src="${esc(a.public_preview)}" alt="">`:""}${assetForm("application",a.id,a.public_preview,a.master_file_path||a.source_filename)}</article>`).join("")+'</div>';bindPanel();
 }
+
 function renderPhysicals(){
-  $("#panel").innerHTML=title("PHYSICALS","Edita PVP, referencias, proveedor y textos ES/EN. No se cambia ningún producto o calidad automáticamente.")+'<div class="record-list">'+state.physicals.map(p=>{
+  const desktop=window.matchMedia("(min-width: 681px)").matches;
+  $("#panel").innerHTML=title("PHYSICALS","Edita producto, PVP, referencias y textos ES/EN. En móvil cada producto se abre solo cuando lo necesitas.")+
+  '<div class="physical-list">'+state.physicals.map(p=>{
     const cfg=p.config||{},models=cfg.models||[];
-    const modelForms=models.map((m,i)=>'<details class="model-editor"><summary>MODEL · '+esc(m.name_es||m.name_en||m.id||i+1)+'</summary><div class="edit-form">'+
+    const modelForms=models.map((m,i)=>'<details class="model-editor"><summary><span>'+esc(m.name_es||m.name_en||m.id||("MODEL "+(i+1)))+'</span><span class="summary-hint">EDIT →</span></summary><div class="edit-form model-edit-form">'+
+      '<div class="form-section-title field-wide">TEXTOS DEL MODELO</div>'+
       input("model__"+i+"__name_es","NOMBRE ES",m.name_es)+input("model__"+i+"__name_en","NAME EN",m.name_en)+
       textarea("model__"+i+"__description_es","DESCRIPCIÓN ES",m.description_es)+textarea("model__"+i+"__description_en","DESCRIPTION EN",m.description_en)+
+      '<div class="form-section-title field-wide">PRECIO Y REFERENCIAS</div>'+
       input("model__"+i+"__price","PVP EUR",m.price,"number","0.01")+input("model__"+i+"__supplierCostRef","COSTE / REFERENCIA",m.supplierCostRef)+
-      input("model__"+i+"__shippingRef","ENVÍO / REFERENCIA",m.shippingRef)+input("model__"+i+"__sizes","TALLAS · separadas por coma",(m.sizes||[]).join(", "))+
-      input("model__"+i+"__colors","COLORES · separados por coma",(m.colors||[]).join(", "))+'</div></details>').join("");
-    return `<article class="admin-record"><div class="record-top"><div><span class="small">${esc(p.code||"")}</span><h3>${esc(p.name_es||p.name_en||p.id)}</h3><p class="small">PVP · ${p.price==null?"PENDIENTE":Number(p.price).toFixed(2)+" €"} · ${esc(p.supplier||"")}</p></div><label class="toggle-line"><input type="checkbox" data-action="physical-active" data-id="${esc(p.id)}" ${p.active?"checked":""}> ACTIVE</label></div>
-      <details open><summary>EDIT PRODUCT · ES / EN / PRICE / REFERENCES</summary><form class="edit-form" data-form="physical" data-id="${esc(p.id)}">
-      ${input("name_es","NOMBRE ES",p.name_es)}${input("name_en","NAME EN",p.name_en)}
-      ${textarea("description_es","DESCRIPCIÓN ES",p.description_es)}${textarea("description_en","DESCRIPTION EN",p.description_en)}
-      ${input("price","PVP EUR",p.price,"number","0.01")}${input("supplier","PROVEEDOR",p.supplier)}${input("source_url","URL PROVEEDOR",p.source_url)}
-      ${input("cfg__model","MODELO / REFERENCIA",cfg.model)}${input("cfg__technique","TÉCNICA",cfg.technique)}${input("cfg__material","MATERIAL",cfg.material)}
-      ${input("cfg__supplierCostRef","COSTE / REFERENCIA",cfg.supplierCostRef)}${input("cfg__shippingRef","ENVÍO / REFERENCIA",cfg.shippingRef)}
-      ${textarea("cfg__productionNote_es","NOTA PRODUCCIÓN ES",cfg.productionNote_es)}${textarea("cfg__productionNote_en","PRODUCTION NOTE EN",cfg.productionNote_en)}
-      ${modelForms?`<div class="field-wide model-stack">${modelForms}</div>`:""}
-      <button class="primary-admin" type="submit">SAVE PHYSICAL →</button></form></details></article>`;
+      input("model__"+i+"__shippingRef","ENVÍO / REFERENCIA",m.shippingRef)+
+      '<div class="form-section-title field-wide">VARIANTES</div>'+
+      input("model__"+i+"__sizes","TALLAS · separadas por coma",(m.sizes||[]).join(", "))+input("model__"+i+"__colors","COLORES · separados por coma",(m.colors||[]).join(", "))+
+      '</div></details>').join("");
+    const price=p.price==null?"PVP PENDIENTE":Number(p.price).toFixed(2)+" €";
+    return '<article class="physical-card">'+
+      '<div class="physical-card-head"><div><div class="small">'+esc(p.code||"")+' · '+esc(p.supplier||"")+'</div><h3>'+esc(p.name_es||p.name_en||p.id)+'</h3><div class="physical-price">'+price+'</div></div>'+
+      '<label class="toggle-line compact-toggle"><input type="checkbox" data-action="physical-active" data-id="'+esc(p.id)+'" '+(p.active?"checked":"")+'> ACTIVE</label></div>'+
+      '<details class="physical-editor" '+(desktop?'open':'')+'><summary><span>EDITAR PRODUCTO</span><span class="summary-hint">OPEN →</span></summary>'+
+      '<form class="edit-form physical-form" data-form="physical" data-id="'+esc(p.id)+'">'+
+      '<div class="form-section-title field-wide">CONTENIDO · ES / EN</div>'+
+      input("name_es","NOMBRE ES",p.name_es)+input("name_en","NAME EN",p.name_en)+
+      textarea("description_es","DESCRIPCIÓN ES",p.description_es)+textarea("description_en","DESCRIPTION EN",p.description_en)+
+      '<div class="form-section-title field-wide">COMERCIAL</div>'+
+      input("price","PVP EUR",p.price,"number","0.01")+input("supplier","PROVEEDOR",p.supplier)+input("source_url","URL PROVEEDOR",p.source_url)+
+      '<div class="form-section-title field-wide">PRODUCCIÓN / REFERENCIAS</div>'+
+      input("cfg__model","MODELO / REFERENCIA",cfg.model)+input("cfg__technique","TÉCNICA",cfg.technique)+input("cfg__material","MATERIAL",cfg.material)+
+      input("cfg__supplierCostRef","COSTE / REFERENCIA",cfg.supplierCostRef)+input("cfg__shippingRef","ENVÍO / REFERENCIA",cfg.shippingRef)+
+      textarea("cfg__productionNote_es","NOTA PRODUCCIÓN ES",cfg.productionNote_es)+textarea("cfg__productionNote_en","PRODUCTION NOTE EN",cfg.productionNote_en)+
+      (modelForms?'<div class="field-wide models-block"><div class="form-section-title">MODELOS</div>'+modelForms+'</div>':'')+
+      '<div class="mobile-save-bar field-wide"><button class="primary-admin save-physical" type="submit">SAVE PHYSICAL →</button></div>'+
+      '</form></details></article>';
   }).join("")+'</div>';
   bindPanel();
 }
