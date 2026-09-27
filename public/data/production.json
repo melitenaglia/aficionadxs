@@ -1,0 +1,1101 @@
+{
+  "asOf": "2026-09-27",
+  "supplier": "Printful",
+  "generalGuidelines": {
+    "colorProfile": "sRGB IEC61966-2.1",
+    "apparelResolution": "At least 150 DPI for DTG; 300 DPI preferred for fine text/detail and DTFlex",
+    "paperResolution": "300 DPI preferred",
+    "apparelFormat": "PNG with transparency when needed",
+    "paperFormat": "PNG or JPEG depending on product/template",
+    "rule": "Always validate against the exact Printful product template, print area and safe zone before marking PRODUCTION READY."
+  },
+  "records": [
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-A",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-A",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-A",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-A",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-B",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-B-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-B",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-B-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-B",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-B-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "001-B",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_madrid_botanico_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "001-B-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-A",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-A",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-A",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-A",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-B",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-B-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-B",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-B-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-B",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-B-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "002-B",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tossa_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "002-B-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-A",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-A",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-A",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-A",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_black.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-B",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-B-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-B",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-B-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-B",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-B-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "003-B",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_paris_louvre_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "003-B-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "004-A",
+      "archiveId": "004",
+      "sourceFilename": "Propuestas AFCNDXS26_004_berlin_film_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "004-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "004-A",
+      "archiveId": "004",
+      "sourceFilename": "Propuestas AFCNDXS26_004_berlin_film_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "004-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "004-A",
+      "archiveId": "004",
+      "sourceFilename": "Propuestas AFCNDXS26_004_berlin_film_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "004-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "004-A",
+      "archiveId": "004",
+      "sourceFilename": "Propuestas AFCNDXS26_004_berlin_film_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "004-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "005-A",
+      "archiveId": "005",
+      "sourceFilename": "Propuestas AFCNDXS26_005_prague_abs_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "005-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "005-A",
+      "archiveId": "005",
+      "sourceFilename": "Propuestas AFCNDXS26_005_prague_abs_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "005-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "005-A",
+      "archiveId": "005",
+      "sourceFilename": "Propuestas AFCNDXS26_005_prague_abs_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "005-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "005-A",
+      "archiveId": "005",
+      "sourceFilename": "Propuestas AFCNDXS26_005_prague_abs_white.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "005-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "006-A",
+      "archiveId": "006",
+      "sourceFilename": "Propuestas AFCNDXS26_006_dublin_stairway.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "006-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "006-A",
+      "archiveId": "006",
+      "sourceFilename": "Propuestas AFCNDXS26_006_dublin_stairway.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "006-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "006-A",
+      "archiveId": "006",
+      "sourceFilename": "Propuestas AFCNDXS26_006_dublin_stairway.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "006-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "006-A",
+      "archiveId": "006",
+      "sourceFilename": "Propuestas AFCNDXS26_006_dublin_stairway.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "006-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "007-A",
+      "archiveId": "007",
+      "sourceFilename": "Propuestas AFCNDXS26_007_bcn_sagrada.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "007-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "007-A",
+      "archiveId": "007",
+      "sourceFilename": "Propuestas AFCNDXS26_007_bcn_sagrada.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "007-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "007-A",
+      "archiveId": "007",
+      "sourceFilename": "Propuestas AFCNDXS26_007_bcn_sagrada.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "007-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "007-A",
+      "archiveId": "007",
+      "sourceFilename": "Propuestas AFCNDXS26_007_bcn_sagrada.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "007-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "008-A",
+      "archiveId": "008",
+      "sourceFilename": "Propuestas AFCNDXS26_008_aiguablava_bcn.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "008-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "008-A",
+      "archiveId": "008",
+      "sourceFilename": "Propuestas AFCNDXS26_008_aiguablava_bcn.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "008-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "008-A",
+      "archiveId": "008",
+      "sourceFilename": "Propuestas AFCNDXS26_008_aiguablava_bcn.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "008-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "008-A",
+      "archiveId": "008",
+      "sourceFilename": "Propuestas AFCNDXS26_008_aiguablava_bcn.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "008-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "009-A",
+      "archiveId": "009",
+      "sourceFilename": "Propuestas AFCNDXS26_009_gitenberg_llum.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "009-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "009-A",
+      "archiveId": "009",
+      "sourceFilename": "Propuestas AFCNDXS26_009_gitenberg_llum.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "009-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "009-A",
+      "archiveId": "009",
+      "sourceFilename": "Propuestas AFCNDXS26_009_gitenberg_llum.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "009-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "009-A",
+      "archiveId": "009",
+      "sourceFilename": "Propuestas AFCNDXS26_009_gitenberg_llum.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "009-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "010-A",
+      "archiveId": "010",
+      "sourceFilename": "Propuestas AFCNDXS26_010_brussels_quatuor_be.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "010-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "010-A",
+      "archiveId": "010",
+      "sourceFilename": "Propuestas AFCNDXS26_010_brussels_quatuor_be.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "010-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "010-A",
+      "archiveId": "010",
+      "sourceFilename": "Propuestas AFCNDXS26_010_brussels_quatuor_be.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "010-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "010-A",
+      "archiveId": "010",
+      "sourceFilename": "Propuestas AFCNDXS26_010_brussels_quatuor_be.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "010-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "011-A",
+      "archiveId": "011",
+      "sourceFilename": "Propuestas AFCNDXS26_011_lyon_tlprince.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "011-A-TS",
+      "physical": "T-SHIRT",
+      "models": [
+        "Creator 2.0",
+        "Comfort Colors 1717",
+        "Blaster 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "011-A",
+      "archiveId": "011",
+      "sourceFilename": "Propuestas AFCNDXS26_011_lyon_tlprince.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "011-A-SW",
+      "physical": "SWEATSHIRT",
+      "models": [
+        "Changer 2.0",
+        "Raddler 2.0"
+      ],
+      "placement": "FRONT",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Use the approved composition. Validate placement/size separately for each blank before production."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "011-A",
+      "archiveId": "011",
+      "sourceFilename": "Propuestas AFCNDXS26_011_lyon_tlprince.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "011-A-PR3040",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "30 × 40 CM",
+      "targetPixels": "3543 × 4724 @ 300 DPI",
+      "status": "EXPORT_REQUIRED",
+      "note": "3:4 source ratio matches 30×40. Export a print-specific file; do not use the apparel PNG blindly."
+    },
+    {
+      "sourceType": "APPAREL_EDITION",
+      "sourceId": "011-A",
+      "archiveId": "011",
+      "sourceFilename": "Propuestas AFCNDXS26_011_lyon_tlprince.png",
+      "sourcePixels": "3600 × 4800",
+      "sourceRatio": "3:4",
+      "id": "011-A-PR2130",
+      "physical": "PRINT",
+      "models": [
+        "Enhanced Matte Paper Poster"
+      ],
+      "placement": "21 × 30 CM",
+      "targetPixels": "2480 × 3543 @ 300 DPI",
+      "status": "RELAYOUT_REQUIRED",
+      "note": "21×30 is 7:10, not 3:4. Re-layout the approved composition; do not auto-crop."
+    },
+    {
+      "id": "001-PC-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "001-PC-A",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_pc_madrid_botanico.png",
+      "sourcePixels": "1182 × 1772",
+      "physical": "POSTCARD",
+      "models": [
+        "Standard Postcard"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Current artwork is close to 4×6 proportion. Re-export on the exact Printful postcard template including bleed/safe area."
+    },
+    {
+      "id": "002-PC-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "002-PC-A",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_pc_tossa.png",
+      "sourcePixels": "1182 × 1772",
+      "physical": "POSTCARD",
+      "models": [
+        "Standard Postcard"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Current artwork is close to 4×6 proportion. Re-export on the exact Printful postcard template including bleed/safe area."
+    },
+    {
+      "id": "003-PC-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "003-PC-A",
+      "archiveId": "003",
+      "sourceFilename": "Propuestas AFCNDXS26_003_pc_paris_louvre.png",
+      "sourcePixels": "1182 × 1772",
+      "physical": "POSTCARD",
+      "models": [
+        "Standard Postcard"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Current artwork is close to 4×6 proportion. Re-export on the exact Printful postcard template including bleed/safe area."
+    },
+    {
+      "id": "004-PC-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "004-PC-A",
+      "archiveId": "004",
+      "sourceFilename": "Propuestas AFCNDXS26_004_pc_berlin_film.png",
+      "sourcePixels": "1182 × 1772",
+      "physical": "POSTCARD",
+      "models": [
+        "Standard Postcard"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Current artwork is close to 4×6 proportion. Re-export on the exact Printful postcard template including bleed/safe area."
+    },
+    {
+      "id": "005-PC-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "005-PC-A",
+      "archiveId": "005",
+      "sourceFilename": "Propuestas AFCNDXS26_005_pc_prague_abs.png",
+      "sourcePixels": "1182 × 1772",
+      "physical": "POSTCARD",
+      "models": [
+        "Standard Postcard"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Current artwork is close to 4×6 proportion. Re-export on the exact Printful postcard template including bleed/safe area."
+    },
+    {
+      "id": "005-NB-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "005-NB-A",
+      "archiveId": "005",
+      "sourceFilename": "Propuestas AFCNDXS26_005_nb_prague_abs_black.png",
+      "sourcePixels": "1425 × 2280",
+      "physical": "NOTEBOOK",
+      "models": [
+        "Spiral Notebook",
+        "Hardcover JournalBook"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "One approved notebook composition; create a separate production export for each notebook construction/template."
+    },
+    {
+      "id": "001-TO-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "001-TO-A",
+      "archiveId": "001",
+      "sourceFilename": "Propuestas AFCNDXS26_001_tote_madrid_botanico_white.png",
+      "sourcePixels": "2850 × 2850",
+      "physical": "TOTE BAG",
+      "models": [
+        "Westford Mill W101"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Validate exact front print area and placement on the W101 template."
+    },
+    {
+      "id": "002-TO-A-PROD",
+      "sourceType": "SUPPORT_APPLICATION",
+      "sourceId": "002-TO-A",
+      "archiveId": "002",
+      "sourceFilename": "Propuestas AFCNDXS26_002_tote_tossa1_white.png",
+      "sourcePixels": "2850 × 2850",
+      "physical": "TOTE BAG",
+      "models": [
+        "Westford Mill W101"
+      ],
+      "placement": "PRODUCT-SPECIFIC",
+      "status": "TEMPLATE_REQUIRED",
+      "note": "Validate exact front print area and placement on the W101 template."
+    }
+  ]
+}
