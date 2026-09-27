@@ -20,7 +20,7 @@ async function sb(path){
   if(!r.ok) throw new Error("Supabase "+r.status);
   return r.json();
 }
-function mapPhoto(p){return {...p,countryCode:p.country_code,date:p.photo_date,time:p.photo_time,image:p.image_url,archiveEdition:p.archive_edition,sourceMatchVerified:p.source_match_verified,reviewStatus:p.review_status}}
+function mapPhoto(p){const local=/^\\d{3}$/.test(String(p.id))?"/assets/photos/"+p.id+".webp":p.image_url;return {...p,countryCode:p.country_code,date:p.photo_date,time:p.photo_time,image:local,archiveEdition:p.archive_edition,sourceMatchVerified:p.source_match_verified,reviewStatus:p.review_status}}
 function mapEdition(e){return {...e,archiveId:e.archive_id,sourceFilename:e.source_filename,designFamily:e.design_family,supportedObjects:e.supported_objects||[],publicPreview:e.public_preview,sourceMatchVerified:e.source_match_verified,reviewStatus:e.review_status}}
 function mapApplication(a){return {...a,archiveId:a.archive_id,sourceFilename:a.source_filename,publicPreview:a.public_preview,reviewStatus:a.review_status}}
 function mapPhysical(p){
