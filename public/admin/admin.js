@@ -1,13 +1,14 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
-const state={archive:[],editions:[],applications:[],products:[],tab:"queue"};
+const state={archive:[],editions:[],applications:[],products:[],costing:null,tab:"queue"};
 async function init(){
-  const [a,e,s,p]=await Promise.all([
+  const [a,e,s,p,c]=await Promise.all([
     fetch("/data/archive.json").then(r=>r.json()),
     fetch("/data/editions.json").then(r=>r.json()),
     fetch("/data/support-designs.json").then(r=>r.json()),
-    fetch("/data/products.json").then(r=>r.json())
+    fetch("/data/products.json").then(r=>r.json()),
+    fetch("/data/costing.json").then(r=>r.json())
   ]);
-  state.archive=a;state.editions=e;state.applications=s;state.products=p;
+  state.archive=a;state.editions=e;state.applications=s;state.products=p;state.costing=c;
   bind();renderSummary();render();
 }
 function bind(){
@@ -30,6 +31,7 @@ function render(){
   if(state.tab==="editions")return renderEditions();
   if(state.tab==="applications")return renderApplications();
   if(state.tab==="physicals")return renderPhysicals();
+  if(state.tab==="costing")return renderCosting();
   renderQueue();
 }
 function renderQueue(){
@@ -48,7 +50,7 @@ function renderQueue(){
   const pendingApps=state.applications.filter(a=>a.reviewStatus==="USER_APPROVAL_PENDING").length;
   if(pendingApps)issues.push(['warn','NEXT · SUPPORT APPLICATIONS',pendingApps+' postcard / notebook / tote designs are waiting for visual approval.']);
   else issues.push(['ok','SUPPORT APPLICATIONS APPROVED','Current postcard, notebook and tote applications are approved as source designs.']);
-  issues.push(['warn','NEXT · PHYSICALS','Review the public product families and their nested garment models. Prices remain pending until shipping and real landed cost are calculated.']);
+  issues.push(['warn','NEXT · COSTING','Printful product costs and shipping proxies are now separated in COSTING. Final Barcelona checkout validation is still required before publishing PVP.']);
   if(noPreview)issues.push(['warn','APPAREL PREVIEWS TO IMPORT',noPreview+' approved design records still need a web preview generated from the exact files in PROPUESTAS.zip.']);
   if(noAppPreview)issues.push(['warn','APPLICATION PREVIEWS TO IMPORT',noAppPreview+' postcard / notebook / tote records still need web previews from their exact source files.']);
   issues.push(['ok','CLASSIFICATION RULE','Untagged proposal files = apparel. pc = postcard · nb = notebook · tote = tote application.']);
@@ -63,6 +65,22 @@ function renderEditions(){
 function renderApplications(){
   $("#panel").innerHTML=title("APPLICATIONS","Diseños específicos adaptados a un soporte físico.")+'<div class="table"><div class="row head"><span>ID</span><span>DESIGN</span><span>SUPPORT</span><span>FILE</span><span>STATUS</span></div>'+state.applications.map(e=>'<div class="row"><span>['+e.id+']</span><div><strong>'+e.title+'</strong><div class="small">'+e.variant+'</div></div><div class="small">'+e.support.toUpperCase()+'<br>SOURCE PHOTO ['+e.archiveId+']</div><div class="small">'+e.sourceFilename+'</div>'+status(e.publicPreview?"PREVIEW READY":"PREVIEW PENDING",e.publicPreview?"ok":"warn")+'</div>').join("")+'</div>';
 }
+
+function pct(v){return Math.round(v*10)/10}
+function renderCosting(){
+  const c=state.costing;
+  const rows=c.items.map(i=>{
+    const pvps=(i.pvpScenarios||[]).map(p=>{
+      if(i.productCost==null)return '<span class="tag">'+p+' € · COST PENDING</span>';
+      const gm=pct((p-i.productCost)/p*100);
+      const fm=i.shippingProxy==null?null:pct((p-i.productCost-i.shippingProxy)/p*100);
+      return '<span class="tag">'+p+' € · M '+gm+'%'+(fm!=null?' · M+SHIP '+fm+'%':'')+'</span>';
+    }).join("");
+    return '<article class="object-card"><div class="small">'+i.status+'</div><h3>'+i.label+'</h3><p>PRODUCTO · '+(i.productCost==null?'PENDIENTE':i.productCost.toFixed(2)+' €')+'<br>ENVÍO REF · '+(i.shippingProxy==null?'PENDIENTE':i.shippingProxy.toFixed(2)+' €')+'<br>PUESTO EN MANO REF · '+(i.landedSingleProxy==null?'PENDIENTE':i.landedSingleProxy.toFixed(2)+' €')+'</p>'+(i.ratioNote?'<p class="small">'+i.ratioNote+'</p>':'')+'<div class="small">PVP ESCENARIOS · ENVÍO COBRADO APARTE</div><div class="tags">'+pvps+'</div></article>';
+  }).join("");
+  $("#panel").innerHTML=title("COSTING","Destino base: "+c.destination+" · "+c.asOf+". M = margen sobre coste de producto. M+SHIP = margen si AFCNDXS absorbiera el envío de referencia. No son PVP aprobados.")+'<div class="queue"><article class="issue warn"><h3>POLÍTICA INICIAL DE ENVÍO</h3><p>'+c.shippingPolicy+'</p></article><article class="issue warn"><h3>PEDIDOS MIXTOS</h3><p>Prints y notebooks pueden enviarse por separado; un pedido mixto puede generar más de un cargo de envío.</p></article></div><div class="object-grid" style="margin-top:12px">'+rows+'</div>';
+}
+
 function renderPhysicals(){
   $("#panel").innerHTML=title("PHYSICALS","Estructura UX propuesta: formato genérico primero; modelo y calidad se eligen después. Costes, envío y PVP todavía no están aprobados.")+'<div class="object-grid">'+state.products.map(p=>{
     const models=(p.models||[]).map(m=>{
