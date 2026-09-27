@@ -2,7 +2,7 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 
 const defaultLang=(navigator.language||"").toLowerCase().startsWith("es")?"es":"en";
 const state={
-  archive:[],editions:[],products:[],
+  archive:[],editions:[],applications:[],products:[],
   filter:"all",
   view:localStorage.getItem("afcndxs-archive-view")||"grid",
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
@@ -86,8 +86,8 @@ const editionVariant=e=>{
 };
 
 async function init(){
-  const[a,e,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/products.json")]);
-  state.archive=await a.json();state.editions=await e.json();state.products=await p.json();
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
+  state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
   document.addEventListener("keydown",ev=>{
@@ -190,7 +190,9 @@ function renderPhotoDetail(){
 }
 function openEdition(id){state.activeEdition=state.editions.find(e=>e.id===id);renderEditionDetail();if($("#photo-dialog").open)$("#photo-dialog").close();$("#edition-dialog").showModal()}
 function renderEditionDetail(){
-  const e=state.activeEdition,source=state.archive.find(p=>p.id===e.archiveId),apps=e.applications.map(a=>'<span class="application-tag">'+a+'</span>').join("");
+  const e=state.activeEdition,source=state.archive.find(p=>p.id===e.archiveId);
+  const appRows=state.applications.filter(a=>a.archiveId===e.archiveId&&a.approved);
+  const apps=appRows.map(a=>'<span class="application-tag">'+a.support.toUpperCase()+'</span>').join("");
   $("#edition-detail").innerHTML='<div class="detail-shell"><div class="detail-visual">'+editionArtwork(e,source)+'</div><div class="detail-panel"><div class="detail-id">['+e.id+'] // AFICIONADXS EDITION</div><h2>'+e.title+'</h2><div>'+editionVariant(e)+'</div><div class="data-table">'+dataRow(t("sourcePhoto"),"["+source.id+"] "+source.title)+dataRow(t("place"),source.city+" / "+countryName(source))+dataRow(t("date"),formatDate(source.date))+'</div><button class="source-link" id="view-source" type="button">'+t("viewSource")+'</button><div class="related-editions"><h3>'+t("applications")+'</h3><div class="application-list">'+apps+'</div></div><p class="technical-note">'+t("editionNote")+'</p></div></div>';
   $("#view-source").onclick=()=>{$("#edition-dialog").close();openPhoto(source.id)};
 }
