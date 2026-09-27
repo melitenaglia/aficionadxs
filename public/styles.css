@@ -121,3 +121,19 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
   .edition-preview-stage{padding:14px}
   .edition-preview-full{width:100%!important;max-height:none!important}
 }
+
+.section-more{padding:20px 0 4px;text-align:right}
+.section-more a{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:3px;font-size:10px}
+body[data-page="archive"] .hero,
+body[data-page="archive"] .editions-section,
+body[data-page="archive"] .objects-section,
+body[data-page="archive"] .info-section{display:none}
+body[data-page="archive"] .archive-section{padding-top:clamp(72px,8vw,120px);min-height:calc(100svh - 64px)}
+body[data-page="archive"] #archive-more{display:none!important}
+body[data-page="editions"] .hero,
+body[data-page="editions"] .archive-section,
+body[data-page="editions"] .objects-section,
+body[data-page="editions"] .info-section{display:none}
+body[data-page="editions"] .editions-section{padding-top:clamp(72px,8vw,120px);min-height:calc(100svh - 64px)}
+body[data-page="editions"] #editions-more{display:none!important}
+@media(max-width:560px){.section-more{text-align:left;padding-top:14px}}
