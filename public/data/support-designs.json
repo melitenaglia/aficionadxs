@@ -1,0 +1,82 @@
+[
+  {
+    "id": "001-PC-A",
+    "archiveId": "001",
+    "support": "postcard",
+    "title": "MADRID BOTÁNICO",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_001_pc_madrid_botanico.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "002-PC-A",
+    "archiveId": "002",
+    "support": "postcard",
+    "title": "TOSSA DE MAR",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_002_pc_tossa.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "003-PC-A",
+    "archiveId": "003",
+    "support": "postcard",
+    "title": "PARIS — LOUVRE",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_003_pc_paris_louvre.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "004-PC-A",
+    "archiveId": "004",
+    "support": "postcard",
+    "title": "BERLIN — FILM",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_004_pc_berlin_film.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "005-PC-A",
+    "archiveId": "005",
+    "support": "postcard",
+    "title": "PRAGUE — ABSINTHERIE",
+    "variant": "ORIGINAL",
+    "sourceFilename": "Propuestas AFCNDXS26_005_pc_prague_abs.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "005-NB-A",
+    "archiveId": "005",
+    "support": "notebook",
+    "title": "PRAGUE — ABSINTHERIE",
+    "variant": "BLACK",
+    "sourceFilename": "Propuestas AFCNDXS26_005_nb_prague_abs_black.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "001-TO-A",
+    "archiveId": "001",
+    "support": "tote",
+    "title": "MADRID BOTÁNICO",
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_001_tote_madrid_botanico_white.png",
+    "publicPreview": null,
+    "approved": true
+  },
+  {
+    "id": "002-TO-A",
+    "archiveId": "002",
+    "support": "tote",
+    "title": "TOSSA DE MAR",
+    "variant": "WHITE",
+    "sourceFilename": "Propuestas AFCNDXS26_002_tote_tossa1_white.png",
+    "publicPreview": null,
+    "approved": true
+  }
+]
