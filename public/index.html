@@ -9,14 +9,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20260927-1910">
+  <link rel="stylesheet" href="/styles.css?v=stable-20260927-2">
 </head>
-<body data-page="home">
+<body>
   <header class="site-header">
     <a class="wordmark" href="#top">// AFICIONADXS</a>
     <nav class="main-nav" aria-label="Main navigation">
-      <a href="/archive.html" data-i18n="navArchive">ARCHIVO</a>
-      <a href="/editions.html" data-i18n="navEditions">EDICIONES</a>
+      <a href="#archive" data-i18n="navArchive">ARCHIVO</a>
+      <a href="#editions" data-i18n="navEditions">EDICIONES</a>
       <a href="#objects" data-i18n="navObjects">OBJETOS</a>
       <a href="#info">INFO</a>
       <div class="language-switch" aria-label="Language">
@@ -43,14 +43,23 @@
       <div class="section-head">
         <h2 data-i18n="archiveHeading">// ARCHIVO</h2>
         <div class="archive-toolbar">
-          <div class="archive-controls" aria-label="Country filter"></div><div class="view-controls" aria-label="Archive view">
+          <div class="archive-controls">
+            <button class="filter active" data-filter="all" data-i18n="all">TODAS</button>
+            <button class="filter" data-filter="BE">BE</button>
+            <button class="filter" data-filter="CZ">CZ</button>
+            <button class="filter" data-filter="DE">DE</button>
+            <button class="filter" data-filter="ES">ES</button>
+            <button class="filter" data-filter="FR">FR</button>
+            <button class="filter" data-filter="IE">IE</button>
+          </div>
+          <div class="view-controls" aria-label="Archive view">
             <span data-i18n="view">VISTA</span>
             <button class="view-toggle active" data-view="grid" type="button">GRID</button>
             <button class="view-toggle" data-view="carousel" type="button">CAROUSEL</button>
           </div>
         </div>
       </div>
-      <div class="archive-grid" id="archive-grid" aria-live="polite"></div><div class="section-more" id="archive-more"><a href="/archive.html">VER TODO EL ARCHIVO →</a></div>
+      <div class="archive-grid" id="archive-grid" aria-live="polite"></div>
       <div class="archive-carousel" id="archive-carousel" hidden aria-live="polite">
         <button class="carousel-nav carousel-prev" id="carousel-prev" type="button" aria-label="Previous photograph">←</button>
         <div class="carousel-stage" id="carousel-stage"></div>
@@ -63,7 +72,7 @@
         <h2 data-i18n="editionsHeading">// EDICIONES</h2>
         <span data-i18n="photoDesign">FOTO → DISEÑO</span>
       </div>
-      <div class="editions-grid" id="editions-grid"></div><div class="section-more" id="editions-more"><a href="/editions.html">VER TODAS LAS EDICIONES →</a></div>
+      <div class="editions-grid" id="editions-grid"></div>
       <p class="technical-note" data-i18n="editionsNote">Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.</p>
     </section>
 
@@ -118,6 +127,6 @@
   </aside>
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
-  <script type="module" src="/app.js?v=20260927-1910"></script>
+  <script type="module" src="/app.js?v=stable-20260927-2"></script>
 </body>
 </html>
