@@ -65,9 +65,13 @@ function renderApplications(){
 }
 function renderPhysicals(){
   $("#panel").innerHTML=title("PHYSICALS","Estructura UX propuesta: formato genérico primero; modelo y calidad se eligen después. Costes, envío y PVP todavía no están aprobados.")+'<div class="object-grid">'+state.products.map(p=>{
-    const models=(p.models||[]).map(m=>'<div class="tag">'+(m.name_es||m.name_en||m.id)+'</div>').join("");
+    const models=(p.models||[]).map(m=>{
+      const ref=m.referenceLandedSingle!=null?' · REF '+m.referenceLandedSingle.toFixed(2)+' €':(m.shippingSingleRefNumeric!=null?' · ENVÍO REF '+m.shippingSingleRefNumeric.toFixed(2)+' €':'');
+      return '<div class="tag">'+(m.name_es||m.name_en||m.id)+ref+'</div>';
+    }).join("");
     const sizes=p.models?.length?[...new Set(p.models.flatMap(m=>m.sizes||[]))]:(p.sizes||[]);
-    return '<article class="object-card"><div class="small">'+p.code+'</div><h3>'+(p.name_es||p.name_en||p.name||p.id)+'</h3><p>'+(p.description_es||p.description_en||p.description||"")+'</p>'+(models?'<div class="small">MODELOS</div><div class="tags">'+models+'</div>':'')+'<div class="small" style="margin-top:12px">TALLAS / TAMAÑOS</div><div class="tags">'+sizes.map(v=>'<span class="tag">'+v+'</span>').join("")+'</div><p>PRECIO · '+(p.priceLabel_es||p.priceLabel_en||"PENDIENTE")+'</p></article>';
+    const baseRef=p.referenceLandedSingle!=null?'<p class="small">COSTE REF 1 UD · '+p.referenceLandedSingle.toFixed(2)+' € (producto + envío ref.)</p>':"";
+    return '<article class="object-card"><div class="small">'+p.code+'</div><h3>'+(p.name_es||p.name_en||p.name||p.id)+'</h3><p>'+(p.description_es||p.description_en||p.description||"")+'</p>'+baseRef+(models?'<div class="small">MODELOS</div><div class="tags">'+models+'</div>':'')+'<div class="small" style="margin-top:12px">TALLAS / TAMAÑOS</div><div class="tags">'+sizes.map(v=>'<span class="tag">'+v+'</span>').join("")+'</div><p>PRECIO · '+(p.priceLabel_es||p.priceLabel_en||"PENDIENTE")+'</p><p class="small">REFERENCIA PROVISIONAL · validar checkout Barcelona antes de fijar PVP.</p></article>';
   }).join("")+'</div>';
 }
 init().catch(err=>{$("#panel").innerHTML='<p>ADMIN DATA COULD NOT BE LOADED.</p>';console.error(err)});
