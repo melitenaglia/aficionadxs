@@ -22,12 +22,7 @@
         6,
         7
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 5,
-      "launchDecision": "KEEP",
-      "positioning": "Accessible collectible / better as add-on or fair item than a single shipped order.",
-      "grossMarginProductOnlyPct": 68.4,
-      "marginIfShippingAbsorbedPct": -5.4
+      "status": "PROVISIONAL"
     },
     {
       "id": "print-21x30",
@@ -42,12 +37,7 @@
         22
       ],
       "status": "PROVISIONAL",
-      "ratioNote": "21×30 is 7:10, so it does not match the 2:3 postcard layout exactly.",
-      "recommendedPvp": 22,
-      "launchDecision": "SAMPLE_REQUIRED",
-      "positioning": "Price is plausible, but Printful print quality must be physically validated before launch.",
-      "grossMarginProductOnlyPct": 61,
-      "marginIfShippingAbsorbedPct": 38.3
+      "ratioNote": "21×30 is 7:10, so it does not match the 2:3 postcard layout exactly."
     },
     {
       "id": "print-30x40",
@@ -62,10 +52,7 @@
         30
       ],
       "status": "CHECKOUT_PRICE_PENDING",
-      "ratioNote": "30×40 is 3:4 and matches the current 3600×4800 apparel composition.",
-      "recommendedPvp": 30,
-      "launchDecision": "SAMPLE_REQUIRED",
-      "positioning": "3:4 format fits AFCNDXS apparel layouts; supplier cost still needs Barcelona checkout validation."
+      "ratioNote": "30×40 is 3:4 and matches the current 3600×4800 apparel composition."
     },
     {
       "id": "tote-w101",
@@ -79,12 +66,7 @@
         26,
         28
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 26,
-      "launchDecision": "KEEP",
-      "positioning": "Sits inside current art/museum tote pricing; validate photographic reproduction on the actual sample.",
-      "grossMarginProductOnlyPct": 58,
-      "marginIfShippingAbsorbedPct": 40.7
+      "status": "PROVISIONAL"
     },
     {
       "id": "tshirt-creator",
@@ -98,12 +80,7 @@
         38,
         40
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 39,
-      "launchDecision": "HERO",
-      "positioning": "Primary regular tee. Price aligned with photography/art apparel benchmarks.",
-      "grossMarginProductOnlyPct": 62.2,
-      "marginIfShippingAbsorbedPct": 50.7
+      "status": "PROVISIONAL"
     },
     {
       "id": "tshirt-comfort",
@@ -117,12 +94,7 @@
         42,
         45
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 45,
-      "launchDecision": "KEEP",
-      "positioning": "Heavier premium alternative; garment-dyed character supports a higher tier.",
-      "grossMarginProductOnlyPct": 59,
-      "marginIfShippingAbsorbedPct": 49
+      "status": "PROVISIONAL"
     },
     {
       "id": "tshirt-blaster",
@@ -136,12 +108,7 @@
         42,
         45
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 45,
-      "launchDecision": "KEEP",
-      "positioning": "Oversized premium alternative.",
-      "grossMarginProductOnlyPct": 61.7,
-      "marginIfShippingAbsorbedPct": 51.8
+      "status": "PROVISIONAL"
     },
     {
       "id": "sweat-changer",
@@ -155,12 +122,7 @@
         69,
         72
       ],
-      "status": "PROVISIONAL_SHIPPING_PROXY",
-      "recommendedPvp": 69,
-      "launchDecision": "HOLD",
-      "positioning": "At current Printful cost, 69 EUR leaves a thin product margin. Do not launch until sample/supplier economics are reviewed.",
-      "grossMarginProductOnlyPct": 47.2,
-      "marginIfShippingAbsorbedPct": 37.7
+      "status": "PROVISIONAL_SHIPPING_PROXY"
     },
     {
       "id": "sweat-raddler",
@@ -174,12 +136,7 @@
         65,
         69
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 69,
-      "launchDecision": "TEST_FIRST",
-      "positioning": "Better economics than Changer and market-aligned for an organic art sweatshirt.",
-      "grossMarginProductOnlyPct": 55.4,
-      "marginIfShippingAbsorbedPct": 45.8
+      "status": "PROVISIONAL"
     },
     {
       "id": "notebook-spiral",
@@ -193,12 +150,7 @@
         30,
         32
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 29,
-      "launchDecision": "TEST_FIRST",
-      "positioning": "Reasonable art-object price, but must justify itself through the photograph/design and physical quality.",
-      "grossMarginProductOnlyPct": 53.1,
-      "marginIfShippingAbsorbedPct": 35.9
+      "status": "PROVISIONAL"
     },
     {
       "id": "notebook-journalbook",
@@ -212,12 +164,7 @@
         32,
         35
       ],
-      "status": "PROVISIONAL",
-      "recommendedPvp": 32,
-      "launchDecision": "TEST_FIRST",
-      "positioning": "Premium notebook tier; physical sample needed before deciding whether both notebook formats are necessary.",
-      "grossMarginProductOnlyPct": 56.5,
-      "marginIfShippingAbsorbedPct": 25.3
+      "status": "PROVISIONAL"
     }
   ],
   "actualSampleOrder": {
@@ -271,5 +218,7 @@
       "reference": "Van Gogh Museum notebooks / sketchbooks",
       "range": "20.62–28.93"
     }
-  ]
+  ],
+  "pricingStatus": "DEFERRED_USER_REVIEW",
+  "pricingNote": "PVP review deliberately postponed. Keep supplier/shipping references only; do not treat prior scenarios as approved or recommended prices."
 }
