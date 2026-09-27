@@ -36,15 +36,27 @@
     <section class="archive-section" id="archive">
       <div class="section-head">
         <h2>// ARCHIVE</h2>
-        <div class="archive-controls">
-          <button class="filter active" data-filter="all">ALL</button>
-          <button class="filter" data-filter="ES">ES</button>
-          <button class="filter" data-filter="FR">FR</button>
-          <button class="filter" data-filter="DE">DE</button>
-          <button class="filter" data-filter="CZ">CZ</button>
+        <div class="archive-toolbar">
+          <div class="archive-controls">
+            <button class="filter active" data-filter="all">ALL</button>
+            <button class="filter" data-filter="ES">ES</button>
+            <button class="filter" data-filter="FR">FR</button>
+            <button class="filter" data-filter="DE">DE</button>
+            <button class="filter" data-filter="CZ">CZ</button>
+          </div>
+          <div class="view-controls" aria-label="Archive view">
+            <span>VIEW</span>
+            <button class="view-toggle active" data-view="grid" type="button">GRID</button>
+            <button class="view-toggle" data-view="carousel" type="button">CAROUSEL</button>
+          </div>
         </div>
       </div>
       <div class="archive-grid" id="archive-grid" aria-live="polite"></div>
+      <div class="archive-carousel" id="archive-carousel" hidden aria-live="polite">
+        <button class="carousel-nav carousel-prev" id="carousel-prev" type="button" aria-label="Previous photograph">←</button>
+        <div class="carousel-stage" id="carousel-stage"></div>
+        <button class="carousel-nav carousel-next" id="carousel-next" type="button" aria-label="Next photograph">→</button>
+      </div>
     </section>
 
     <section class="objects-section" id="objects">
