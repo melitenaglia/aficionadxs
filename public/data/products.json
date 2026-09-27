@@ -9,8 +9,14 @@
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": ["PHOTOGRAPH", "ARCHIVE EDITION"],
-    "sizes": ["21 × 30 CM", "30 × 40 CM"],
+    "editions": [
+      "PHOTOGRAPH",
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "21 × 30 CM",
+      "30 × 40 CM"
+    ],
     "colors": []
   },
   {
@@ -23,8 +29,13 @@
     "price": 5,
     "priceLabel_en": "5 EUR",
     "priceLabel_es": "5 EUR",
-    "editions": ["PHOTOGRAPH", "ARCHIVE EDITION"],
-    "sizes": ["101 × 152 MM"],
+    "editions": [
+      "PHOTOGRAPH",
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "101 × 152 MM"
+    ],
     "colors": []
   },
   {
@@ -40,9 +51,20 @@
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": ["ARCHIVE EDITION"],
-    "sizes": ["S", "M", "L", "XL", "2XL"],
-    "colors": ["WHITE", "ANTHRACITE"]
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      "WHITE",
+      "ANTHRACITE"
+    ]
   },
   {
     "id": "tshirt-heavy",
@@ -57,9 +79,19 @@
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": ["ARCHIVE EDITION"],
-    "sizes": ["S", "M", "L", "XL", "2XL"],
-    "colors": ["WHITE"]
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      "WHITE"
+    ]
   },
   {
     "id": "tshirt-oversized",
@@ -74,9 +106,19 @@
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": ["ARCHIVE EDITION"],
-    "sizes": ["S", "M", "L", "XL", "2XL"],
-    "colors": ["WHITE"]
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      "WHITE"
+    ]
   },
   {
     "id": "tote",
@@ -88,9 +130,15 @@
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": ["ARCHIVE EDITION"],
-    "sizes": ["ONE SIZE"],
-    "colors": ["NATURAL"]
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "ONE SIZE"
+    ],
+    "colors": [
+      "NATURAL"
+    ]
   },
   {
     "id": "sweatshirt",
@@ -102,8 +150,38 @@
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": ["ARCHIVE EDITION"],
-    "sizes": ["S", "M", "L", "XL", "2XL"],
-    "colors": ["TBC"]
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      "TBC"
+    ]
+  },
+  {
+    "id": "notebook",
+    "code": "NB",
+    "name_en": "NOTEBOOK",
+    "name_es": "LIBRETA",
+    "description_en": "Notebook format with a dedicated support-specific design.",
+    "description_es": "Libreta con diseño específico adaptado al soporte.",
+    "price": null,
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": [
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "TBC"
+    ],
+    "colors": [
+      "TBC"
+    ]
   }
 ]
