@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f1efe9">
+  <title>// AFICIONADXS ADMIN · REVIEW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <header class="admin-header">
+    <div>
+      <div class="brand">// AFICIONADXS</div>
+      <div class="sub">ADMIN · REVIEW MODE</div>
+    </div>
+    <a href="/" class="back">VIEW PUBLIC SITE →</a>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <span class="eyebrow">VALIDATION WORKSPACE</span>
+        <h1>CONTENT<br>REVIEW.</h1>
+      </div>
+      <div class="intro-note">
+        <strong>READ-ONLY</strong>
+        <p>Esta primera versión sirve para revisar estructura, IDs, relaciones y faltantes. Todavía no guarda aprobaciones ni permite editar archivos.</p>
+        <p>La siguiente fase añadirá login privado y estados persistentes.</p>
+      </div>
+    </section>
+
+    <section class="summary" id="summary"></section>
+
+    <nav class="tabs" aria-label="Admin sections">
+      <button class="tab active" data-tab="queue">VALIDATION QUEUE</button>
+      <button class="tab" data-tab="photos">PHOTOS</button>
+      <button class="tab" data-tab="editions">APPAREL EDITIONS</button>
+      <button class="tab" data-tab="applications">APPLICATIONS</button>
+      <button class="tab" data-tab="physicals">PHYSICALS</button>
+    </nav>
+
+    <section id="panel"></section>
+  </main>
+
+  <footer>
+    <span>// AFCNDXS ARCHIVE</span>
+    <span>REVIEW BUILD</span>
+  </footer>
+
+  <script type="module" src="/admin/admin.js"></script>
+</body>
+</html>
