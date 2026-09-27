@@ -1,0 +1,42 @@
+[
+  {
+    "id": "001-A",
+    "archiveId": "001",
+    "title": "MADRID BOTÁNICO",
+    "variant": "ARCHIVE EDITION / WHITE",
+    "image": "/assets/editions/001-a.jpg",
+    "applications": ["PRINT", "POSTCARD", "T-SHIRT", "TOTE BAG"]
+  },
+  {
+    "id": "002-A",
+    "archiveId": "002",
+    "title": "TOSSA DE MAR",
+    "variant": "ARCHIVE EDITION / WHITE",
+    "image": "/assets/editions/002-a.jpg",
+    "applications": ["PRINT", "POSTCARD", "T-SHIRT", "TOTE BAG"]
+  },
+  {
+    "id": "003-A",
+    "archiveId": "003",
+    "title": "PARIS — LOUVRE",
+    "variant": "ARCHIVE EDITION / WHITE",
+    "image": "/assets/editions/003-a.jpg",
+    "applications": ["PRINT", "POSTCARD", "T-SHIRT"]
+  },
+  {
+    "id": "004-A",
+    "archiveId": "004",
+    "title": "BERLIN — FILM",
+    "variant": "ARCHIVE EDITION / WHITE",
+    "image": "/assets/editions/004-a.jpg",
+    "applications": ["PRINT", "POSTCARD", "T-SHIRT"]
+  },
+  {
+    "id": "005-A",
+    "archiveId": "005",
+    "title": "PRAGUE — ABSINTHERIE",
+    "variant": "ARCHIVE EDITION / WHITE",
+    "image": "/assets/editions/005-a.jpg",
+    "applications": ["PRINT", "POSTCARD", "T-SHIRT"]
+  }
+]
