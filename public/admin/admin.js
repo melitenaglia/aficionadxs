@@ -141,6 +141,8 @@ function renderPhotos(){
         <div>${status(p.review_status,statusType(p.review_status))}<label class="toggle-line"><input type="checkbox" data-action="publish" data-id="${esc(p.id)}" ${p.published?"checked":""}> PUBLISHED</label></div>
       </div>
       ${reviewButtons("photos",p.id,p.review_status)}
+      ${p.image_url?`<img class="admin-preview" src="${esc(p.image_url)}" alt="">`:""}
+      ${assetForm("photo",p.id,p.image_url,p.original_file_path||p.source_file)}
       <details><summary>EDIT METADATA</summary>
         <form class="edit-form" data-form="photo" data-id="${esc(p.id)}">
           ${input("title","TITLE",p.title)}${input("place","PLACE",p.place)}${input("address","ADDRESS",p.address)}
@@ -155,16 +157,35 @@ function renderPhotos(){
     </article>`).join("")+'</div>';bindPanel();
 }
 function renderEditions(){
-  $("#panel").innerHTML=title("APPAREL EDITIONS","Aprobación y estado persistentes. Los archivos maestros siguen privados.")+'<div class="record-list">'+state.editions.map(e=>{const source=state.photos.find(p=>p.id===e.archive_id);return `<article class="admin-record"><div class="record-top"><div><span class="small">[${esc(e.id)}]</span><h3>${esc(e.title)} · ${esc(e.variant)}</h3><p class="small">SOURCE · [${esc(e.archive_id)}] ${esc(source?.title||"")}</p><p class="small">${esc(e.source_filename)}</p></div>${status(e.review_status,statusType(e.review_status))}</div>${reviewButtons("editions",e.id,e.review_status)}</article>`}).join("")+'</div>';bindPanel();
+  $("#panel").innerHTML=title("APPAREL EDITIONS","Aprobación y estado persistentes. Los archivos maestros siguen privados.")+'<div class="record-list">'+state.editions.map(e=>{const source=state.photos.find(p=>p.id===e.archive_id);return `<article class="admin-record"><div class="record-top"><div><span class="small">[${esc(e.id)}]</span><h3>${esc(e.title)} · ${esc(e.variant)}</h3><p class="small">SOURCE · [${esc(e.archive_id)}] ${esc(source?.title||"")}</p><p class="small">${esc(e.source_filename)}</p></div>${status(e.review_status,statusType(e.review_status))}</div>${reviewButtons("editions",e.id,e.review_status)}${e.public_preview?`<img class="admin-preview" src="${esc(e.public_preview)}" alt="">`:""}${assetForm("edition",e.id,e.public_preview,e.master_file_path||e.source_filename)}</article>`}).join("")+'</div>';bindPanel();
 }
 function renderApplications(){
-  $("#panel").innerHTML=title("APPLICATIONS","Postcard / notebook / tote. Cada adaptación mantiene su propio estado.")+'<div class="record-list">'+state.applications.map(a=>`<article class="admin-record"><div class="record-top"><div><span class="small">[${esc(a.id)}]</span><h3>${esc(a.title)} · ${esc(a.support.toUpperCase())}</h3><p class="small">${esc(a.source_filename)}</p></div>${status(a.review_status,statusType(a.review_status))}</div>${reviewButtons("applications",a.id,a.review_status)}</article>`).join("")+'</div>';bindPanel();
+  $("#panel").innerHTML=title("APPLICATIONS","Postcard / notebook / tote. Cada adaptación mantiene su propio estado.")+'<div class="record-list">'+state.applications.map(a=>`<article class="admin-record"><div class="record-top"><div><span class="small">[${esc(a.id)}]</span><h3>${esc(a.title)} · ${esc(a.support.toUpperCase())}</h3><p class="small">${esc(a.source_filename)}</p></div>${status(a.review_status,statusType(a.review_status))}</div>${reviewButtons("applications",a.id,a.review_status)}${a.public_preview?`<img class="admin-preview" src="${esc(a.public_preview)}" alt="">`:""}${assetForm("application",a.id,a.public_preview,a.master_file_path||a.source_filename)}</article>`).join("")+'</div>';bindPanel();
 }
 function renderPhysicals(){
-  $("#panel").innerHTML=title("PHYSICALS","No se han cambiado modelos ni calidades. Desde aquí solo activamos/desactivamos formatos por ahora.")+'<div class="object-grid">'+state.physicals.map(p=>{const cfg=p.config||{},models=(cfg.models||[]).map(m=>'<span class="tag">'+esc(m.name_es||m.name_en||m.id)+'</span>').join("");return `<article class="object-card"><div class="small">${esc(p.code||"")}</div><h3>${esc(p.name_es||p.name_en||p.id)}</h3><p>${esc(p.description_es||p.description_en||"")}</p>${models?'<div class="tags">'+models+'</div>':""}<label class="toggle-line"><input type="checkbox" data-action="physical-active" data-id="${esc(p.id)}" ${p.active?"checked":""}> ACTIVE</label><p class="small">PVP · ${p.price==null?"PENDIENTE":Number(p.price).toFixed(2)+" €"}</p></article>`}).join("")+'</div>';bindPanel();
+  $("#panel").innerHTML=title("PHYSICALS","Edita PVP, referencias, proveedor y textos ES/EN. No se cambia ningún producto o calidad automáticamente.")+'<div class="record-list">'+state.physicals.map(p=>{
+    const cfg=p.config||{},models=cfg.models||[];
+    const modelForms=models.map((m,i)=>'<details class="model-editor"><summary>MODEL · '+esc(m.name_es||m.name_en||m.id||i+1)+'</summary><div class="edit-form">'+
+      input("model__"+i+"__name_es","NOMBRE ES",m.name_es)+input("model__"+i+"__name_en","NAME EN",m.name_en)+
+      textarea("model__"+i+"__description_es","DESCRIPCIÓN ES",m.description_es)+textarea("model__"+i+"__description_en","DESCRIPTION EN",m.description_en)+
+      input("model__"+i+"__price","PVP EUR",m.price,"number","0.01")+input("model__"+i+"__supplierCostRef","COSTE / REFERENCIA",m.supplierCostRef)+
+      input("model__"+i+"__shippingRef","ENVÍO / REFERENCIA",m.shippingRef)+input("model__"+i+"__sizes","TALLAS · separadas por coma",(m.sizes||[]).join(", "))+
+      input("model__"+i+"__colors","COLORES · separados por coma",(m.colors||[]).join(", "))+'</div></details>').join("");
+    return `<article class="admin-record"><div class="record-top"><div><span class="small">${esc(p.code||"")}</span><h3>${esc(p.name_es||p.name_en||p.id)}</h3><p class="small">PVP · ${p.price==null?"PENDIENTE":Number(p.price).toFixed(2)+" €"} · ${esc(p.supplier||"")}</p></div><label class="toggle-line"><input type="checkbox" data-action="physical-active" data-id="${esc(p.id)}" ${p.active?"checked":""}> ACTIVE</label></div>
+      <details open><summary>EDIT PRODUCT · ES / EN / PRICE / REFERENCES</summary><form class="edit-form" data-form="physical" data-id="${esc(p.id)}">
+      ${input("name_es","NOMBRE ES",p.name_es)}${input("name_en","NAME EN",p.name_en)}
+      ${textarea("description_es","DESCRIPCIÓN ES",p.description_es)}${textarea("description_en","DESCRIPTION EN",p.description_en)}
+      ${input("price","PVP EUR",p.price,"number","0.01")}${input("supplier","PROVEEDOR",p.supplier)}${input("source_url","URL PROVEEDOR",p.source_url)}
+      ${input("cfg__model","MODELO / REFERENCIA",cfg.model)}${input("cfg__technique","TÉCNICA",cfg.technique)}${input("cfg__material","MATERIAL",cfg.material)}
+      ${input("cfg__supplierCostRef","COSTE / REFERENCIA",cfg.supplierCostRef)}${input("cfg__shippingRef","ENVÍO / REFERENCIA",cfg.shippingRef)}
+      ${textarea("cfg__productionNote_es","NOTA PRODUCCIÓN ES",cfg.productionNote_es)}${textarea("cfg__productionNote_en","PRODUCTION NOTE EN",cfg.productionNote_en)}
+      ${modelForms?`<div class="field-wide model-stack">${modelForms}</div>`:""}
+      <button class="primary-admin" type="submit">SAVE PHYSICAL →</button></form></details></article>`;
+  }).join("")+'</div>';
+  bindPanel();
 }
 function renderProduction(){
-  $("#panel").innerHTML=title("PRODUCTION","Cambia el estado cuando una salida haya pasado plantilla, export y revisión.")+'<div class="object-grid">'+state.production.map(r=>`<article class="object-card"><div class="small">[${esc(r.id)}] · ${esc(r.source_type)}</div><h3>${esc(r.physical)} · ${esc(r.placement||"")}</h3><p class="small">${esc(r.source_filename)}<br>SOURCE · ${esc(r.source_pixels||"—")}${r.target_pixels?'<br>TARGET · '+esc(r.target_pixels):""}</p><label class="field-label">STATUS<select data-action="production-status" data-id="${esc(r.id)}">${PROD_STATUSES.map(s=>'<option '+(s===r.status?"selected":"")+'>'+s+'</option>').join("")}</select></label><p class="small">${esc(r.note||"")}</p></article>`).join("")+'</div>';bindPanel();
+  $("#panel").innerHTML=title("PRODUCTION","Cambia el estado cuando una salida haya pasado plantilla, export y revisión.")+'<div class="object-grid">'+state.production.map(r=>`<article class="object-card"><div class="small">[${esc(r.id)}] · ${esc(r.source_type)}</div><h3>${esc(r.physical)} · ${esc(r.placement||"")}</h3><p class="small">${esc(r.source_filename)}<br>SOURCE · ${esc(r.source_pixels||"—")}${r.target_pixels?'<br>TARGET · '+esc(r.target_pixels):""}</p><label class="field-label">STATUS<select data-action="production-status" data-id="${esc(r.id)}">${PROD_STATUSES.map(s=>'<option '+(s===r.status?"selected":"")+'>'+s+'</option>').join("")}</select></label>${assetForm("production",r.id,null,r.production_file_path)}<p class="small">${esc(r.note||"")}</p></article>`).join("")+'</div>';bindPanel();
 }
 function renderCosting(){
   const c=state.costing;if(!c){$("#panel").innerHTML=title("COSTING","No data.");return}
@@ -173,7 +194,7 @@ function renderCosting(){
 function renderSettings(){
   $("#panel").innerHTML=title("SETTINGS","Configuración interna persistente.")+'<div class="record-list">'+state.settings.map(s=>`<article class="admin-record"><div class="record-top"><div><h3>${esc(s.key)}</h3><pre class="json-preview">${esc(JSON.stringify(s.value,null,2))}</pre></div></div></article>`).join("")+'</div>';
 }
-function input(name,label,value,type="text"){return `<label class="field-label">${label}<input type="${type}" name="${name}" value="${esc(value||"")}"></label>`}
+function input(name,label,value,type="text",step=""){return `<label class="field-label">${label}<input type="${type}" ${step?`step="${step}"`:""} name="${name}" value="${esc(value??"")}"></label>`}
 function bindPanel(){
   const panel=$("#panel");if(!panel)return;
   panel.onclick=async ev=>{const b=ev.target.closest('[data-action="review"]');if(!b||state.busy)return;await setReview(b.dataset.table,b.dataset.id,b.dataset.status)};
