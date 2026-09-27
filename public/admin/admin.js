@@ -47,6 +47,8 @@ function renderQueue(){
   else issues.push(['ok','APPAREL EDITIONS APPROVED','All current apparel editions 001–011 are approved as source designs. Production readiness will be validated later per Printful template.']);
   const pendingApps=state.applications.filter(a=>a.reviewStatus==="USER_APPROVAL_PENDING").length;
   if(pendingApps)issues.push(['warn','NEXT · SUPPORT APPLICATIONS',pendingApps+' postcard / notebook / tote designs are waiting for visual approval.']);
+  else issues.push(['ok','SUPPORT APPLICATIONS APPROVED','Current postcard, notebook and tote applications are approved as source designs.']);
+  issues.push(['warn','NEXT · PHYSICALS','Review the public product families and their nested garment models. Prices remain pending until shipping and real landed cost are calculated.']);
   if(noPreview)issues.push(['warn','APPAREL PREVIEWS TO IMPORT',noPreview+' approved design records still need a web preview generated from the exact files in PROPUESTAS.zip.']);
   if(noAppPreview)issues.push(['warn','APPLICATION PREVIEWS TO IMPORT',noAppPreview+' postcard / notebook / tote records still need web previews from their exact source files.']);
   issues.push(['ok','CLASSIFICATION RULE','Untagged proposal files = apparel. pc = postcard · nb = notebook · tote = tote application.']);
@@ -62,6 +64,10 @@ function renderApplications(){
   $("#panel").innerHTML=title("APPLICATIONS","Diseños específicos adaptados a un soporte físico.")+'<div class="table"><div class="row head"><span>ID</span><span>DESIGN</span><span>SUPPORT</span><span>FILE</span><span>STATUS</span></div>'+state.applications.map(e=>'<div class="row"><span>['+e.id+']</span><div><strong>'+e.title+'</strong><div class="small">'+e.variant+'</div></div><div class="small">'+e.support.toUpperCase()+'<br>SOURCE PHOTO ['+e.archiveId+']</div><div class="small">'+e.sourceFilename+'</div>'+status(e.publicPreview?"PREVIEW READY":"PREVIEW PENDING",e.publicPreview?"ok":"warn")+'</div>').join("")+'</div>';
 }
 function renderPhysicals(){
-  $("#panel").innerHTML=title("PHYSICALS","Configuración comercial / productiva. Costes y envío se validarán antes de publicar PVP definitivo.")+'<div class="object-grid">'+state.products.map(p=>'<article class="object-card"><div class="small">'+p.code+'</div><h3>'+(p.name_es||p.name_en||p.name||p.id)+'</h3><p>'+(p.description_es||p.description_en||p.description||"")+'</p><div class="tags">'+(p.sizes||[]).map(v=>'<span class="tag">'+v+'</span>').join("")+'</div></article>').join("")+'</div>';
+  $("#panel").innerHTML=title("PHYSICALS","Estructura UX propuesta: formato genérico primero; modelo y calidad se eligen después. Costes, envío y PVP todavía no están aprobados.")+'<div class="object-grid">'+state.products.map(p=>{
+    const models=(p.models||[]).map(m=>'<div class="tag">'+(m.name_es||m.name_en||m.id)+'</div>').join("");
+    const sizes=p.models?.length?[...new Set(p.models.flatMap(m=>m.sizes||[]))]:(p.sizes||[]);
+    return '<article class="object-card"><div class="small">'+p.code+'</div><h3>'+(p.name_es||p.name_en||p.name||p.id)+'</h3><p>'+(p.description_es||p.description_en||p.description||"")+'</p>'+(models?'<div class="small">MODELOS</div><div class="tags">'+models+'</div>':'')+'<div class="small" style="margin-top:12px">TALLAS / TAMAÑOS</div><div class="tags">'+sizes.map(v=>'<span class="tag">'+v+'</span>').join("")+'</div><p>PRECIO · '+(p.priceLabel_es||p.priceLabel_en||"PENDIENTE")+'</p></article>';
+  }).join("")+'</div>';
 }
 init().catch(err=>{$("#panel").innerHTML='<p>ADMIN DATA COULD NOT BE LOADED.</p>';console.error(err)});
