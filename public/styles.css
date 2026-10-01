@@ -133,3 +133,39 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
   .design-ribbon{top:6px;left:6px;padding:4px 5px;font-size:7px}
   .archive-more{margin-top:14px}
 }
+
+/* Archive grid: strong photographic presence. Crop only in the grid; detail remains uncropped. */
+.archive-image{
+  aspect-ratio:4/5!important;
+  width:100%;
+  overflow:hidden!important;
+  background:var(--paper-2)!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.archive-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  display:block!important;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+}
+.photo-detail-visual,
+.detail-visual{background:var(--paper)!important}
+.photo-detail-visual img,
+.detail-visual>img{
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:78vh!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  margin:auto!important;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+}
