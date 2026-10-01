@@ -91,7 +91,7 @@ async function init(){
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
   document.addEventListener("keydown",ev=>{
-    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#edition-dialog").open&&!$("#cart-drawer").classList.contains("open")){
+    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#cart-drawer").classList.contains("open")){
       if(ev.key==="ArrowLeft")moveCarousel(-1);
       if(ev.key==="ArrowRight")moveCarousel(1);
     }
@@ -109,7 +109,6 @@ function applyLanguage(){
 function setLanguage(lang){
   state.lang=lang;localStorage.setItem("afcndxs-lang",lang);applyLanguage();renderAll();
   if($("#photo-dialog").open&&state.activePhoto)renderPhotoDetail();
-  if($("#edition-dialog").open&&state.activeEdition)renderEditionDetail();
 }
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
@@ -125,9 +124,8 @@ function bindStaticEvents(){
   $("#carousel-prev").onclick=()=>moveCarousel(-1);
   $("#carousel-next").onclick=()=>moveCarousel(1);
   $("#open-cart").onclick=openCart;$("#close-cart").onclick=closeCart;$("#drawer-backdrop").onclick=closeCart;
-  $("#close-photo").onclick=()=>$("#photo-dialog").close();$("#close-edition").onclick=()=>$("#edition-dialog").close();
+  $("#close-photo").onclick=()=>$("#photo-dialog").close();
   $("#photo-dialog").addEventListener("click",ev=>{if(ev.target===$("#photo-dialog"))$("#photo-dialog").close()});
-  $("#edition-dialog").addEventListener("click",ev=>{if(ev.target===$("#edition-dialog"))$("#edition-dialog").close()});
   $("#clear-cart").onclick=()=>{state.cart=[];saveCart();renderCart()};
   $("#send-request").onclick=sendRequest;
   document.addEventListener("contextmenu",ev=>{if(ev.target.closest(".archive-image,.detail-visual"))ev.preventDefault()});
@@ -201,7 +199,7 @@ function renderObjects(){
 function dataRow(a,b){return b?'<div class="data-row"><span>'+a+'</span><span>'+b+'</span></div>':""}
 function openPhoto(id){
   state.activePhoto=state.archive.find(p=>String(p.id)===String(id));state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
-  renderPhotoDetail();if($("#edition-dialog").open)$("#edition-dialog").close();$("#photo-dialog").showModal();
+  renderPhotoDetail();$("#photo-dialog").showModal();
 }
 function renderPhotoDetail(){
   const p=state.activePhoto;if(!p)return;
