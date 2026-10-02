@@ -32,7 +32,11 @@
     "supplierCostRefNumeric": null,
     "shippingSingleRefNumeric": null,
     "referenceLandedSingle": null,
-    "referenceOnly": true
+    "referenceOnly": true,
+    "name_ca": "IMPRESSIÓ",
+    "description_ca": "Fotografia o edició AFCNDXS aprovada, produïda amb un arxiu específic per a impressió.",
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "productionNote_ca": "30×40 és 3:4 i encaixa amb els layouts apparel 3600×4800. 21×30 és 7:10: la composició postcard 2:3 s’ha de readaptar, no retallar automàticament."
   },
   {
     "id": "postcard",
@@ -63,7 +67,10 @@
     "supplierCostRefNumeric": 1.58,
     "shippingSingleRefNumeric": 3.69,
     "referenceLandedSingle": 5.27,
-    "referenceOnly": true
+    "referenceOnly": true,
+    "name_ca": "POSTAL",
+    "description_ca": "Postal de 101 × 152 mm amb el disseny específic aprovat per a aquest suport.",
+    "priceLabel_ca": "5 EUR"
   },
   {
     "id": "tshirt",
@@ -104,7 +111,10 @@
         "supplierCostRefNumeric": 14.75,
         "shippingSingleRefNumeric": 4.99,
         "referenceLandedSingle": 19.74,
-        "referenceOnly": true
+        "referenceOnly": true,
+        "name_ca": "REGULAR ORGÀNICA · CREATOR 2.0",
+        "description_ca": "Stanley/Stella Creator 2.0 · 180 g/m² · tall regular · 100% cotó orgànic. Opció regular més neta i lleugera.",
+        "quality_ca": "PREMIUM"
       },
       {
         "id": "comfort-colors-1717",
@@ -130,7 +140,10 @@
         "supplierCostRefNumeric": 18.45,
         "shippingSingleRefNumeric": 4.99,
         "referenceLandedSingle": 23.44,
-        "referenceOnly": true
+        "referenceOnly": true,
+        "name_ca": "HEAVY GARMENT-DYED · 1717",
+        "description_ca": "Comfort Colors 1717 · 206,8 g/m² · tall relaxat · tenyida en peça. Més pesada i amb més presència.",
+        "quality_ca": "PREMIUM HEAVY"
       },
       {
         "id": "blaster-2",
@@ -156,12 +169,18 @@
         "supplierCostRefNumeric": 17.22,
         "shippingSingleRefNumeric": 4.99,
         "referenceLandedSingle": 22.21,
-        "referenceOnly": true
+        "referenceOnly": true,
+        "name_ca": "OVERSIZE ORGÀNICA · BLASTER 2.0",
+        "description_ca": "Stanley/Stella Blaster 2.0 · tall oversize · espatlles caigudes · 100% cotó orgànic.",
+        "quality_ca": "PREMIUM OVERSIZE"
       }
     ],
     "thumbnailType": "tshirt",
     "shippingRegion": "Europe · includes Spain",
-    "shippingRef": "4.99 EUR first · +1.45 additional · current flat-rate reference"
+    "shippingRef": "4.99 EUR first · +1.45 additional · current flat-rate reference",
+    "name_ca": "SAMARRETA",
+    "description_ca": "Tres talls / nivells de peça. El model es tria després de seleccionar la fotografia.",
+    "priceLabel_ca": "PREU A CONSULTAR"
   },
   {
     "id": "sweatshirt",
@@ -202,7 +221,10 @@
         "shippingSingleRefNumeric": 6.59,
         "referenceLandedSingle": 43,
         "referenceOnly": true,
-        "supplierCostRef": "36.41 EUR incl. VAT · current public catalog reference"
+        "supplierCostRef": "36.41 EUR incl. VAT · current public catalog reference",
+        "name_ca": "REGULAR ORGÀNICA · CHANGER 2.0",
+        "description_ca": "Stanley/Stella Changer 2.0 · 350 g/m² · coll rodó regular · 100% cotó orgànic.",
+        "quality_ca": "PREMIUM"
       },
       {
         "id": "radder-2",
@@ -229,12 +251,18 @@
         "supplierCostRefNumeric": 30.29,
         "shippingSingleRefNumeric": 7.29,
         "referenceLandedSingle": 37.58,
-        "referenceOnly": true
+        "referenceOnly": true,
+        "name_ca": "OVERSIZE ORGÀNICA · RADDER 2.0",
+        "description_ca": "Stanley/Stella Radder 2.0 · 350 g/m² · coll rodó oversize · 100% cotó orgànic.",
+        "quality_ca": "PREMIUM OVERSIZE"
       }
     ],
     "thumbnailType": "sweatshirt",
     "shippingRegion": "Europe · includes Spain",
-    "shippingRef": "7.29 EUR first · +2.40 additional · current flat-rate reference"
+    "shippingRef": "7.29 EUR first · +2.40 additional · current flat-rate reference",
+    "name_ca": "DESSUADORA",
+    "description_ca": "Dues opcions premium de dessuadora sense caputxa: regular i oversize.",
+    "priceLabel_ca": "PREU A CONSULTAR"
   },
   {
     "id": "tote",
@@ -266,7 +294,10 @@
     "supplierCostRefNumeric": 10.93,
     "shippingSingleRefNumeric": 4.49,
     "referenceLandedSingle": 15.42,
-    "referenceOnly": true
+    "referenceOnly": true,
+    "name_ca": "BOSSA TOTE",
+    "description_ca": "Prototip actual: Westford Mill W101 · 100% cotó · 140 g/m² · 38 × 42 cm.",
+    "priceLabel_ca": "PREU A CONSULTAR"
   },
   {
     "id": "notebook",
@@ -307,7 +338,9 @@
         "supplierCostRefNumeric": 13.89,
         "shippingSingleRefNumeric": 4.99,
         "referenceLandedSingle": 18.88,
-        "referenceOnly": true
+        "referenceOnly": true,
+        "name_ca": "LLIBRETA D’ESPIRAL",
+        "description_ca": "Printful Spiral Notebook · 5,5 × 8,5 in (13 × 21 cm) · tapes de tacte suau · espiral metàl·lica."
       },
       {
         "id": "journalbook-hardcover",
@@ -331,9 +364,14 @@
         "supplierCostRefNumeric": 14.22,
         "shippingSingleRefNumeric": 10.39,
         "referenceLandedSingle": 24.61,
-        "referenceOnly": true
+        "referenceOnly": true,
+        "name_ca": "TAPA DURA · JOURNALBOOK",
+        "description_ca": "JournalBook de tapa dura · 5,5 × 8,5 in (13,97 × 21,59 cm) · 80 pàgines ratllades color crema · tancament elàstic i punt de llibre."
       }
     ],
-    "shippingRegion": "Europe · includes Spain"
+    "shippingRegion": "Europe · includes Spain",
+    "name_ca": "LLIBRETA",
+    "description_ca": "Dues construccions de llibreta. El model es tria després de seleccionar el disseny específic aprovat.",
+    "priceLabel_ca": "PREU A CONSULTAR"
   }
 ]
