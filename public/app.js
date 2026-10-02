@@ -1,6 +1,7 @@
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 
-const defaultLang=(navigator.language||"").toLowerCase().startsWith("es")?"es":"en";
+const browserLang=(navigator.language||"").toLowerCase();
+const defaultLang=browserLang.startsWith("ca")?"ca":browserLang.startsWith("es")?"es":"en";
 const state={
   archive:[],editions:[],applications:[],products:[],
   filter:"all",
@@ -19,7 +20,7 @@ const T={
     heroTitle:"FOTOGRAFÍAS<br>RECOGIDAS<br>EN EL CAMINO.",
     heroMeta:"ARCHIVO FOTOGRÁFICO EN CURSO",exploreArchive:"EXPLORAR ARCHIVO ↓",
     archiveHeading:"// ARCHIVO",editionsHeading:"// EDICIONES",objectsHeading:"// OBJETOS",
-    all:"TODAS",view:"VISTA",photoDesign:"FOTO → DISEÑO",
+    all:"TODAS",view:"VISTA",grid:"GRID",carousel:"CARRUSEL",now:"AHORA",photoDesign:"FOTO → DISEÑO",
     editionsNote:"Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.",
     makePhysical:"LLEVAR EL ARCHIVO A LO FÍSICO",
     objectsNote:"Formatos y precios siguen en prueba mientras AFICIONADXS compara materiales, impresión y proveedores. Una solicitud no es un pago ni un pedido automático.",
@@ -34,14 +35,43 @@ const T={
     addRequest:"AÑADIR A SOLICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
     viewSource:"VER FOTO ORIGINAL →",editionNote:"La edición es la composición gráfica. El objeto físico se elige por separado.",
     remove:"QUITAR",requestConfirm:"Confírmame disponibilidad, precio final y envío.",
-    photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",white:"BLANCO",black:"NEGRO",designAvailable:"DISEÑO DISPONIBLE",showMore:"MOSTRAR MÁS",showLess:"MOSTRAR MENOS"
+    photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",supportDesign:"DISEÑO DEL SOPORTE",white:"BLANCO",black:"NEGRO",designAvailable:"DISEÑO DISPONIBLE",showMore:"MOSTRAR MÁS",showLess:"MOSTRAR MENOS",
+    models:"MODELOS",model:"MODELO",noPhotographs:"NO HAY FOTOGRAFÍAS.",
+    previewsPreparing:"SE ESTÁN PREPARANDO LAS PREVISUALIZACIONES DE LAS EDICIONES APROBADAS A PARTIR DE LOS ARCHIVOS DE DISEÑO ORIGINALES.",
+    archiveLoadError:"NO SE HAN PODIDO CARGAR LOS DATOS DEL ARCHIVO.",seeAllArchive:"VER TODO EL ARCHIVO →",seeAllEditions:"VER TODAS LAS EDICIONES →"
+  },
+  ca:{
+    navArchive:"ARXIU",navEditions:"EDICIONS",navObjects:"OBJECTES",
+    heroTitle:"FOTOGRAFIES<br>RECOLLIDES<br>PEL CAMÍ.",
+    heroMeta:"ARXIU FOTOGRÀFIC EN CURS",exploreArchive:"EXPLORAR L’ARXIU ↓",
+    archiveHeading:"// ARXIU",editionsHeading:"// EDICIONS",objectsHeading:"// OBJECTES",
+    all:"TOTES",view:"VISTA",grid:"GRAELLA",carousel:"CARRUSEL",now:"ARA",photoDesign:"FOTO → DISSENY",
+    editionsNote:"Cada edició està vinculada a la fotografia original. L’aplicació sobre un objecte físic és una capa separada.",
+    makePhysical:"PORTAR L’ARXIU AL MÓN FÍSIC",
+    objectsNote:"Els formats i els preus continuen en fase de prova mentre AFICIONADXS compara materials, impressió i proveïdors. Una sol·licitud no és un pagament ni una comanda automàtica.",
+    info1:"AFICIONADXS és un arxiu fotogràfic en curs. Algunes imatges surten de l’arxiu per convertir-se en impressions, postals, peces de roba i objectes.",
+    info2:"Algunes peces estan en estoc. D’altres només es produeixen després d’una sol·licitud. La fotografia continua sent sempre el punt de partida.",
+    footerLine:"FOTOGRAFIA → OBJECTE",name:"NOM",countryPostcode:"PAÍS / CODI POSTAL",note:"NOTA",
+    sendWhatsapp:"ENVIAR SOL·LICITUD PER WHATSAPP →",clearRequest:"BUIDAR SOL·LICITUD",
+    request:"SOL·LICITUD",emptyRequest:"NO HI HA CAP ARTICLE A LA SOL·LICITUD.",
+    estimatedTotal:"TOTAL ESTIMAT",toConfirm:"A CONFIRMAR",itemsToConfirm:" + ARTICLES A CONFIRMAR",
+    date:"DATA",time:"HORA",region:"REGIÓ",coord:"COORD.",camera:"CÀMERA",lens:"OBJECTIU",capture:"CAPTURA",address:"ADREÇA",event:"ESDEVENIMENT",architect:"ARQUITECTURA",temperature:"TEMPERATURA",
+    relatedEditions:"EDICIONS RELACIONADES",format:"SUPORT",edition:"EDICIÓ",size:"TALLA / MIDA",color:"COLOR",
+    addRequest:"AFEGIR A LA SOL·LICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LLOC",applications:"APLICACIONS",
+    viewSource:"VEURE FOTO ORIGINAL →",editionNote:"L’edició és la composició gràfica. L’objecte físic es tria per separat.",
+    remove:"TREURE",requestConfirm:"Confirma’m la disponibilitat, el preu final i l’enviament.",
+    photograph:"FOTOGRAFIA",archiveEdition:"EDICIÓ D’ARXIU",supportDesign:"DISSENY DEL SUPORT",
+    white:"BLANC",black:"NEGRE",designAvailable:"DISSENY DISPONIBLE",showMore:"MOSTRA’N MÉS",showLess:"MOSTRA’N MENYS",
+    models:"MODELS",model:"MODEL",noPhotographs:"CAP FOTOGRAFIA.",
+    previewsPreparing:"S’ESTAN PREPARANT LES PREVISUALITZACIONS DE LES EDICIONS APROVADES A PARTIR DELS ARXIUS DE DISSENY ORIGINALS.",
+    archiveLoadError:"NO S’HAN POGUT CARREGAR LES DADES DE L’ARXIU.",seeAllArchive:"VEURE TOT L’ARXIU →",seeAllEditions:"VEURE TOTES LES EDICIONS →"
   },
   en:{
     navArchive:"ARCHIVE",navEditions:"EDITIONS",navObjects:"OBJECTS",
     heroTitle:"PHOTOGRAPHS<br>COLLECTED<br>ALONG THE WAY.",
     heroMeta:"ONGOING PHOTOGRAPHIC ARCHIVE",exploreArchive:"EXPLORE ARCHIVE ↓",
     archiveHeading:"// ARCHIVE",editionsHeading:"// EDITIONS",objectsHeading:"// OBJECTS",
-    all:"ALL",view:"VIEW",photoDesign:"PHOTO → DESIGN",
+    all:"ALL",view:"VIEW",grid:"GRID",carousel:"CAROUSEL",now:"NOW",photoDesign:"PHOTO → DESIGN",
     editionsNote:"Each edition is linked back to its source photograph. Product applications are separate from the design itself.",
     makePhysical:"MAKE THE ARCHIVE PHYSICAL",
     objectsNote:"Formats and prices remain flexible while AFICIONADXS tests materials, print quality and suppliers. A request is not a payment or an automatic order.",
@@ -56,15 +86,18 @@ const T={
     addRequest:"ADD TO REQUEST →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
     viewSource:"VIEW SOURCE PHOTO →",editionNote:"The edition is the graphic composition. The physical object is chosen separately.",
     remove:"REMOVE",requestConfirm:"Please confirm availability, final price and shipping.",
-    photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",white:"WHITE",black:"BLACK",designAvailable:"DESIGN AVAILABLE",showMore:"SHOW MORE",showLess:"SHOW LESS"
+    photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",supportDesign:"SUPPORT DESIGN",white:"WHITE",black:"BLACK",designAvailable:"DESIGN AVAILABLE",showMore:"SHOW MORE",showLess:"SHOW LESS",
+    models:"MODELS",model:"MODEL",noPhotographs:"NO PHOTOGRAPHS.",
+    previewsPreparing:"APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.",
+    archiveLoadError:"ARCHIVE DATA COULD NOT BE LOADED.",seeAllArchive:"VIEW FULL ARCHIVE →",seeAllEditions:"VIEW ALL EDITIONS →"
   }
 };
 const t=k=>T[state.lang][k]||k;
 
 const COUNTRY={
-  ES:{es:"ESPAÑA",en:"SPAIN"},FR:{es:"FRANCIA",en:"FRANCE"},DE:{es:"ALEMANIA",en:"GERMANY"},
-  CZ:{es:"CHEQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",en:"BELGIUM"},
-  GR:{es:"GRECIA",en:"GREECE"},PT:{es:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",en:"UNITED STATES"}
+  ES:{es:"ESPAÑA",ca:"ESPANYA",en:"SPAIN"},FR:{es:"FRANCIA",ca:"FRANÇA",en:"FRANCE"},DE:{es:"ALEMANIA",ca:"ALEMANYA",en:"GERMANY"},
+  CZ:{es:"CHEQUIA",ca:"TXÈQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",ca:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",ca:"BÈLGICA",en:"BELGIUM"},
+  GR:{es:"GRECIA",ca:"GRÈCIA",en:"GREECE"},PT:{es:"PORTUGAL",ca:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",ca:"ESTATS UNITS",en:"UNITED STATES"}
 };
 const countryName=p=>(COUNTRY[p.countryCode]?.[state.lang]||p.country).toUpperCase();
 
@@ -80,11 +113,22 @@ const modelName=m=>m?m["name_"+state.lang]||m.name_en||m.name||m.id:"";
 const modelDesc=m=>m?m["description_"+state.lang]||m.description_en||m.description||"":"";
 const selectedModel=p=>p?.models?.find(m=>m.id===state.config.model)||p?.models?.[0]||null;
 const money=v=>v==null?t("toConfirm"):v.toFixed(0)+" EUR";
-const editionVariant=e=>{
-  let v=e.variant||"";
-  if(state.lang==="es") return v.replaceAll("ARCHIVE EDITION",t("archiveEdition")).replaceAll("WHITE",t("white")).replaceAll("BLACK",t("black"));
-  return v;
+const localizeEdition=v=>{
+  let out=v||"";
+  if(state.lang==="en")return out;
+  return out
+    .replaceAll("PHOTOGRAPH",t("photograph"))
+    .replaceAll("ARCHIVE EDITION",t("archiveEdition"))
+    .replaceAll("SUPPORT DESIGN",t("supportDesign"))
+    .replaceAll("WHITE",t("white"))
+    .replaceAll("BLACK",t("black"));
 };
+const displayOption=v=>{
+  if(state.lang!=="ca")return v;
+  const map={WHITE:"BLANC",BLACK:"NEGRE",ANTHRACITE:"ANTRACITA",NATURAL:"NATURAL","ONE SIZE":"TALLA ÚNICA",TBC:"A CONFIRMAR"};
+  return map[v]||v;
+};
+const editionVariant=e=>localizeEdition(e.variant||"");
 
 async function init(){
   const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261002-photos21"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
@@ -154,7 +198,7 @@ function updateArchiveMore(total){
   b.textContent=state.archiveExpanded?t("showLess"):t("showMore");
 }
 function renderCarousel(list=filteredArchive()){
-  if(!list.length){$("#carousel-stage").innerHTML="<p>NO PHOTOGRAPHS.</p>";return}
+  if(!list.length){$("#carousel-stage").innerHTML="<p>"+t("noPhotographs")+"</p>";return}
   if(state.carouselIndex>=list.length)state.carouselIndex=0;if(state.carouselIndex<0)state.carouselIndex=list.length-1;
   const p=list[state.carouselIndex],pos=String(state.carouselIndex+1).padStart(2,"0"),total=String(list.length).padStart(2,"0");
   const ribbon=photoHasEdition(p.id)?'<span class="design-ribbon carousel-ribbon">'+t("designAvailable")+'</span>':"";
@@ -169,7 +213,7 @@ function editionArtwork(e,source){
 function renderEditions(){
   const approved=state.editions.filter(e=>e.approved&&e.publicPreview);
   if(!approved.length){
-    $("#editions-grid").innerHTML='<p class="technical-note">APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.</p>';
+    $("#editions-grid").innerHTML='<p class="technical-note">'+t("previewsPreparing")+'</p>';
     return;
   }
   $("#editions-grid").innerHTML=approved.map(e=>{
@@ -193,7 +237,7 @@ function objectIcon(type){
 
 function renderObjects(){
   $("#object-list").innerHTML=state.products.map(p=>{
-    const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+(state.lang==="es"?"MODELOS":"MODELS")+'</span>':"";
+    const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+t("models")+'</span>':"";
     return '<div class="object-row"><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div><span class="object-code">'+p.code+'</span><div><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><span class="object-desc">'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>';
   }).join("");
 }
@@ -237,9 +281,9 @@ function renderEditionDetail(){
 function renderConfigurator(){
   const p=state.selectedProduct;if(!p)return;
   const m=selectedModel(p);
-  const translateEdition=v=>state.lang==="es"?v.replace("PHOTOGRAPH",t("photograph")).replace("ARCHIVE EDITION",t("archiveEdition")).replace("SUPPORT DESIGN","DISEÑO DEL SOPORTE"):v;
-  const g=(label,field,vals,translate=false)=>!vals?.length?"":'<div class="choice-group"><span class="choice-label">'+label+'</span><div class="choice-buttons">'+vals.map(v=>'<button class="choice-button config-choice '+(state.config[field]===v?"active":"")+'" data-field="'+field+'" data-value="'+v+'">'+(translate?translateEdition(v):v)+'</button>').join("")+'</div></div>';
-  const modelBlock=!p.models?.length?"":'<div class="choice-group"><span class="choice-label">'+(state.lang==="es"?"MODELO":"MODEL")+'</span><div class="choice-buttons">'+p.models.map(x=>'<button class="choice-button model-choice '+(state.config.model===x.id?"active":"")+'" data-model="'+x.id+'">'+modelName(x)+'</button>').join("")+'</div></div>';
+  const translateEdition=v=>localizeEdition(v);
+  const g=(label,field,vals,translate=false)=>!vals?.length?"":'<div class="choice-group"><span class="choice-label">'+label+'</span><div class="choice-buttons">'+vals.map(v=>'<button class="choice-button config-choice '+(state.config[field]===v?"active":"")+'" data-field="'+field+'" data-value="'+v+'">'+(translate?translateEdition(v):displayOption(v))+'</button>').join("")+'</div></div>';
+  const modelBlock=!p.models?.length?"":'<div class="choice-group"><span class="choice-label">'+t("model")+'</span><div class="choice-buttons">'+p.models.map(x=>'<button class="choice-button model-choice '+(state.config.model===x.id?"active":"")+'" data-model="'+x.id+'">'+modelName(x)+'</button>').join("")+'</div></div>';
   const detail=m?'<div class="technical-note">'+modelDesc(m)+'</div>':"";
   const sizes=m?.sizes||p.sizes||[],colors=m?.colors||p.colors||[];
   const displayPrice=m?.price!=null?money(m.price):prodPriceLabel(p);
@@ -266,7 +310,7 @@ function renderCart(){
   $("#cart-items").innerHTML=state.cart.length?state.cart.map(i=>{
     const p=state.products.find(x=>x.id===i.productId);
     const m=p?.models?.find(x=>x.id===i.modelId);
-    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+(m?' · '+modelName(m):'')+'</p><p>'+[i.edition,i.color,i.size].filter(Boolean).join(" / ")+'</p><p>'+money(i.price)+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
+    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+(m?' · '+modelName(m):'')+'</p><p>'+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" / ")+'</p><p>'+money(i.price)+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
   }).join(""):'<div class="empty-cart">'+t("emptyRequest")+'</div>';
   $$(".remove-item").forEach(b=>b.onclick=()=>{state.cart=state.cart.filter(x=>x.key!==b.dataset.key);saveCart();renderCart()});
   const known=state.cart.filter(x=>x.price!=null).reduce((s,x)=>s+x.price,0),unknown=state.cart.some(x=>x.price==null);
@@ -277,10 +321,10 @@ function closeCart(){$("#cart-drawer").classList.remove("open");$("#drawer-backd
 function sendRequest(){
   if(!state.cart.length)return;
   const name=$("#request-name").value.trim(),loc=$("#request-location").value.trim(),note=$("#request-note").value.trim(),lines=["// AFICIONADXS "+t("request"),""];
-  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId),m=p?.models?.find(x=>x.id===i.modelId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+(m?" · "+modelName(m):"")+" · "+[i.edition,i.color,i.size].filter(Boolean).join(" · "));lines.push(money(i.price));lines.push("")});
+  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId),m=p?.models?.find(x=>x.id===i.modelId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+(m?" · "+modelName(m):"")+" · "+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" · "));lines.push(money(i.price));lines.push("")});
   if(name)lines.push(t("name")+" · "+name);if(loc)lines.push(t("countryPostcode")+" · "+loc);if(note)lines.push(t("note")+" · "+note);
   lines.push("");lines.push(t("requestConfirm"));
   const base=WHATSAPP_NUMBER?"https://wa.me/"+WHATSAPP_NUMBER:"https://wa.me/";
   window.open(base+"?text="+encodeURIComponent(lines.join("\n")),"_blank","noopener,noreferrer");
 }
-init().catch(e=>{console.error(e);$("#archive-grid").innerHTML="<p>ARCHIVE DATA COULD NOT BE LOADED.</p>"});
+init().catch(e=>{console.error(e);$("#archive-grid").innerHTML="<p>"+t("archiveLoadError")+"</p>"});
