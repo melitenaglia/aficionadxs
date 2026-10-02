@@ -63,7 +63,7 @@ const t=k=>T[state.lang][k]||k;
 
 const COUNTRY={
   ES:{es:"ESPAÑA",en:"SPAIN"},FR:{es:"FRANCIA",en:"FRANCE"},DE:{es:"ALEMANIA",en:"GERMANY"},
-  CZ:{es:"CHEQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",en:"BELGIUM"}
+  CZ:{es:"CHEQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",en:"BELGIUM"},\n  GR:{es:"GRECIA",en:"GREECE"},PT:{es:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",en:"UNITED STATES"}
 };
 const countryName=p=>(COUNTRY[p.countryCode]?.[state.lang]||p.country).toUpperCase();
 
@@ -86,7 +86,7 @@ const editionVariant=e=>{
 };
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261002-photos21"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
