@@ -63,7 +63,8 @@ const t=k=>T[state.lang][k]||k;
 
 const COUNTRY={
   ES:{es:"ESPAÑA",en:"SPAIN"},FR:{es:"FRANCIA",en:"FRANCE"},DE:{es:"ALEMANIA",en:"GERMANY"},
-  CZ:{es:"CHEQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",en:"BELGIUM"},\n  GR:{es:"GRECIA",en:"GREECE"},PT:{es:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",en:"UNITED STATES"}
+  CZ:{es:"CHEQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",en:"BELGIUM"},
+  GR:{es:"GRECIA",en:"GREECE"},PT:{es:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",en:"UNITED STATES"}
 };
 const countryName=p=>(COUNTRY[p.countryCode]?.[state.lang]||p.country).toUpperCase();
 
