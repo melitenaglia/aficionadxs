@@ -22,6 +22,8 @@
       <div class="language-switch" aria-label="Language">
         <button class="lang-toggle" data-lang="es" type="button">ES</button>
         <span>/</span>
+        <button class="lang-toggle" data-lang="ca" type="button">CA</button>
+        <span>/</span>
         <button class="lang-toggle" data-lang="en" type="button">EN</button>
       </div>
       <button class="nav-request" id="open-cart" type="button"><span id="request-label">SOLICITUD</span> <span id="cart-count">[00]</span></button>
@@ -34,7 +36,7 @@
       <h1 data-i18n-html="heroTitle">FOTOGRAFÍAS<br>RECOGIDAS<br>EN EL CAMINO.</h1>
       <div class="hero-meta">
         <span data-i18n="heroMeta">ARCHIVO FOTOGRÁFICO EN CURSO</span>
-        <span>2018 — NOW</span>
+        <span>2018 — <span data-i18n="now">NOW</span></span>
       </div>
       <a class="technical-link" href="#archive" data-i18n="exploreArchive">EXPLORAR ARCHIVO ↓</a>
     </section>
@@ -45,12 +47,12 @@
         <div class="archive-toolbar">
           <div class="archive-controls" aria-label="Country filter"></div><div class="view-controls" aria-label="Archive view">
             <span data-i18n="view">VISTA</span>
-            <button class="view-toggle active" data-view="grid" type="button">GRID</button>
-            <button class="view-toggle" data-view="carousel" type="button">CAROUSEL</button>
+            <button class="view-toggle active" data-view="grid" type="button" data-i18n="grid">GRID</button>
+            <button class="view-toggle" data-view="carousel" type="button" data-i18n="carousel">CAROUSEL</button>
           </div>
         </div>
       </div>
-      <div class="archive-grid" id="archive-grid" aria-live="polite"></div><div class="section-more" id="archive-more"><a href="/archive.html">VER TODO EL ARCHIVO →</a></div>
+      <div class="archive-grid" id="archive-grid" aria-live="polite"></div><div class="section-more" id="archive-more"><a href="/archive.html" data-i18n="seeAllArchive">VER TODO EL ARCHIVO →</a></div>
       <div class="archive-carousel" id="archive-carousel" hidden aria-live="polite">
         <button class="carousel-nav carousel-prev" id="carousel-prev" type="button" aria-label="Previous photograph">←</button>
         <div class="carousel-stage" id="carousel-stage"></div>
@@ -63,7 +65,7 @@
         <h2 data-i18n="editionsHeading">// EDICIONES</h2>
         <span data-i18n="photoDesign">FOTO → DISEÑO</span>
       </div>
-      <div class="editions-grid" id="editions-grid"></div><div class="section-more" id="editions-more"><a href="/editions.html">VER TODAS LAS EDICIONES →</a></div>
+      <div class="editions-grid" id="editions-grid"></div><div class="section-more" id="editions-more"><a href="/editions.html" data-i18n="seeAllEditions">VER TODAS LAS EDICIONES →</a></div>
       <p class="technical-note" data-i18n="editionsNote">Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.</p>
     </section>
 
@@ -118,6 +120,6 @@
   </aside>
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
-  <script type="module" src="/app.js?v=20260927-1906"></script>
+  <script type="module" src="/app.js?v=20261002-ca02"></script>
 </body>
 </html>
