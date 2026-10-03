@@ -77,8 +77,8 @@
     "code": "TS",
     "name_en": "T-SHIRT",
     "name_es": "CAMISETA",
-    "description_en": "Three fits / quality levels. Choose the garment after choosing the photograph.",
-    "description_es": "Tres cortes / niveles de prenda. El modelo se elige después de seleccionar la fotografía.",
+    "description_en": "Three fits. Choose the garment after selecting the photograph.",
+    "description_es": "Tres cortes. El modelo se elige después de seleccionar la fotografía.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -179,7 +179,7 @@
     "shippingRegion": "Europe · includes Spain",
     "shippingRef": "4.99 EUR first · +1.45 additional · current flat-rate reference",
     "name_ca": "SAMARRETA",
-    "description_ca": "Tres talls / nivells de peça. El model es tria després de seleccionar la fotografia.",
+    "description_ca": "Tres talls. El model es tria després de seleccionar la fotografia.",
     "priceLabel_ca": "PREU A CONSULTAR"
   },
   {
@@ -187,8 +187,8 @@
     "code": "SW",
     "name_en": "SWEATSHIRT",
     "name_es": "SUDADERA",
-    "description_en": "Two premium crewneck directions: regular and oversized.",
-    "description_es": "Dos direcciones premium de sudadera sin capucha: regular y oversize.",
+    "description_en": "Two premium crewneck versions: regular and oversized.",
+    "description_es": "Dos versiones premium sin capucha: regular y oversize.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -261,7 +261,7 @@
     "shippingRegion": "Europe · includes Spain",
     "shippingRef": "7.29 EUR first · +2.40 additional · current flat-rate reference",
     "name_ca": "DESSUADORA",
-    "description_ca": "Dues opcions premium de dessuadora sense caputxa: regular i oversize.",
+    "description_ca": "Dues versions premium sense caputxa: regular i oversize.",
     "priceLabel_ca": "PREU A CONSULTAR"
   },
   {
@@ -269,8 +269,8 @@
     "code": "TO",
     "name_en": "TOTE BAG",
     "name_es": "TOTE BAG",
-    "description_en": "Current prototype: Westford Mill W101 · 100% cotton · 140 g/m² · 38 × 42 cm.",
-    "description_es": "Prototipo actual: Westford Mill W101 · 100% algodón · 140 g/m² · 38 × 42 cm.",
+    "description_en": "Current prototype in 140 g/m² cotton · 38 × 42 cm.",
+    "description_es": "Prototipo actual en algodón de 140 g/m² · 38 × 42 cm.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -296,7 +296,7 @@
     "referenceLandedSingle": 15.42,
     "referenceOnly": true,
     "name_ca": "BOSSA TOTE",
-    "description_ca": "Prototip actual: Westford Mill W101 · 100% cotó · 140 g/m² · 38 × 42 cm.",
+    "description_ca": "Prototip actual en cotó de 140 g/m² · 38 × 42 cm.",
     "priceLabel_ca": "PREU A CONSULTAR"
   },
   {
@@ -304,8 +304,8 @@
     "code": "NB",
     "name_en": "NOTEBOOK",
     "name_es": "LIBRETA",
-    "description_en": "Two notebook constructions. Choose the notebook after choosing the approved support-specific design.",
-    "description_es": "Dos construcciones de libreta. El modelo se elige después de seleccionar el diseño específico aprobado.",
+    "description_en": "Two constructions. Choose the model according to the approved design.",
+    "description_es": "Dos construcciones. El modelo se elige según el diseño aprobado.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -371,7 +371,7 @@
     ],
     "shippingRegion": "Europe · includes Spain",
     "name_ca": "LLIBRETA",
-    "description_ca": "Dues construccions de llibreta. El model es tria després de seleccionar el disseny específic aprovat.",
+    "description_ca": "Dues construccions. El model es tria segons el disseny aprovat.",
     "priceLabel_ca": "PREU A CONSULTAR"
   }
 ]
