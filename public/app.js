@@ -99,7 +99,8 @@ const COUNTRY={
   CZ:{es:"CHEQUIA",ca:"TXÈQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",ca:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",ca:"BÈLGICA",en:"BELGIUM"},
   GR:{es:"GRECIA",ca:"GRÈCIA",en:"GREECE"},PT:{es:"PORTUGAL",ca:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",ca:"ESTATS UNITS",en:"UNITED STATES"}
 };
-const countryName=p=>(COUNTRY[p.countryCode]?.[state.lang]||p.country).toUpperCase();
+const isCatalunyaPhoto=p=>p?.countryCode==="ES"&&/catalunya/i.test(p?.region||"");
+const countryName=p=>isCatalunyaPhoto(p)?"CATALUNYA":(COUNTRY[p.countryCode]?.[state.lang]||p.country).toUpperCase();
 
 const formatDate=v=>{
   if(!v)return"—";
