@@ -134,7 +134,7 @@ const displayOption=v=>{
 const editionVariant=e=>localizeEdition(e.variant||"");
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261003-photos54"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261003-compact01")]);
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261003-photos58"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261003-compact01")]);
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
