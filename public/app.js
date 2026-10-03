@@ -23,18 +23,18 @@ const T={
     all:"TODAS",view:"VISTA",grid:"GRID",carousel:"CARRUSEL",now:"AHORA",photoDesign:"FOTO → DISEÑO",
     editionsNote:"Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.",
     makePhysical:"LLEVAR EL ARCHIVO A LO FÍSICO",
-    objectsNote:"Los precios «desde» son referencias orientativas de producción on demand actuales. Envío aparte; material, impresión, disponibilidad y precio final se confirman antes de producir.",
+    objectsNote:"Los objetos se producen a partir de fotografías y ediciones del archivo. Abre una fotografía para ver qué soportes están disponibles y preparar una consulta.",
     info1:"AFICIONADXS es un archivo fotográfico en curso. Algunas imágenes salen del archivo para convertirse en prints, postales, prendas y objetos.",
     info2:"Algunas piezas existen en stock. Otras se producen solo después de una solicitud. La fotografía sigue siendo siempre el punto de partida.",
     footerLine:"FOTOGRAFÍA → OBJETO",name:"NOMBRE",countryPostcode:"PAÍS / CÓDIGO POSTAL",note:"NOTA",
-    sendWhatsapp:"ENVIAR SOLICITUD POR WHATSAPP →",clearRequest:"VACIAR SOLICITUD",
-    request:"SOLICITUD",emptyRequest:"NO HAY ARTÍCULOS EN LA SOLICITUD.",
+    sendWhatsapp:"ENVIAR CONSULTA POR WHATSAPP →",clearRequest:"VACIAR CONSULTA",
+    request:"CONSULTA",emptyRequest:"NO HAY PIEZAS EN LA CONSULTA.",
     estimatedTotal:"TOTAL ESTIMADO",toConfirm:"A CONFIRMAR",itemsToConfirm:" + ARTÍCULOS A CONFIRMAR",
     date:"FECHA",time:"HORA",region:"REGIÓN",coord:"COORD.",camera:"CÁMARA",lens:"LENTE",capture:"CAPTURA",address:"DIRECCIÓN",event:"EVENTO",architect:"ARQUITECTURA",temperature:"TEMPERATURA",
     relatedEditions:"EDICIONES RELACIONADAS",format:"SOPORTE",edition:"EDICIÓN",size:"TALLA / TAMAÑO",color:"COLOR",
-    addRequest:"AÑADIR A SOLICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
+    addRequest:"AÑADIR A CONSULTA →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
     viewSource:"VER FOTO ORIGINAL →",editionNote:"La edición es la composición gráfica. El objeto físico se elige por separado.",
-    remove:"QUITAR",requestConfirm:"Confírmame disponibilidad, precio final y envío.",
+    remove:"QUITAR",requestConfirm:"Quisiera consultar disponibilidad, opciones de producción, precio y envío.",
     photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",supportDesign:"DISEÑO DEL SOPORTE",white:"BLANCO",black:"NEGRO",designAvailable:"DISEÑO DISPONIBLE",showMore:"MOSTRAR MÁS",showLess:"MOSTRAR MENOS",
     models:"MODELOS",model:"MODELO",noPhotographs:"NO HAY FOTOGRAFÍAS.",
     previewsPreparing:"SE ESTÁN PREPARANDO LAS PREVISUALIZACIONES DE LAS EDICIONES APROBADAS A PARTIR DE LOS ARCHIVOS DE DISEÑO ORIGINALES.",
@@ -48,18 +48,18 @@ const T={
     all:"TOTES",view:"VISTA",grid:"GRAELLA",carousel:"CARRUSEL",now:"ARA",photoDesign:"FOTO → DISSENY",
     editionsNote:"Cada edició està vinculada a la fotografia original. L’aplicació sobre un objecte físic és una capa separada.",
     makePhysical:"PORTAR L’ARXIU AL MÓN FÍSIC",
-    objectsNote:"Els preus «des de» són referències orientatives de producció on demand actuals. Enviament a part; material, impressió, disponibilitat i preu final es confirmen abans de produir.",
+    objectsNote:"Els objectes es produeixen a partir de fotografies i edicions de l’arxiu. Obre una fotografia per veure quins suports estan disponibles i preparar una consulta.",
     info1:"AFICIONADXS és un arxiu fotogràfic en curs. Algunes imatges surten de l’arxiu per convertir-se en impressions, postals, peces de roba i objectes.",
     info2:"Algunes peces estan en estoc. D’altres només es produeixen després d’una sol·licitud. La fotografia continua sent sempre el punt de partida.",
     footerLine:"FOTOGRAFIA → OBJECTE",name:"NOM",countryPostcode:"PAÍS / CODI POSTAL",note:"NOTA",
-    sendWhatsapp:"ENVIAR SOL·LICITUD PER WHATSAPP →",clearRequest:"BUIDAR SOL·LICITUD",
-    request:"SOL·LICITUD",emptyRequest:"NO HI HA CAP ARTICLE A LA SOL·LICITUD.",
+    sendWhatsapp:"ENVIAR CONSULTA PER WHATSAPP →",clearRequest:"BUIDAR CONSULTA",
+    request:"CONSULTA",emptyRequest:"NO HI HA CAP PEÇA A LA CONSULTA.",
     estimatedTotal:"TOTAL ESTIMAT",toConfirm:"A CONFIRMAR",itemsToConfirm:" + ARTICLES A CONFIRMAR",
     date:"DATA",time:"HORA",region:"REGIÓ",coord:"COORD.",camera:"CÀMERA",lens:"OBJECTIU",capture:"CAPTURA",address:"ADREÇA",event:"ESDEVENIMENT",architect:"ARQUITECTURA",temperature:"TEMPERATURA",
     relatedEditions:"EDICIONS RELACIONADES",format:"SUPORT",edition:"EDICIÓ",size:"TALLA / MIDA",color:"COLOR",
-    addRequest:"AFEGIR A LA SOL·LICITUD →",sourcePhoto:"FOTO ORIGINAL",place:"LLOC",applications:"APLICACIONS",
+    addRequest:"AFEGIR A LA CONSULTA →",sourcePhoto:"FOTO ORIGINAL",place:"LLOC",applications:"APLICACIONS",
     viewSource:"VEURE FOTO ORIGINAL →",editionNote:"L’edició és la composició gràfica. L’objecte físic es tria per separat.",
-    remove:"TREURE",requestConfirm:"Confirma’m la disponibilitat, el preu final i l’enviament.",
+    remove:"TREURE",requestConfirm:"Voldria consultar disponibilitat, opcions de producció, preu i enviament.",
     photograph:"FOTOGRAFIA",archiveEdition:"EDICIÓ D’ARXIU",supportDesign:"DISSENY DEL SUPORT",
     white:"BLANC",black:"NEGRE",designAvailable:"DISSENY DISPONIBLE",showMore:"MOSTRA’N MÉS",showLess:"MOSTRA’N MENYS",
     models:"MODELS",model:"MODEL",noPhotographs:"CAP FOTOGRAFIA.",
@@ -74,18 +74,18 @@ const T={
     all:"ALL",view:"VIEW",grid:"GRID",carousel:"CAROUSEL",now:"NOW",photoDesign:"PHOTO → DESIGN",
     editionsNote:"Each edition is linked back to its source photograph. Product applications are separate from the design itself.",
     makePhysical:"MAKE THE ARCHIVE PHYSICAL",
-    objectsNote:"“From” prices are current indicative on-demand production references. Shipping is separate; material, print, availability and final price are confirmed before production.",
+    objectsNote:"Objects are produced from photographs and editions in the archive. Open a photograph to see the available formats and prepare an enquiry.",
     info1:"AFICIONADXS is an ongoing photographic archive. Selected images move from the archive into physical form: prints, postcards, garments and objects.",
     info2:"Some pieces exist in stock. Others are produced only after a request. Every photograph remains the starting point.",
     footerLine:"PHOTOGRAPHY → OBJECT",name:"NAME",countryPostcode:"COUNTRY / POSTCODE",note:"NOTE",
-    sendWhatsapp:"SEND REQUEST VIA WHATSAPP →",clearRequest:"CLEAR REQUEST",
-    request:"REQUEST",emptyRequest:"NO ITEMS IN REQUEST.",
+    sendWhatsapp:"SEND REQUEST VIA WHATSAPP →",clearRequest:"CLEAR ENQUIRY",
+    request:"ENQUIRY",emptyRequest:"NO ITEMS IN REQUEST.",
     estimatedTotal:"ESTIMATED TOTAL",toConfirm:"TO CONFIRM",itemsToConfirm:" + ITEMS TO CONFIRM",
     date:"DATE",time:"TIME",region:"REGION",coord:"COORD.",camera:"CAMERA",lens:"LENS",capture:"CAPTURE",address:"ADDRESS",event:"EVENT",architect:"ARCHITECTURE",temperature:"TEMPERATURE",
     relatedEditions:"RELATED EDITIONS",format:"FORMAT",edition:"EDITION",size:"SIZE",color:"COLOR",
-    addRequest:"ADD TO REQUEST →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
+    addRequest:"ADD TO ENQUIRY →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
     viewSource:"VIEW SOURCE PHOTO →",editionNote:"The edition is the graphic composition. The physical object is chosen separately.",
-    remove:"REMOVE",requestConfirm:"Please confirm availability, final price and shipping.",
+    remove:"REMOVE",requestConfirm:"I’d like to check availability, production options, price and shipping.",
     photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",supportDesign:"SUPPORT DESIGN",white:"WHITE",black:"BLACK",designAvailable:"DESIGN AVAILABLE",showMore:"SHOW MORE",showLess:"SHOW LESS",
     models:"MODELS",model:"MODEL",noPhotographs:"NO PHOTOGRAPHS.",
     previewsPreparing:"APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.",
@@ -236,18 +236,11 @@ function objectIcon(type){
   return icons[type]||icons.print;
 }
 
-function objectFromPriceMarkup(p){
-  if(p.displayFromPrice==null)return prodPriceLabel(p);
-  const locale=state.lang==="en"?"en-IE":state.lang==="ca"?"ca-ES":"es-ES";
-  const prefix=state.lang==="en"?"FROM":state.lang==="ca"?"DES DE":"DESDE";
-  const price=new Intl.NumberFormat(locale,{minimumFractionDigits:2,maximumFractionDigits:2}).format(p.displayFromPrice)+" €";
-  return '<span class="object-price-prefix">'+prefix+'</span><strong>'+price+'</strong>';
-}
-
 function renderObjects(){
   $("#object-list").innerHTML=state.products.map(p=>{
     const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+t("models")+'</span>':"";
-    return '<article class="object-card"><div class="object-card-head"><span class="object-code">'+p.code+'</span><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div></div><div class="object-title"><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><p class="object-desc">'+prodDesc(p)+'</p><div class="object-price">'+objectFromPriceMarkup(p)+'</div></article>';
+    const consultLabel=state.lang==="en"?"ON REQUEST":state.lang==="ca"?"SOTA CONSULTA":"BAJO CONSULTA";
+    return '<article class="object-card"><div class="object-card-head"><span class="object-code">'+p.code+'</span><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div></div><div class="object-title"><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><p class="object-desc">'+prodDesc(p)+'</p><div class="object-status"><span>'+consultLabel+'</span></div></article>';
   }).join("");
 }
 function dataRow(a,b){return b?'<div class="data-row"><span>'+a+'</span><span>'+b+'</span></div>':""}
@@ -295,8 +288,7 @@ function renderConfigurator(){
   const modelBlock=!p.models?.length?"":'<div class="choice-group"><span class="choice-label">'+t("model")+'</span><div class="choice-buttons">'+p.models.map(x=>'<button class="choice-button model-choice '+(state.config.model===x.id?"active":"")+'" data-model="'+x.id+'">'+modelName(x)+'</button>').join("")+'</div></div>';
   const detail=m?'<div class="technical-note">'+modelDesc(m)+'</div>':"";
   const sizes=m?.sizes||p.sizes||[],colors=m?.colors||p.colors||[];
-  const displayPrice=m?.price!=null?money(m.price):prodPriceLabel(p);
-  $("#config-area").innerHTML=modelBlock+detail+g(t("edition"),"edition",p.editions,true)+g(t("size"),"size",sizes)+g(t("color"),"color",colors)+'<div class="config-price">'+displayPrice+'</div><button class="primary-action" id="add-request">'+t("addRequest")+'</button>';
+  $("#config-area").innerHTML=modelBlock+detail+g(t("edition"),"edition",p.editions,true)+g(t("size"),"size",sizes)+g(t("color"),"color",colors)+'<button class="primary-action" id="add-request">'+t("addRequest")+'</button>';
   $$(".model-choice").forEach(b=>b.onclick=()=>{
     state.config.model=b.dataset.model;
     const nm=selectedModel(p);
@@ -319,18 +311,17 @@ function renderCart(){
   $("#cart-items").innerHTML=state.cart.length?state.cart.map(i=>{
     const p=state.products.find(x=>x.id===i.productId);
     const m=p?.models?.find(x=>x.id===i.modelId);
-    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+(m?' · '+modelName(m):'')+'</p><p>'+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" / ")+'</p><p>'+money(i.price)+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
+    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+(m?' · '+modelName(m):'')+'</p><p>'+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" / ")+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
   }).join(""):'<div class="empty-cart">'+t("emptyRequest")+'</div>';
   $$(".remove-item").forEach(b=>b.onclick=()=>{state.cart=state.cart.filter(x=>x.key!==b.dataset.key);saveCart();renderCart()});
-  const known=state.cart.filter(x=>x.price!=null).reduce((s,x)=>s+x.price,0),unknown=state.cart.some(x=>x.price==null);
-  $("#cart-total").innerHTML=t("estimatedTotal")+'<br><strong>'+(known?money(known):t("toConfirm"))+(known&&unknown?t("itemsToConfirm"):"")+'</strong>';
+  const total=$("#cart-total");if(total){total.innerHTML="";total.hidden=true;}
 }
 function openCart(){$("#cart-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open");$("#cart-drawer").setAttribute("aria-hidden","false")}
 function closeCart(){$("#cart-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open");$("#cart-drawer").setAttribute("aria-hidden","true")}
 function sendRequest(){
   if(!state.cart.length)return;
   const name=$("#request-name").value.trim(),loc=$("#request-location").value.trim(),note=$("#request-note").value.trim(),lines=["// AFICIONADXS "+t("request"),""];
-  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId),m=p?.models?.find(x=>x.id===i.modelId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+(m?" · "+modelName(m):"")+" · "+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" · "));lines.push(money(i.price));lines.push("")});
+  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId),m=p?.models?.find(x=>x.id===i.modelId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+(m?" · "+modelName(m):"")+" · "+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" · "));lines.push("")});
   if(name)lines.push(t("name")+" · "+name);if(loc)lines.push(t("countryPostcode")+" · "+loc);if(note)lines.push(t("note")+" · "+note);
   lines.push("");lines.push(t("requestConfirm"));
   const base=WHATSAPP_NUMBER?"https://wa.me/"+WHATSAPP_NUMBER:"https://wa.me/";
