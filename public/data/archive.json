@@ -610,5 +610,32 @@
     "reviewStatus": "APPROVED",
     "address": "Passeig de Gràcia 43",
     "architect": "Antoni Gaudí"
+  },
+  {
+    "id": "023",
+    "title": "CHICAGO — THEATRE",
+    "slug": "chicago-theatre",
+    "place": "Chicago Theatre",
+    "city": "Chicago",
+    "region": "Illinois",
+    "country": "United States",
+    "countryCode": "US",
+    "date": "2023-11-12",
+    "time": "13:52:48",
+    "camera": "iPhone 12 mini",
+    "lens": "4.2 mm · f/1.6 · 26 mm eq.",
+    "capture": "ISO 32 · 1/610 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/023.webp",
+    "available": [
+      "print",
+      "tshirt",
+      "sweatshirt"
+    ],
+    "archiveEdition": false,
+    "published": true,
+    "sourceFile": "IMG_2128.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "APPROVED"
   }
 ]
