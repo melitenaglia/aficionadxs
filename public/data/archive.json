@@ -1617,5 +1617,33 @@
     "sourceFile": "141FC8C8-95A3-4AC3-833D-C3C2AB8D29CC_1_105_c.jpeg",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
+  },
+  {
+    "id": "059",
+    "title": "ROSARIO — RÍO PARANÁ",
+    "slug": "rosario-rio-parana",
+    "place": "Río Paraná",
+    "city": "Rosario",
+    "region": "Santa Fe",
+    "country": "Argentina",
+    "countryCode": "AR",
+    "date": "2018-02-18",
+    "time": "19:36:56",
+    "coordinates": null,
+    "camera": "iPhone 7",
+    "lens": "3.99 mm · f/1.8 · 28 mm eq.",
+    "capture": "ISO 20 · 1/800 s",
+    "orientation": "landscape",
+    "image": "/assets/photos/059.webp",
+    "available": [
+      "print",
+      "tshirt",
+      "sweatshirt"
+    ],
+    "archiveEdition": false,
+    "published": true,
+    "sourceFile": "56971216-F8BC-4338-AC01-CD80D0919515_1_105_c.jpeg",
+    "sourceMatchVerified": true,
+    "reviewStatus": "APPROVED"
   }
 ]
