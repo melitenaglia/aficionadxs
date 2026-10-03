@@ -637,5 +637,33 @@
     "sourceFile": "IMG_2128.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
+  },
+  {
+    "id": "024",
+    "title": "BRUSSELS — PHARMACIE ANGLAISE",
+    "slug": "brussels-pharmacie-anglaise",
+    "place": "Ancienne Pharmacie anglaise Ch. Delacre",
+    "city": "Brussels",
+    "region": "Brussels-Capital Region",
+    "country": "Belgium",
+    "countryCode": "BE",
+    "date": "2025-09-17",
+    "time": "19:12:18",
+    "camera": "iPhone 15 Pro",
+    "lens": "9 mm · f/2.8 · 77 mm eq.",
+    "capture": "ISO 25 · 1/100 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/024.webp",
+    "available": [
+      "print",
+      "tshirt",
+      "sweatshirt"
+    ],
+    "archiveEdition": false,
+    "published": true,
+    "sourceFile": "IMG_5937.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "APPROVED",
+    "architect": "Paul Saintenoy"
   }
 ]
