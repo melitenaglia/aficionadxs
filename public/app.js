@@ -132,7 +132,7 @@ const displayOption=v=>{
 const editionVariant=e=>localizeEdition(e.variant||"");
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261003-photos30"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261003-photos30"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261003-compact01")]);
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
@@ -229,7 +229,7 @@ function objectIcon(type){
     print:'<svg '+common+'><path d="M19 8h26v48H19z"/><path d="M23 13h18v34H23z"/><path d="m24 42 6-8 5 5 4-6 2 3"/><circle cx="36.5" cy="22.5" r="2.5"/><path d="M29 8V5h6v3"/></svg>',
     postcard:'<svg '+common+'><rect x="8" y="18" width="48" height="28" rx="1.5"/><path d="M35 21v22"/><path d="M40 25h10v8H40z"/><path d="M12 38h17M12 33h13M12 28h15"/></svg>',
     tshirt:'<svg '+common+'><path d="M24 13 15 17 7 25l7 8 6-5v24h24V28l6 5 7-8-8-8-9-4c-1 4-4 6-8 6s-7-2-8-6Z"/><path d="M24 13c1 2 4 4 8 4s7-2 8-4"/></svg>',
-    sweatshirt:'<svg '+common+'><path d="M23 13 14 17 6 27l8 7 6-6 2 25h20l2-25 6 6 8-7-8-10-9-4c-2 4-5 6-9 6s-7-2-9-6Z"/><path d="M25 14c1 3 3 5 7 5s6-2 7-5"/><path d="M22 47h20"/><path d="m9 30 5 4m36 0 5-4"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M23 13 14 18 8 26 3 45l8 3 8-18 3-3v26h20V27l3 3 8 18 8-3-5-19-6-8-9-5c-2 4-5 6-9 6s-7-2-9-6Z"/><path d="M25 14c1 3 3 5 7 5s6-2 7-5"/><path d="M22 47h20"/><path d="m4 42 8 3m40 0 8-3"/></svg>',
     tote:'<svg '+common+'><path d="M15 24h34l-3 32H18z"/><path d="M23 25v-5c0-8 3-13 9-13s9 5 9 13v5"/><path d="M27 25v-5c0-5 2-8 5-8s5 3 5 8v5"/></svg>',
     notebook:'<svg '+common+'><rect x="20" y="8" width="30" height="48" rx="1.5"/><path d="M27 8v48"/><path d="M16 15h9M16 23h9M16 31h9M16 39h9M16 47h9"/><path d="M32 18h12M32 24h9"/></svg>'
   };
