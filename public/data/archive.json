@@ -580,5 +580,35 @@
     "sourceFile": "IMG_0641_jpg.JPG",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
+  },
+  {
+    "id": "022",
+    "title": "BARCELONA — CASA BATLLÓ",
+    "slug": "barcelona-casa-batllo",
+    "place": "Casa Batlló · Patio de luces",
+    "city": "Barcelona",
+    "region": "Catalunya",
+    "country": "Spain",
+    "countryCode": "ES",
+    "date": "2023-09-29",
+    "time": "11:18:50",
+    "coordinates": null,
+    "camera": "iPhone 12 mini",
+    "lens": "4.2 mm · f/1.6 · 26 mm eq.",
+    "capture": "ISO 80 · 1/120 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/022.webp",
+    "available": [
+      "print",
+      "tshirt",
+      "sweatshirt"
+    ],
+    "archiveEdition": false,
+    "published": true,
+    "sourceFile": "IMG_0296.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "APPROVED",
+    "address": "Passeig de Gràcia 43",
+    "architect": "Antoni Gaudí"
   }
 ]
