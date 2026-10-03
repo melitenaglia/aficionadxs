@@ -692,5 +692,33 @@
     "sourceFile": "IMG_8119_jpg.heic",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
+  },
+  {
+    "id": "026",
+    "title": "OVIEDO — ARQUEOLÓGICO",
+    "slug": "oviedo-arqueologico",
+    "place": "Museo Arqueológico de Asturias",
+    "city": "Oviedo",
+    "region": "Asturias",
+    "country": "Spain",
+    "countryCode": "ES",
+    "date": "2023-08-17",
+    "time": "18:12:57",
+    "coordinates": "43.363956, -5.843347",
+    "camera": "iPhone 12 mini",
+    "lens": "4.2 mm · f/1.6 · 26 mm eq.",
+    "capture": "ISO 40 · 1/120 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/026.webp",
+    "available": [
+      "print",
+      "tshirt",
+      "sweatshirt"
+    ],
+    "archiveEdition": false,
+    "published": true,
+    "sourceFile": "IMG_8724.heic",
+    "sourceMatchVerified": true,
+    "reviewStatus": "APPROVED"
   }
 ]
