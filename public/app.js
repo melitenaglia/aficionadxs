@@ -97,7 +97,7 @@ const t=k=>T[state.lang][k]||k;
 const COUNTRY={
   ES:{es:"ESPAÑA",ca:"ESPANYA",en:"SPAIN"},FR:{es:"FRANCIA",ca:"FRANÇA",en:"FRANCE"},DE:{es:"ALEMANIA",ca:"ALEMANYA",en:"GERMANY"},
   CZ:{es:"CHEQUIA",ca:"TXÈQUIA",en:"CZECHIA"},IE:{es:"IRLANDA",ca:"IRLANDA",en:"IRELAND"},BE:{es:"BÉLGICA",ca:"BÈLGICA",en:"BELGIUM"},
-  GR:{es:"GRECIA",ca:"GRÈCIA",en:"GREECE"},PT:{es:"PORTUGAL",ca:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",ca:"ESTATS UNITS",en:"UNITED STATES"}
+  GR:{es:"GRECIA",ca:"GRÈCIA",en:"GREECE"},NL:{es:"PAÍSES BAJOS",ca:"PAÏSOS BAIXOS",en:"NETHERLANDS"},PT:{es:"PORTUGAL",ca:"PORTUGAL",en:"PORTUGAL"},US:{es:"ESTADOS UNIDOS",ca:"ESTATS UNITS",en:"UNITED STATES"}
 };
 const isCatalunyaPhoto=p=>p?.countryCode==="ES"&&/catalunya/i.test(p?.region||"");
 const countryName=p=>isCatalunyaPhoto(p)?"CATALUNYA":(COUNTRY[p.countryCode]?.[state.lang]||p.country).toUpperCase();
@@ -132,7 +132,7 @@ const displayOption=v=>{
 const editionVariant=e=>localizeEdition(e.variant||"");
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261003-photos26"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261003-photos30"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json")]);
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
