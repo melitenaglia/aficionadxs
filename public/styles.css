@@ -403,3 +403,75 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
     line-height:1.55;
   }
 }
+
+
+/* Objects catalogue v5 — compact mobile rows */
+@media(max-width:560px){
+  .object-card{
+    min-height:0;
+    grid-template-columns:50px minmax(0,1fr) auto;
+    grid-template-rows:auto auto;
+    grid-template-areas:
+      "visual title status"
+      "visual desc status";
+    column-gap:12px;
+    row-gap:5px;
+    padding:12px 0 13px;
+    align-items:start;
+  }
+  .object-card-head{
+    grid-area:visual;
+    display:grid;
+    grid-template-rows:auto 1fr;
+    gap:3px;
+    justify-items:start;
+    align-self:start;
+  }
+  .object-code{
+    order:0;
+    font-size:8px;
+    line-height:1;
+  }
+  .objects-section .object-thumb{
+    width:46px;
+    height:46px;
+  }
+  .objects-section .object-thumb svg{
+    width:40px;
+    height:40px;
+  }
+  .object-title{
+    grid-area:title;
+    align-self:start;
+    padding-top:0;
+  }
+  .object-title strong{
+    max-width:18ch;
+    font-size:11px;
+    line-height:1.18;
+  }
+  .object-models{
+    margin-top:2px;
+    font-size:7.5px;
+    line-height:1.15;
+  }
+  .object-card .object-desc{
+    grid-area:desc;
+    max-width:42ch;
+    margin:0;
+    padding-left:0;
+    font-size:8.5px;
+    line-height:1.38;
+  }
+  .object-status{
+    grid-area:status;
+    align-self:start;
+    justify-content:flex-end;
+    margin-top:1px;
+  }
+  .object-status span{
+    font-size:6.8px;
+    white-space:nowrap;
+    padding:4px 6px;
+  }
+}
