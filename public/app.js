@@ -23,7 +23,7 @@ const T={
     all:"TODAS",view:"VISTA",grid:"GRID",carousel:"CARRUSEL",now:"AHORA",photoDesign:"FOTO → DISEÑO",
     editionsNote:"Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.",
     makePhysical:"LLEVAR EL ARCHIVO A LO FÍSICO",
-    objectsNote:"Formatos y precios siguen en prueba mientras AFICIONADXS compara materiales, impresión y proveedores. Una solicitud no es un pago ni un pedido automático.",
+    objectsNote:"Los precios «desde» son referencias orientativas de producción on demand actuales. Envío aparte; material, impresión, disponibilidad y precio final se confirman antes de producir.",
     info1:"AFICIONADXS es un archivo fotográfico en curso. Algunas imágenes salen del archivo para convertirse en prints, postales, prendas y objetos.",
     info2:"Algunas piezas existen en stock. Otras se producen solo después de una solicitud. La fotografía sigue siendo siempre el punto de partida.",
     footerLine:"FOTOGRAFÍA → OBJETO",name:"NOMBRE",countryPostcode:"PAÍS / CÓDIGO POSTAL",note:"NOTA",
@@ -48,7 +48,7 @@ const T={
     all:"TOTES",view:"VISTA",grid:"GRAELLA",carousel:"CARRUSEL",now:"ARA",photoDesign:"FOTO → DISSENY",
     editionsNote:"Cada edició està vinculada a la fotografia original. L’aplicació sobre un objecte físic és una capa separada.",
     makePhysical:"PORTAR L’ARXIU AL MÓN FÍSIC",
-    objectsNote:"Els formats i els preus continuen en fase de prova mentre AFICIONADXS compara materials, impressió i proveïdors. Una sol·licitud no és un pagament ni una comanda automàtica.",
+    objectsNote:"Els preus «des de» són referències orientatives de producció on demand actuals. Enviament a part; material, impressió, disponibilitat i preu final es confirmen abans de produir.",
     info1:"AFICIONADXS és un arxiu fotogràfic en curs. Algunes imatges surten de l’arxiu per convertir-se en impressions, postals, peces de roba i objectes.",
     info2:"Algunes peces estan en estoc. D’altres només es produeixen després d’una sol·licitud. La fotografia continua sent sempre el punt de partida.",
     footerLine:"FOTOGRAFIA → OBJECTE",name:"NOM",countryPostcode:"PAÍS / CODI POSTAL",note:"NOTA",
@@ -74,7 +74,7 @@ const T={
     all:"ALL",view:"VIEW",grid:"GRID",carousel:"CAROUSEL",now:"NOW",photoDesign:"PHOTO → DESIGN",
     editionsNote:"Each edition is linked back to its source photograph. Product applications are separate from the design itself.",
     makePhysical:"MAKE THE ARCHIVE PHYSICAL",
-    objectsNote:"Formats and prices remain flexible while AFICIONADXS tests materials, print quality and suppliers. A request is not a payment or an automatic order.",
+    objectsNote:"“From” prices are current indicative on-demand production references. Shipping is separate; material, print, availability and final price are confirmed before production.",
     info1:"AFICIONADXS is an ongoing photographic archive. Selected images move from the archive into physical form: prints, postcards, garments and objects.",
     info2:"Some pieces exist in stock. Others are produced only after a request. Every photograph remains the starting point.",
     footerLine:"PHOTOGRAPHY → OBJECT",name:"NAME",countryPostcode:"COUNTRY / POSTCODE",note:"NOTE",
@@ -223,22 +223,30 @@ function renderEditions(){
 }
 
 function objectIcon(type){
-  const common='viewBox="0 0 80 80" aria-hidden="true" focusable="false"';
+  const common='viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"';
   const icons={
-    print:'<svg '+common+'><circle cx="40" cy="7" r="1.5" fill="currentColor"/><path d="M40 9 31 16h18z" fill="none" stroke="currentColor"/><rect x="17" y="16" width="46" height="56" rx="1" fill="none" stroke="currentColor"/><rect x="23" y="22" width="34" height="42" fill="none" stroke="currentColor"/><circle cx="47" cy="32" r="3" fill="none" stroke="currentColor"/><path d="M25 58 34 47l7 7 5-6 9 10" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    postcard:'<svg '+common+'><rect x="9" y="23" width="62" height="34" rx="1" fill="none" stroke="currentColor"/><path d="M14 51 27 39l9 7 7-8 23 13" fill="none" stroke="currentColor" stroke-linejoin="round"/><circle cx="55" cy="33" r="3" fill="none" stroke="currentColor"/></svg>',
-    tshirt:'<svg '+common+'><path d="M25 18 12 28l8 10 7-5v29h26V33l7 5 8-10-13-10-8 4H33z" fill="none" stroke="currentColor" stroke-linejoin="round"/></svg>',
-    sweatshirt:'<svg '+common+'><path d="M30 16 19 21 8 31 2 55l11 3 8-19 6-7v32h26V32l6 7 8 19 11-3-6-24-11-10-11-5-5 5H35z" fill="none" stroke="currentColor" stroke-linejoin="round"/><path d="M35 18c1 6 9 6 10 0" fill="none" stroke="currentColor"/><line x1="28" y1="58" x2="52" y2="58" stroke="currentColor"/><line x1="3" y1="53" x2="13" y2="56" stroke="currentColor"/><line x1="67" y1="56" x2="77" y2="53" stroke="currentColor"/></svg>',
-    tote:'<svg '+common+'><path d="M17 37h46l-4 34H21z" fill="none" stroke="currentColor"/><path d="M27 38V23C27 10 32 4 40 4s13 6 13 19v15" fill="none" stroke="currentColor"/><path d="M32 38V23c0-9 3-14 8-14s8 5 8 14v15" fill="none" stroke="currentColor"/></svg>',
-    notebook:'<svg '+common+'><rect x="23" y="12" width="38" height="56" rx="2" fill="none" stroke="currentColor"/><line x1="30" y1="12" x2="30" y2="68" stroke="currentColor"/><line x1="18" y1="20" x2="28" y2="20" stroke="currentColor"/><line x1="18" y1="29" x2="28" y2="29" stroke="currentColor"/><line x1="18" y1="38" x2="28" y2="38" stroke="currentColor"/><line x1="18" y1="47" x2="28" y2="47" stroke="currentColor"/><line x1="18" y1="56" x2="28" y2="56" stroke="currentColor"/></svg>'
+    print:'<svg '+common+'><path d="M19 8h26v48H19z"/><path d="M23 13h18v34H23z"/><path d="m24 42 6-8 5 5 4-6 2 3"/><circle cx="36.5" cy="22.5" r="2.5"/><path d="M29 8V5h6v3"/></svg>',
+    postcard:'<svg '+common+'><rect x="8" y="18" width="48" height="28" rx="1.5"/><path d="M35 21v22"/><path d="M40 25h10v8H40z"/><path d="M12 38h17M12 33h13M12 28h15"/></svg>',
+    tshirt:'<svg '+common+'><path d="M24 13 15 17 7 25l7 8 6-5v24h24V28l6 5 7-8-8-8-9-4c-1 4-4 6-8 6s-7-2-8-6Z"/><path d="M24 13c1 2 4 4 8 4s7-2 8-4"/></svg>',
+    sweatshirt:'<svg '+common+'><path d="M23 13 14 17 6 27l8 7 6-6 2 25h20l2-25 6 6 8-7-8-10-9-4c-2 4-5 6-9 6s-7-2-9-6Z"/><path d="M25 14c1 3 3 5 7 5s6-2 7-5"/><path d="M22 47h20"/><path d="m9 30 5 4m36 0 5-4"/></svg>',
+    tote:'<svg '+common+'><path d="M15 24h34l-3 32H18z"/><path d="M23 25v-5c0-8 3-13 9-13s9 5 9 13v5"/><path d="M27 25v-5c0-5 2-8 5-8s5 3 5 8v5"/></svg>',
+    notebook:'<svg '+common+'><rect x="20" y="8" width="30" height="48" rx="1.5"/><path d="M27 8v48"/><path d="M16 15h9M16 23h9M16 31h9M16 39h9M16 47h9"/><path d="M32 18h12M32 24h9"/></svg>'
   };
   return icons[type]||icons.print;
+}
+
+function objectFromPriceMarkup(p){
+  if(p.displayFromPrice==null)return prodPriceLabel(p);
+  const locale=state.lang==="en"?"en-IE":state.lang==="ca"?"ca-ES":"es-ES";
+  const prefix=state.lang==="en"?"FROM":state.lang==="ca"?"DES DE":"DESDE";
+  const price=new Intl.NumberFormat(locale,{minimumFractionDigits:2,maximumFractionDigits:2}).format(p.displayFromPrice)+" €";
+  return '<span class="object-price-prefix">'+prefix+'</span><strong>'+price+'</strong>';
 }
 
 function renderObjects(){
   $("#object-list").innerHTML=state.products.map(p=>{
     const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+t("models")+'</span>':"";
-    return '<div class="object-row"><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div><span class="object-code">'+p.code+'</span><div><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><span class="object-desc">'+prodDesc(p)+'</span><span class="object-price">'+prodPriceLabel(p)+'</span></div>';
+    return '<article class="object-card"><div class="object-card-head"><span class="object-code">'+p.code+'</span><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div></div><div class="object-title"><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><p class="object-desc">'+prodDesc(p)+'</p><div class="object-price">'+objectFromPriceMarkup(p)+'</div></article>';
   }).join("");
 }
 function dataRow(a,b){return b?'<div class="data-row"><span>'+a+'</span><span>'+b+'</span></div>':""}
