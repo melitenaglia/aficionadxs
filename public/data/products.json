@@ -36,7 +36,10 @@
     "name_ca": "IMPRESSIÓ",
     "description_ca": "Fotografia o edició AFCNDXS aprovada, produïda amb un arxiu específic per a impressió.",
     "priceLabel_ca": "PREU A CONSULTAR",
-    "productionNote_ca": "30×40 és 3:4 i encaixa amb els layouts apparel 3600×4800. 21×30 és 7:10: la composició postcard 2:3 s’ha de readaptar, no retallar automàticament."
+    "productionNote_ca": "30×40 és 3:4 i encaixa amb els layouts apparel 3600×4800. 21×30 és 7:10: la composició postcard 2:3 s’ha de readaptar, no retallar automàticament.",
+    "displayFromPrice": 8.58,
+    "displayPriceSource": "Printful",
+    "displayPriceAsOf": "2026-10-03"
   },
   {
     "id": "postcard",
@@ -70,7 +73,10 @@
     "referenceOnly": true,
     "name_ca": "POSTAL",
     "description_ca": "Postal de 101 × 152 mm amb el disseny específic aprovat per a aquest suport.",
-    "priceLabel_ca": "5 EUR"
+    "priceLabel_ca": "5 EUR",
+    "displayFromPrice": 1.58,
+    "displayPriceSource": "Printful",
+    "displayPriceAsOf": "2026-10-03"
   },
   {
     "id": "tshirt",
@@ -180,7 +186,10 @@
     "shippingRef": "4.99 EUR first · +1.45 additional · current flat-rate reference",
     "name_ca": "SAMARRETA",
     "description_ca": "Tres talls / nivells de peça. El model es tria després de seleccionar la fotografia.",
-    "priceLabel_ca": "PREU A CONSULTAR"
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "displayFromPrice": 14.75,
+    "displayPriceSource": "Printful",
+    "displayPriceAsOf": "2026-10-03"
   },
   {
     "id": "sweatshirt",
@@ -262,7 +271,10 @@
     "shippingRef": "7.29 EUR first · +2.40 additional · current flat-rate reference",
     "name_ca": "DESSUADORA",
     "description_ca": "Dues opcions premium de dessuadora sense caputxa: regular i oversize.",
-    "priceLabel_ca": "PREU A CONSULTAR"
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "displayFromPrice": 30.29,
+    "displayPriceSource": "Printful",
+    "displayPriceAsOf": "2026-10-03"
   },
   {
     "id": "tote",
@@ -297,7 +309,10 @@
     "referenceOnly": true,
     "name_ca": "BOSSA TOTE",
     "description_ca": "Prototip actual: Westford Mill W101 · 100% cotó · 140 g/m² · 38 × 42 cm.",
-    "priceLabel_ca": "PREU A CONSULTAR"
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "displayFromPrice": 10.75,
+    "displayPriceSource": "Printful",
+    "displayPriceAsOf": "2026-10-03"
   },
   {
     "id": "notebook",
@@ -372,6 +387,9 @@
     "shippingRegion": "Europe · includes Spain",
     "name_ca": "LLIBRETA",
     "description_ca": "Dues construccions de llibreta. El model es tria després de seleccionar el disseny específic aprovat.",
-    "priceLabel_ca": "PREU A CONSULTAR"
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "displayFromPrice": 13.61,
+    "displayPriceSource": "Printful",
+    "displayPriceAsOf": "2026-10-03"
   }
 ]
