@@ -1477,5 +1477,33 @@
     "sourceFile": "IMG_2529.jpeg",
     "sourceMatchVerified": true,
     "reviewStatus": "APPROVED"
+  },
+  {
+    "id": "054",
+    "title": "SALINAS GRANDES — WIPHALA",
+    "slug": "salinas-grandes-wiphala",
+    "place": "Salinas Grandes",
+    "city": "Purmamarca",
+    "region": "Jujuy",
+    "country": "Argentina",
+    "countryCode": "AR",
+    "date": "2021-08-10",
+    "time": "15:36:00",
+    "coordinates": "-23.608856, -65.864900",
+    "camera": "iPhone XR",
+    "lens": "4.25 mm · f/1.8 · 26 mm eq.",
+    "capture": "ISO 25 · 1/1176 s",
+    "orientation": "portrait",
+    "image": "/assets/photos/054.webp",
+    "available": [
+      "print",
+      "tshirt",
+      "sweatshirt"
+    ],
+    "archiveEdition": false,
+    "published": true,
+    "sourceFile": "E6EA9547-5669-4B91-ADC4-9CCDEB2EF17C_1_105_c.jpeg",
+    "sourceMatchVerified": true,
+    "reviewStatus": "APPROVED"
   }
 ]
