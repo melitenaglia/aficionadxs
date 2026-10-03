@@ -169,3 +169,170 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
   -webkit-user-select:none;
   -webkit-user-drag:none;
 }
+
+
+/* Objects catalogue v3 — editorial cards + lighter technical drawings */
+.object-list{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+  margin-top:2px;
+}
+.object-card{
+  min-width:0;
+  min-height:248px;
+  display:grid;
+  grid-template-rows:auto auto 1fr auto;
+  gap:14px;
+  padding:18px 18px 16px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.object-card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+}
+.objects-section .object-thumb{
+  width:72px;
+  height:72px;
+  display:grid;
+  place-items:center;
+  background:transparent;
+  color:var(--ink);
+}
+.objects-section .object-thumb svg{
+  width:62px;
+  height:62px;
+  overflow:visible;
+}
+.object-code{
+  order:2;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:.08em;
+}
+.object-title strong{
+  display:block;
+  max-width:18ch;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.2;
+}
+.object-models{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:400;
+}
+.object-card .object-desc{
+  margin:0;
+  max-width:34ch;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.55;
+}
+.object-card .object-price{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  text-align:left;
+  color:var(--ink);
+}
+.object-price-prefix{
+  color:var(--muted);
+  font-size:8px;
+  letter-spacing:.08em;
+}
+.object-card .object-price strong{
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:-.02em;
+}
+.objects-section .technical-note{
+  margin-top:18px;
+  max-width:760px;
+  line-height:1.5;
+}
+
+@media(max-width:900px){
+  .object-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .object-card{min-height:220px}
+}
+
+@media(max-width:560px){
+  .objects-section{padding-left:14px;padding-right:14px}
+  .object-list{
+    grid-template-columns:1fr;
+    border-left:0;
+  }
+  .object-card{
+    min-height:0;
+    grid-template-columns:54px minmax(0,1fr) auto;
+    grid-template-rows:auto auto;
+    grid-template-areas:
+      "visual title price"
+      "desc desc desc";
+    gap:10px 12px;
+    padding:14px 0 15px;
+    border-right:0;
+  }
+  .object-card-head{
+    grid-area:visual;
+    display:grid;
+    grid-template-rows:auto 1fr;
+    gap:5px;
+    justify-items:start;
+  }
+  .object-code{
+    order:0;
+    font-size:8px;
+  }
+  .objects-section .object-thumb{
+    width:50px;
+    height:50px;
+  }
+  .objects-section .object-thumb svg{
+    width:46px;
+    height:46px;
+  }
+  .object-title{
+    grid-area:title;
+    align-self:center;
+    padding-top:3px;
+  }
+  .object-title strong{
+    max-width:18ch;
+    font-size:11px;
+    line-height:1.25;
+  }
+  .object-models{
+    margin-top:3px;
+    font-size:7.5px;
+  }
+  .object-card .object-desc{
+    grid-area:desc;
+    max-width:none;
+    margin:0;
+    padding-left:66px;
+    font-size:8.5px;
+    line-height:1.45;
+  }
+  .object-card .object-price{
+    grid-area:price;
+    align-self:center;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:2px;
+    white-space:nowrap;
+  }
+  .object-card .object-price strong{
+    font-size:11px;
+  }
+  .object-price-prefix{
+    font-size:7px;
+  }
+}
