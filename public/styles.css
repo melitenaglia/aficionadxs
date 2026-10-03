@@ -385,3 +385,21 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
     white-space:nowrap;
   }
 }
+
+
+/* Objects intro v2 */
+.objects-intro{
+  max-width:640px;
+  margin:0 0 28px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.65;
+}
+@media(max-width:560px){
+  .objects-intro{
+    margin:0 0 18px;
+    max-width:36em;
+    font-size:9px;
+    line-height:1.55;
+  }
+}
