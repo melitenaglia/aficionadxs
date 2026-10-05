@@ -7,7 +7,7 @@ const state={
   filter:"all",
   view:localStorage.getItem("afcndxs-archive-view")||"grid",
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
-  carouselIndex:0,archiveExpanded:false,
+  carouselIndex:0,archiveVisibleRows:1,
   activePhoto:null,activeEdition:null,selectedProduct:null,
   config:{model:null,edition:null,size:null,color:null},
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
@@ -138,6 +138,11 @@ async function init(){
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   $("#footer-year").textContent=new Date().getFullYear();
+  let archiveResizeTimer=null;
+  window.addEventListener("resize",()=>{
+    clearTimeout(archiveResizeTimer);
+    archiveResizeTimer=setTimeout(()=>{if(state.view==="grid")renderArchive()},120);
+  });
   document.addEventListener("keydown",ev=>{
     if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#cart-drawer").classList.contains("open")){
       if(ev.key==="ArrowLeft")moveCarousel(-1);
@@ -161,14 +166,14 @@ function setLanguage(lang){
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
   $$(".filter").forEach(b=>b.addEventListener("click",()=>{
-    state.filter=b.dataset.filter;state.carouselIndex=0;
+    state.filter=b.dataset.filter;state.carouselIndex=0;state.archiveVisibleRows=1;
     $$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderArchive();
   }));
   $$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
     state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
     renderArchive();
   }));
-  const more=$("#archive-more");if(more)more.onclick=()=>{state.archiveExpanded=!state.archiveExpanded;renderArchive()};
+  const more=$("#archive-more");if(more)more.onclick=()=>{const total=filteredArchive().length,cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);state.archiveVisibleRows=shown>=total?1:state.archiveVisibleRows+1;renderArchive()};
   $("#carousel-prev").onclick=()=>moveCarousel(-1);
   $("#carousel-next").onclick=()=>moveCarousel(1);
   $("#open-cart").onclick=openCart;$("#close-cart").onclick=closeCart;$("#drawer-backdrop").onclick=closeCart;
@@ -182,9 +187,10 @@ function bindStaticEvents(){
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
 function photoEditions(photoId){return state.editions.filter(e=>e.archiveId===photoId&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK")}
 function photoHasEdition(photoId){return photoEditions(photoId).length>0}
+function archiveColumns(){return window.matchMedia("(max-width:560px)").matches?2:window.matchMedia("(max-width:900px)").matches?3:4}
 function renderArchive(){
-  const full=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
-  const list=state.archiveExpanded?full:full.slice(0,6);
+  const full=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel"),cols=archiveColumns();
+  const visibleCount=Math.min(full.length,state.archiveVisibleRows*cols),list=full.slice(0,visibleCount);
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);updateArchiveMore(full.length);return}
   grid.hidden=false;carousel.hidden=true;
@@ -197,8 +203,9 @@ function renderArchive(){
 }
 function updateArchiveMore(total){
   const b=$("#archive-more");if(!b)return;
-  b.hidden=total<=6||state.view==="carousel";
-  b.textContent=state.archiveExpanded?t("showLess"):t("showMore");
+  const cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);
+  b.hidden=total<=cols||state.view==="carousel";
+  b.textContent=shown>=total?t("showLess"):t("showMore");
 }
 function renderCarousel(list=filteredArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>"+t("noPhotographs")+"</p>";return}
