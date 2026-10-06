@@ -2,12 +2,13 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 
 const browserLang=(navigator.language||"").toLowerCase();
 const defaultLang=browserLang.startsWith("ca")?"ca":browserLang.startsWith("es")?"es":"en";
+const ARCHIVE_INITIAL_ROWS=2;
 const state={
   archive:[],editions:[],applications:[],products:[],
   filter:"all",
   view:localStorage.getItem("afcndxs-archive-view")||"grid",
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
-  carouselIndex:0,archiveVisibleRows:1,
+  carouselIndex:0,archiveVisibleRows:ARCHIVE_INITIAL_ROWS,
   activePhoto:null,activeEdition:null,selectedProduct:null,
   config:{model:null,edition:null,size:null,color:null},
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
@@ -166,14 +167,14 @@ function setLanguage(lang){
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
   $$(".filter").forEach(b=>b.addEventListener("click",()=>{
-    state.filter=b.dataset.filter;state.carouselIndex=0;state.archiveVisibleRows=1;
+    state.filter=b.dataset.filter;state.carouselIndex=0;state.archiveVisibleRows=ARCHIVE_INITIAL_ROWS;
     $$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderArchive();
   }));
   $$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
     state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
     renderArchive();
   }));
-  const more=$("#archive-more");if(more)more.onclick=()=>{const total=filteredArchive().length,cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);state.archiveVisibleRows=shown>=total?1:state.archiveVisibleRows+1;renderArchive()};
+  const more=$("#archive-more");if(more)more.onclick=()=>{const total=filteredArchive().length,cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);state.archiveVisibleRows=shown>=total?ARCHIVE_INITIAL_ROWS:state.archiveVisibleRows+1;renderArchive()};
   $("#carousel-prev").onclick=()=>moveCarousel(-1);
   $("#carousel-next").onclick=()=>moveCarousel(1);
   $("#open-cart").onclick=openCart;$("#close-cart").onclick=closeCart;$("#drawer-backdrop").onclick=closeCart;
@@ -204,7 +205,7 @@ function renderArchive(){
 function updateArchiveMore(total){
   const b=$("#archive-more");if(!b)return;
   const cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);
-  b.hidden=total<=cols||state.view==="carousel";
+  b.hidden=total<=cols*ARCHIVE_INITIAL_ROWS||state.view==="carousel";
   b.textContent=shown>=total?t("showLess"):t("showMore");
 }
 function renderCarousel(list=filteredArchive()){
