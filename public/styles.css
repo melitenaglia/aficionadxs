@@ -527,3 +527,30 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
     gap:14px;
   }
 }
+
+
+/* Footer v3 — compact mobile close */
+@media(max-width:560px){
+  .info-section{
+    padding-bottom:14px;
+  }
+  .info-grid{
+    padding:28px 0 20px;
+    gap:18px;
+  }
+  .info-grid p{
+    margin:0;
+  }
+  .site-footer{
+    padding:13px 14px 14px;
+    gap:7px;
+    min-height:0;
+    height:auto;
+    align-content:start;
+  }
+  .footer-main,
+  .footer-meta{
+    min-height:0;
+    line-height:1.25;
+  }
+}
