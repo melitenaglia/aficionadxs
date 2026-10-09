@@ -220,7 +220,7 @@
     "name_ca": "SAMARRETA",
     "description_ca": "Producció sota demanda. Tres talls; el model es tria després de seleccionar la fotografia.",
     "priceLabel_ca": "PREU A CONSULTAR",
-    "supplier": "Markamania / on-demand production"
+    "supplier": "On-demand production"
   },
   {
     "id": "sweatshirt",
@@ -305,7 +305,7 @@
     "name_ca": "DESSUADORA",
     "description_ca": "Producció sota demanda. Opcions premium de coll rodó en tall regular i oversize.",
     "priceLabel_ca": "PREU A CONSULTAR",
-    "supplier": "Markamania / on-demand production"
+    "supplier": "On-demand production"
   },
   {
     "id": "notebook",
