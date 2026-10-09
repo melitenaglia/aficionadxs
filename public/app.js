@@ -3,12 +3,15 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 const browserLang=(navigator.language||"").toLowerCase();
 const defaultLang=browserLang.startsWith("ca")?"ca":browserLang.startsWith("es")?"es":"en";
 const ARCHIVE_INITIAL_ROWS=2;
+const ARCHIVE_PAGE_SIZE=20;
+const isArchivePage=()=>document.body?.dataset.page==="archive";
+const pageFromUrl=()=>Math.max(1,parseInt(new URLSearchParams(location.search).get("page")||"1",10)||1);
 const state={
   archive:[],editions:[],applications:[],products:[],
   filter:"all",
   view:localStorage.getItem("afcndxs-archive-view")||"grid",
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
-  carouselIndex:0,archiveVisibleRows:ARCHIVE_INITIAL_ROWS,
+  carouselIndex:0,archiveVisibleRows:ARCHIVE_INITIAL_ROWS,archivePage:pageFromUrl(),
   activePhoto:null,activeEdition:null,selectedProduct:null,
   config:{model:null,edition:null,size:null,color:null},
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
@@ -36,7 +39,7 @@ const T={
     addRequest:"AÑADIR A CONSULTA →",sourcePhoto:"FOTO ORIGINAL",place:"LUGAR",applications:"APLICACIONES",
     viewSource:"VER FOTO ORIGINAL →",editionNote:"La edición es la composición gráfica. El objeto físico se elige por separado.",
     remove:"QUITAR",requestConfirm:"Quisiera consultar disponibilidad, opciones de producción, precio y envío.",
-    photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",supportDesign:"DISEÑO DEL SOPORTE",white:"BLANCO",black:"NEGRO",designAvailable:"DISEÑO DISPONIBLE",showMore:"MOSTRAR MÁS",showLess:"MOSTRAR MENOS",
+    photograph:"FOTOGRAFÍA",archiveEdition:"EDICIÓN DE ARCHIVO",supportDesign:"DISEÑO DEL SOPORTE",white:"BLANCO",black:"NEGRO",designAvailable:"DISEÑO DISPONIBLE",previous:"ANTERIOR",next:"SIGUIENTE",showMore:"MOSTRAR MÁS",showLess:"MOSTRAR MENOS",
     models:"MODELOS",model:"MODELO",noPhotographs:"NO HAY FOTOGRAFÍAS.",
     previewsPreparing:"SE ESTÁN PREPARANDO LAS PREVISUALIZACIONES DE LAS EDICIONES APROBADAS A PARTIR DE LOS ARCHIVOS DE DISEÑO ORIGINALES.",
     archiveLoadError:"NO SE HAN PODIDO CARGAR LOS DATOS DEL ARCHIVO.",seeAllArchive:"VER TODO EL ARCHIVO →",seeAllEditions:"VER TODAS LAS EDICIONES →"
@@ -62,7 +65,7 @@ const T={
     viewSource:"VEURE FOTO ORIGINAL →",editionNote:"L’edició és la composició gràfica. L’objecte físic es tria per separat.",
     remove:"TREURE",requestConfirm:"Voldria consultar disponibilitat, opcions de producció, preu i enviament.",
     photograph:"FOTOGRAFIA",archiveEdition:"EDICIÓ D’ARXIU",supportDesign:"DISSENY DEL SUPORT",
-    white:"BLANC",black:"NEGRE",designAvailable:"DISSENY DISPONIBLE",showMore:"MOSTRA’N MÉS",showLess:"MOSTRA’N MENYS",
+    white:"BLANC",black:"NEGRE",designAvailable:"DISSENY DISPONIBLE",previous:"ANTERIOR",next:"SEGÜENT",showMore:"MOSTRA’N MÉS",showLess:"MOSTRA’N MENYS",
     models:"MODELS",model:"MODEL",noPhotographs:"CAP FOTOGRAFIA.",
     previewsPreparing:"S’ESTAN PREPARANT LES PREVISUALITZACIONS DE LES EDICIONS APROVADES A PARTIR DELS ARXIUS DE DISSENY ORIGINALS.",
     archiveLoadError:"NO S’HAN POGUT CARREGAR LES DADES DE L’ARXIU.",seeAllArchive:"VEURE TOT L’ARXIU →",seeAllEditions:"VEURE TOTES LES EDICIONS →"
@@ -87,7 +90,7 @@ const T={
     addRequest:"ADD TO ENQUIRY →",sourcePhoto:"SOURCE PHOTO",place:"PLACE",applications:"APPLICATIONS",
     viewSource:"VIEW SOURCE PHOTO →",editionNote:"The edition is the graphic composition. The physical object is chosen separately.",
     remove:"REMOVE",requestConfirm:"I’d like to check availability, production options, price and shipping.",
-    photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",supportDesign:"SUPPORT DESIGN",white:"WHITE",black:"BLACK",designAvailable:"DESIGN AVAILABLE",showMore:"SHOW MORE",showLess:"SHOW LESS",
+    photograph:"PHOTOGRAPH",archiveEdition:"ARCHIVE EDITION",supportDesign:"SUPPORT DESIGN",white:"WHITE",black:"BLACK",designAvailable:"DESIGN AVAILABLE",previous:"PREVIOUS",next:"NEXT",showMore:"SHOW MORE",showLess:"SHOW LESS",
     models:"MODELS",model:"MODEL",noPhotographs:"NO PHOTOGRAPHS.",
     previewsPreparing:"APPROVED EDITION PREVIEWS ARE BEING PREPARED FROM THE ORIGINAL DESIGN FILES.",
     archiveLoadError:"ARCHIVE DATA COULD NOT BE LOADED.",seeAllArchive:"VIEW FULL ARCHIVE →",seeAllEditions:"VIEW ALL EDITIONS →"
@@ -138,6 +141,7 @@ async function init(){
   const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261007-photos76"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261003-compact01")]);
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
+  if(isArchivePage())window.addEventListener("popstate",()=>{state.archivePage=pageFromUrl();renderArchive()});
   let archiveResizeTimer=null;
   window.addEventListener("resize",()=>{
     clearTimeout(archiveResizeTimer);
@@ -166,14 +170,17 @@ function setLanguage(lang){
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
   $$(".filter").forEach(b=>b.addEventListener("click",()=>{
-    state.filter=b.dataset.filter;state.carouselIndex=0;state.archiveVisibleRows=ARCHIVE_INITIAL_ROWS;
+    state.filter=b.dataset.filter;state.carouselIndex=0;state.archiveVisibleRows=ARCHIVE_INITIAL_ROWS;state.archivePage=1;
+    if(isArchivePage())replaceArchiveUrl(1);
     $$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderArchive();
   }));
   $$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
     state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
     renderArchive();
   }));
-  const more=$("#archive-more");if(more)more.onclick=()=>{const total=filteredArchive().length,cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);state.archiveVisibleRows=shown>=total?ARCHIVE_INITIAL_ROWS:state.archiveVisibleRows+1;renderArchive()};
+  const prev=$("#archive-prev"),next=$("#archive-next");
+  if(prev)prev.onclick=()=>setArchivePage(state.archivePage-1);
+  if(next)next.onclick=()=>setArchivePage(state.archivePage+1);
   $("#carousel-prev").onclick=()=>moveCarousel(-1);
   $("#carousel-next").onclick=()=>moveCarousel(1);
   $("#open-cart").onclick=openCart;$("#close-cart").onclick=closeCart;$("#drawer-backdrop").onclick=closeCart;
@@ -188,24 +195,56 @@ function filteredArchive(){const published=state.archive.filter(p=>p.published!=
 function photoEditions(photoId){return state.editions.filter(e=>e.archiveId===photoId&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK")}
 function photoHasEdition(photoId){return photoEditions(photoId).length>0}
 function archiveColumns(){return window.matchMedia("(max-width:560px)").matches?2:window.matchMedia("(max-width:900px)").matches?3:4}
+function archiveUrlForPage(page){
+  const url=new URL(location.href);
+  if(page<=1)url.searchParams.delete("page");else url.searchParams.set("page",String(page));
+  return url.pathname+url.search+url.hash;
+}
+function replaceArchiveUrl(page){history.replaceState({},"",archiveUrlForPage(page))}
+function pushArchiveUrl(page){history.pushState({},"",archiveUrlForPage(page))}
+function setArchivePage(page){
+  if(!isArchivePage())return;
+  const total=filteredArchive().length,maxPage=Math.max(1,Math.ceil(total/ARCHIVE_PAGE_SIZE));
+  const next=Math.min(Math.max(1,page),maxPage);
+  if(next===state.archivePage)return;
+  state.archivePage=next;pushArchiveUrl(next);renderArchive();
+  $("#archive")?.scrollIntoView({behavior:"auto",block:"start"});
+}
 function renderArchive(){
-  const full=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel"),cols=archiveColumns();
-  const visibleCount=Math.min(full.length,state.archiveVisibleRows*cols),list=full.slice(0,visibleCount);
+  const full=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
+  let list=full;
+  if(isArchivePage()){
+    const maxPage=Math.max(1,Math.ceil(full.length/ARCHIVE_PAGE_SIZE)),requested=state.archivePage;
+    state.archivePage=Math.min(Math.max(1,state.archivePage),maxPage);
+    if(state.archivePage!==requested)replaceArchiveUrl(state.archivePage);
+    const start=(state.archivePage-1)*ARCHIVE_PAGE_SIZE;
+    list=full.slice(start,start+ARCHIVE_PAGE_SIZE);
+  }else if(state.view==="grid"){
+    const visibleCount=Math.min(full.length,state.archiveVisibleRows*archiveColumns());
+    list=full.slice(0,visibleCount);
+  }
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
-  if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);updateArchiveMore(full.length);return}
+  if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);renderArchivePagination(full.length);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>{
     const ribbon=photoHasEdition(p.id)?'<span class="design-ribbon">'+t("designAvailable")+'</span>':"";
     return '<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image">'+ribbon+'<img src="'+p.image+'" alt="'+p.title+'" loading="lazy" draggable="false"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>';
   }).join("");
   grid.onclick=ev=>{const card=ev.target.closest(".archive-card");if(card)openPhoto(card.dataset.id)};grid.onkeydown=ev=>{const card=ev.target.closest(".archive-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openPhoto(card.dataset.id)}};
-  updateArchiveMore(full.length);
+  renderArchivePagination(full.length);
 }
-function updateArchiveMore(total){
-  const b=$("#archive-more");if(!b)return;
-  const cols=archiveColumns(),shown=Math.min(total,state.archiveVisibleRows*cols);
-  b.hidden=total<=cols*ARCHIVE_INITIAL_ROWS||state.view==="carousel";
-  b.textContent=shown>=total?t("showLess"):t("showMore");
+function renderArchivePagination(total){
+  const nav=$("#archive-pagination");if(!nav)return;
+  if(state.view==="carousel"){nav.hidden=true;return}
+  nav.hidden=false;
+  const prev=$("#archive-prev"),next=$("#archive-next"),range=$("#archive-page-range");
+  if(!total){
+    range.textContent="0 / 0";prev.disabled=true;next.disabled=true;return;
+  }
+  const start=(state.archivePage-1)*ARCHIVE_PAGE_SIZE+1,end=Math.min(total,state.archivePage*ARCHIVE_PAGE_SIZE);
+  range.textContent=start+"–"+end+" / "+total;
+  prev.disabled=state.archivePage<=1;
+  next.disabled=end>=total;
 }
 function renderCarousel(list=filteredArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>"+t("noPhotographs")+"</p>";return}
