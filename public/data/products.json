@@ -1,50 +1,11 @@
 [
   {
-    "id": "print",
-    "code": "PR",
-    "name_en": "PRINT",
-    "name_es": "PRINT",
-    "description_en": "Photograph or approved AFCNDXS edition, produced to a print-specific file.",
-    "description_es": "Fotografía o edición AFCNDXS aprobada, producida con un archivo específico para impresión.",
-    "price": null,
-    "priceLabel_en": "PRICE ON REQUEST",
-    "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": [
-      "PHOTOGRAPH",
-      "ARCHIVE EDITION"
-    ],
-    "sizes": [
-      "21 × 30 CM",
-      "30 × 40 CM"
-    ],
-    "colors": [],
-    "productionNote_en": "30×40 is 3:4 and matches the 3600×4800 apparel layouts. 21×30 is 7:10: the 2:3 postcard composition must be re-laid out, not automatically cropped.",
-    "productionNote_es": "30×40 es 3:4 y encaja con los layouts apparel 3600×4800. 21×30 es 7:10: la composición postcard 2:3 debe readaptarse, no recortarse automáticamente.",
-    "model": "Enhanced Matte Paper Poster (cm)",
-    "supplier": "Printful",
-    "technique": "Digital printing",
-    "material": "189 g/m² matte paper",
-    "thumbnailType": "print",
-    "supplierCostRef": "FROM 8.58 EUR incl. VAT · current EU catalog reference for cm poster",
-    "sourceUrl": "https://www.printful.com/es/dashboard/custom/wall-art/posters/enhanced-matte-paper-poster-cm",
-    "shippingRegion": "Europe · includes Spain",
-    "shippingRef": "5.79 EUR first small poster · +0.30 additional · current flat-rate reference",
-    "supplierCostRefNumeric": null,
-    "shippingSingleRefNumeric": null,
-    "referenceLandedSingle": null,
-    "referenceOnly": true,
-    "name_ca": "IMPRESSIÓ",
-    "description_ca": "Fotografia o edició AFCNDXS aprovada, produïda amb un arxiu específic per a impressió.",
-    "priceLabel_ca": "PREU A CONSULTAR",
-    "productionNote_ca": "30×40 és 3:4 i encaixa amb els layouts apparel 3600×4800. 21×30 és 7:10: la composició postcard 2:3 s’ha de readaptar, no retallar automàticament."
-  },
-  {
     "id": "postcard",
     "code": "PC",
     "name_en": "POSTCARD",
     "name_es": "POSTAL",
-    "description_en": "101 × 152 mm postcard using its approved support-specific artwork.",
-    "description_es": "Postal de 101 × 152 mm con su diseño específico aprobado para este soporte.",
+    "description_en": "10 × 15 cm postcard using its approved support-specific artwork.",
+    "description_es": "Postal 10 × 15 cm con su diseño específico aprobado para este soporte.",
     "price": null,
     "priceLabel_en": "5 EUR",
     "priceLabel_es": "5 EUR",
@@ -52,7 +13,7 @@
       "SUPPORT DESIGN"
     ],
     "sizes": [
-      "101 × 152 MM"
+      "10 × 15 CM"
     ],
     "colors": [],
     "model": "Standard Postcard",
@@ -69,16 +30,92 @@
     "referenceLandedSingle": 5.27,
     "referenceOnly": true,
     "name_ca": "POSTAL",
-    "description_ca": "Postal de 101 × 152 mm amb el disseny específic aprovat per a aquest suport.",
+    "description_ca": "Postal 10 × 15 cm amb el disseny específic aprovat per a aquest suport.",
     "priceLabel_ca": "5 EUR"
+  },
+  {
+    "id": "print",
+    "code": "PR",
+    "name_en": "PRINT",
+    "name_es": "PRINT",
+    "description_en": "Archive photograph printed in 20 × 30, 30 × 40 or 40 × 60 cm. Other sizes on request.",
+    "description_es": "Fotografía del archivo impresa en 20 × 30, 30 × 40 o 40 × 60 cm. Otras medidas bajo consulta.",
+    "price": null,
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": [
+      "PHOTOGRAPH",
+      "ARCHIVE EDITION"
+    ],
+    "sizes": [
+      "20 × 30 CM",
+      "30 × 40 CM",
+      "40 × 60 CM"
+    ],
+    "colors": [],
+    "productionNote_en": "Standard sizes: 20×30, 30×40 and 40×60 cm. Other dimensions can be prepared on request according to the photograph.",
+    "productionNote_es": "Medidas estándar: 20×30, 30×40 y 40×60 cm. Se pueden preparar otras medidas bajo consulta según la fotografía.",
+    "model": "Enhanced Matte Paper Poster (cm)",
+    "supplier": "Printful",
+    "technique": "Digital printing",
+    "material": "189 g/m² matte paper",
+    "thumbnailType": "print",
+    "supplierCostRef": "FROM 8.58 EUR incl. VAT · current EU catalog reference for cm poster",
+    "sourceUrl": "https://www.printful.com/es/dashboard/custom/wall-art/posters/enhanced-matte-paper-poster-cm",
+    "shippingRegion": "Europe · includes Spain",
+    "shippingRef": "5.79 EUR first small poster · +0.30 additional · current flat-rate reference",
+    "supplierCostRefNumeric": null,
+    "shippingSingleRefNumeric": null,
+    "referenceLandedSingle": null,
+    "referenceOnly": true,
+    "name_ca": "IMPRESSIÓ",
+    "description_ca": "Fotografia de l’arxiu impresa en 20 × 30, 30 × 40 o 40 × 60 cm. Altres mides sota consulta.",
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "productionNote_ca": "Mides estàndard: 20×30, 30×40 i 40×60 cm. Es poden preparar altres mides sota consulta segons la fotografia."
+  },
+  {
+    "id": "tote",
+    "code": "TO",
+    "name_en": "TOTE BAG",
+    "name_es": "TOTE BAG",
+    "description_en": "Stanley/Stella Tote Bag · 39 × 37 cm · recycled fabric · produced on demand.",
+    "description_es": "Tote Bag Stanley/Stella · 39 × 37 cm · tejido reciclado · producción bajo demanda.",
+    "price": null,
+    "priceLabel_en": "PRICE ON REQUEST",
+    "priceLabel_es": "PRECIO A CONSULTAR",
+    "editions": [
+      "SUPPORT DESIGN"
+    ],
+    "sizes": [
+      "39 × 37 CM"
+    ],
+    "colors": [
+      "NATURAL"
+    ],
+    "model": "Stanley/Stella Tote Bag",
+    "supplier": "Markamania",
+    "technique": "DTG / DTF / screen printing depending on artwork and run",
+    "thumbnailType": "tote",
+    "supplierCostRef": "Markamania current public catalog reference · base tote from 4.78 EUR incl. VAT before customization",
+    "sourceUrl": "https://www.markamania.es/es/bolsas-de-tela-personalizadas/17784-bolsa-de-tela-stanleystella-tote-bag.html",
+    "shippingRegion": "Spain",
+    "shippingRef": "To validate at checkout according to production option",
+    "supplierCostRefNumeric": 4.78,
+    "shippingSingleRefNumeric": null,
+    "referenceLandedSingle": null,
+    "referenceOnly": true,
+    "name_ca": "BOSSA TOTE",
+    "description_ca": "Tote Bag Stanley/Stella · 39 × 37 cm · teixit reciclat · producció sota demanda.",
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "material": "80% recycled cotton · 20% recycled polyester"
   },
   {
     "id": "tshirt",
     "code": "TS",
     "name_en": "T-SHIRT",
     "name_es": "CAMISETA",
-    "description_en": "Three fits. Choose the garment after selecting the photograph.",
-    "description_es": "Tres cortes. El modelo se elige después de seleccionar la fotografía.",
+    "description_en": "Produced on demand. Three fits; choose the garment after selecting the photograph.",
+    "description_es": "Producción bajo demanda. Tres cortes; el modelo se elige después de seleccionar la fotografía.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -95,7 +132,7 @@
         "description_es": "Stanley/Stella Creator 2.0 · 180 g/m² · corte regular · 100% algodón orgánico. Opción regular más limpia y ligera.",
         "quality_en": "PREMIUM",
         "quality_es": "PREMIUM",
-        "supplierCostRef": "14.75 EUR incl. VAT",
+        "supplierCostRef": "Markamania current public catalog reference · blank from 6.72 EUR incl. VAT; customization varies by print area and quantity",
         "sizes": [
           "S",
           "M",
@@ -114,7 +151,9 @@
         "referenceOnly": true,
         "name_ca": "REGULAR ORGÀNICA · CREATOR 2.0",
         "description_ca": "Stanley/Stella Creator 2.0 · 180 g/m² · tall regular · 100% cotó orgànic. Opció regular més neta i lleugera.",
-        "quality_ca": "PREMIUM"
+        "quality_ca": "PREMIUM",
+        "supplier": "Markamania",
+        "sourceUrl": "https://www.markamania.es/es/camisetas-personalizadas/14192-camiseta-stanleystella-creator-20-colores.html"
       },
       {
         "id": "comfort-colors-1717",
@@ -179,16 +218,17 @@
     "shippingRegion": "Europe · includes Spain",
     "shippingRef": "4.99 EUR first · +1.45 additional · current flat-rate reference",
     "name_ca": "SAMARRETA",
-    "description_ca": "Tres talls. El model es tria després de seleccionar la fotografia.",
-    "priceLabel_ca": "PREU A CONSULTAR"
+    "description_ca": "Producció sota demanda. Tres talls; el model es tria després de seleccionar la fotografia.",
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "supplier": "Markamania / on-demand production"
   },
   {
     "id": "sweatshirt",
     "code": "SW",
     "name_en": "SWEATSHIRT",
     "name_es": "SUDADERA",
-    "description_en": "Two premium crewneck versions: regular and oversized.",
-    "description_es": "Dos versiones premium sin capucha: regular y oversize.",
+    "description_en": "Produced on demand. Premium crewneck options in regular and oversized fits.",
+    "description_es": "Producción bajo demanda. Opciones premium de cuello redondo en corte regular y oversize.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -221,10 +261,12 @@
         "shippingSingleRefNumeric": 6.59,
         "referenceLandedSingle": 43,
         "referenceOnly": true,
-        "supplierCostRef": "36.41 EUR incl. VAT · current public catalog reference",
+        "supplierCostRef": "Markamania current public catalog reference · blank from 24.44 EUR incl. VAT; customization varies by print area and quantity",
         "name_ca": "REGULAR ORGÀNICA · CHANGER 2.0",
         "description_ca": "Stanley/Stella Changer 2.0 · 350 g/m² · coll rodó regular · 100% cotó orgànic.",
-        "quality_ca": "PREMIUM"
+        "quality_ca": "PREMIUM",
+        "supplier": "Markamania",
+        "sourceUrl": "https://www.markamania.es/es/sudaderas-sin-capucha/13008-1699357-sudadera-stanleystella-changer-20-colores.html"
       },
       {
         "id": "radder-2",
@@ -261,51 +303,17 @@
     "shippingRegion": "Europe · includes Spain",
     "shippingRef": "7.29 EUR first · +2.40 additional · current flat-rate reference",
     "name_ca": "DESSUADORA",
-    "description_ca": "Dues versions premium sense caputxa: regular i oversize.",
-    "priceLabel_ca": "PREU A CONSULTAR"
-  },
-  {
-    "id": "tote",
-    "code": "TO",
-    "name_en": "TOTE BAG",
-    "name_es": "TOTE BAG",
-    "description_en": "Current prototype in 140 g/m² cotton · 38 × 42 cm.",
-    "description_es": "Prototipo actual en algodón de 140 g/m² · 38 × 42 cm.",
-    "price": null,
-    "priceLabel_en": "PRICE ON REQUEST",
-    "priceLabel_es": "PRECIO A CONSULTAR",
-    "editions": [
-      "SUPPORT DESIGN"
-    ],
-    "sizes": [
-      "ONE SIZE"
-    ],
-    "colors": [
-      "NATURAL"
-    ],
-    "model": "Westford Mill W101",
-    "supplier": "Printful",
-    "technique": "DTFlex / embroidery available",
-    "thumbnailType": "tote",
-    "supplierCostRef": "10.93 EUR incl. VAT · EU catalog reference",
-    "sourceUrl": "https://www.printful.com/es/dashboard/custom/bags/totes/cotton-color-tote-bag-westford-mill-w101",
-    "shippingRegion": "Europe · Spain supported",
-    "shippingRef": "FROM 4.49 EUR shown on current product page · exact Barcelona checkout to validate",
-    "supplierCostRefNumeric": 10.93,
-    "shippingSingleRefNumeric": 4.49,
-    "referenceLandedSingle": 15.42,
-    "referenceOnly": true,
-    "name_ca": "BOSSA TOTE",
-    "description_ca": "Prototip actual en cotó de 140 g/m² · 38 × 42 cm.",
-    "priceLabel_ca": "PREU A CONSULTAR"
+    "description_ca": "Producció sota demanda. Opcions premium de coll rodó en tall regular i oversize.",
+    "priceLabel_ca": "PREU A CONSULTAR",
+    "supplier": "Markamania / on-demand production"
   },
   {
     "id": "notebook",
     "code": "NB",
     "name_en": "NOTEBOOK",
     "name_es": "LIBRETA",
-    "description_en": "Two constructions. Choose the model according to the approved design.",
-    "description_es": "Dos construcciones. El modelo se elige según el diseño aprobado.",
+    "description_en": "Format still in exploration; not yet produced. Two constructions remain under consideration.",
+    "description_es": "Formato todavía en exploración; aún no producido. Se mantienen dos construcciones en consideración.",
     "price": null,
     "priceLabel_en": "PRICE ON REQUEST",
     "priceLabel_es": "PRECIO A CONSULTAR",
@@ -371,7 +379,7 @@
     ],
     "shippingRegion": "Europe · includes Spain",
     "name_ca": "LLIBRETA",
-    "description_ca": "Dues construccions. El model es tria segons el disseny aprovat.",
+    "description_ca": "Format encara en exploració; encara no produït. Es mantenen dues construccions en consideració.",
     "priceLabel_ca": "PREU A CONSULTAR"
   }
 ]
