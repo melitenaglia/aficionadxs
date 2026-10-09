@@ -138,7 +138,7 @@ const displayOption=v=>{
 const editionVariant=e=>localizeEdition(e.variant||"");
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261007-photos76"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261003-compact01")]);
+  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261007-photos76"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261009-products02")]);
   state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
   if(isArchivePage())window.addEventListener("popstate",()=>{state.archivePage=pageFromUrl();renderArchive()});
@@ -274,7 +274,7 @@ function renderEditions(){
 function objectIcon(type){
   const common='viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"';
   const icons={
-    print:'<svg '+common+'><path d="M19 8h26v48H19z"/><path d="M23 13h18v34H23z"/><path d="m24 42 6-8 5 5 4-6 2 3"/><circle cx="36.5" cy="22.5" r="2.5"/><path d="M29 8V5h6v3"/></svg>',
+    print:'<svg '+common+'><path d="M20 9h30v39H20z"/><path d="M14 15h30v40H14z"/><path d="M19 21h20v25H19z"/><path d="m20 42 5-7 5 4 4-6 5 7"/><circle cx="34" cy="28" r="2.4"/></svg>',
     postcard:'<svg '+common+'><rect x="8" y="18" width="48" height="28" rx="1.5"/><path d="M35 21v22"/><path d="M40 25h10v8H40z"/><path d="M12 38h17M12 33h13M12 28h15"/></svg>',
     tshirt:'<svg '+common+'><path d="M24 13 15 17 7 25l7 8 6-5v24h24V28l6 5 7-8-8-8-9-4c-1 4-4 6-8 6s-7-2-8-6Z"/><path d="M24 13c1 2 4 4 8 4s7-2 8-4"/></svg>',
     sweatshirt:'<svg '+common+'><path d="M23 13 14 18 8 26 3 45l8 3 8-18 3-3v26h20V27l3 3 8 18 8-3-5-19-6-8-9-5c-2 4-5 6-9 6s-7-2-9-6Z"/><path d="M25 14c1 3 3 5 7 5s6-2 7-5"/><path d="M22 47h20"/><path d="m4 42 8 3m40 0 8-3"/></svg>',
