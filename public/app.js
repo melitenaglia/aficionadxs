@@ -4,7 +4,7 @@ const browserLang=(navigator.language||"").toLowerCase();
 const defaultLang=browserLang.startsWith("ca")?"ca":browserLang.startsWith("es")?"es":"en";
 const ARCHIVE_INITIAL_ROWS=2;
 const ARCHIVE_PAGE_SIZE=20;
-const HOME_SELECTION=["001","011","016","031","036","046","061","071","076"];
+const HOME_SELECTION=["001","011","016","031","036","046","061","071"];
 const isArchivePage=()=>document.body?.dataset.page==="archive";
 const pageFromUrl=()=>Math.max(1,parseInt(new URLSearchParams(location.search).get("page")||"1",10)||1);
 const state={
@@ -22,7 +22,7 @@ const T={
   es:{
     navArchive:"ARCHIVO",navEditions:"EDICIONES",navObjects:"OBJETOS",
     heroTitle:"FOTOGRAFÍAS<br>RECOGIDAS<br>EN EL CAMINO.",
-    heroMeta:"ARCHIVO FOTOGRÁFICO EN CURSO",exploreArchive:"EXPLORAR ARCHIVO ↗",
+    heroMeta:"ARCHIVO FOTOGRÁFICO EN CURSO",exploreArchive:"VER FOTOGRAFÍAS ↓",
     archiveHeading:"// ARCHIVO",archiveIntro:"FOTOGRAFÍAS RECOGIDAS EN EL CAMINO. UN ARCHIVO EN CURSO.",editionsHeading:"// EDICIONES",objectsHeading:"// OBJETOS",
     all:"TODAS",view:"VISTA",grid:"GRID",carousel:"CARRUSEL",now:"AHORA",photoDesign:"FOTO → DISEÑO",
     editionsNote:"Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.",
@@ -47,7 +47,7 @@ const T={
   ca:{
     navArchive:"ARXIU",navEditions:"EDICIONS",navObjects:"OBJECTES",
     heroTitle:"FOTOGRAFIES<br>RECOLLIDES<br>PEL CAMÍ.",
-    heroMeta:"ARXIU FOTOGRÀFIC EN CURS",exploreArchive:"EXPLORAR L’ARXIU ↗",
+    heroMeta:"ARXIU FOTOGRÀFIC EN CURS",exploreArchive:"VEURE FOTOGRAFIES ↓",
     archiveHeading:"// ARXIU",archiveIntro:"FOTOGRAFIES RECOLLIDES PEL CAMÍ. UN ARXIU EN CURS.",editionsHeading:"// EDICIONS",objectsHeading:"// OBJECTES",
     all:"TOTES",view:"VISTA",grid:"GRAELLA",carousel:"CARRUSEL",now:"ARA",photoDesign:"FOTO → DISSENY",
     editionsNote:"Cada edició està vinculada a la fotografia original. L’aplicació sobre un objecte físic és una capa separada.",
@@ -73,7 +73,7 @@ const T={
   en:{
     navArchive:"ARCHIVE",navEditions:"EDITIONS",navObjects:"OBJECTS",
     heroTitle:"PHOTOGRAPHS<br>COLLECTED<br>ALONG THE WAY.",
-    heroMeta:"ONGOING PHOTOGRAPHIC ARCHIVE",exploreArchive:"EXPLORE ARCHIVE ↗",
+    heroMeta:"ONGOING PHOTOGRAPHIC ARCHIVE",exploreArchive:"VIEW PHOTOGRAPHS ↓",
     archiveHeading:"// ARCHIVE",archiveIntro:"PHOTOGRAPHS COLLECTED ALONG THE WAY. AN ONGOING ARCHIVE.",editionsHeading:"// EDITIONS",objectsHeading:"// OBJECTS",
     all:"ALL",view:"VIEW",grid:"GRID",carousel:"CAROUSEL",now:"NOW",photoDesign:"PHOTO → DESIGN",
     editionsNote:"Each edition is linked back to its source photograph. Product applications are separate from the design itself.",
@@ -121,9 +121,13 @@ async function init(){
     if(!response.ok)throw new Error("Archive data unavailable");
     state.archive=await response.json();
   }else{
-    const response=await fetch("/data/products.json?v=20261009-products02");
-    if(!response.ok)throw new Error("Objects data unavailable");
-    state.products=await response.json();
+    const [photos,objects]=await Promise.all([
+      fetch("/data/archive.json?v=20261007-photos76"),
+      fetch("/data/products.json?v=20261009-products02")
+    ]);
+    if(!photos.ok||!objects.ok)throw new Error("Home data unavailable");
+    state.archive=await photos.json();
+    state.products=await objects.json();
   }
   bindStaticEvents();applyLanguage();renderAll();
   if(isArchivePage()){
@@ -159,9 +163,15 @@ function restoreLandingAnchor(){
   if(!["objects","info"].includes(hash))return;
   const section=document.getElementById(hash);
   if(!section)return;
-  requestAnimationFrame(()=>section.scrollIntoView({behavior:"instant",block:"start"}));
+  const align=()=>requestAnimationFrame(()=>section.scrollIntoView({behavior:"instant",block:"start"}));
+  align();
+  const images=$("#archive-grid img");
+  Promise.all(images.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
+    img.addEventListener("load",resolve,{once:true});
+    img.addEventListener("error",resolve,{once:true});
+  }))).then(()=>requestAnimationFrame(align));
 }
-function renderAll(){if(isArchivePage())renderArchive();else renderObjects()}
+function renderAll(){renderArchive();renderObjects()}
 function applyLanguage(){
   document.documentElement.lang=state.lang;
   $$("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
@@ -170,7 +180,7 @@ function applyLanguage(){
 }
 function setLanguage(lang){
   state.lang=lang;localStorage.setItem("afcndxs-lang",lang);applyLanguage();renderAll();
-  if(isArchivePage()&&$("#photo-dialog").open&&state.activePhoto)renderPhotoDetail();
+  if($("#photo-dialog")?.open&&state.activePhoto)renderPhotoDetail();
 }
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
@@ -241,11 +251,11 @@ function renderArchive(){
     list=full.slice(0,archiveColumns()*ARCHIVE_INITIAL_ROWS);
   }
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
-  if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);renderArchivePagination(full.length);return}
+  if(isArchivePage()&&state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);renderArchivePagination(full.length);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>{
     const ribbon="";
-    return '<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image">'+ribbon+'<img src="'+p.image+'" alt="'+p.title+'" loading="lazy" draggable="false"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>';
+    return '<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image">'+ribbon+'<img src="'+p.image+'" alt="'+p.title+'" loading="'+(isArchivePage()?"lazy":"eager")+'" draggable="false"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>';
   }).join("");
   grid.onclick=ev=>{const card=ev.target.closest(".archive-card");if(card)openPhoto(card.dataset.id)};grid.onkeydown=ev=>{const card=ev.target.closest(".archive-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openPhoto(card.dataset.id)}};
   renderArchivePagination(full.length);
