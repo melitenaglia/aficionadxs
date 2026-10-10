@@ -4,6 +4,7 @@ const browserLang=(navigator.language||"").toLowerCase();
 const defaultLang=browserLang.startsWith("ca")?"ca":browserLang.startsWith("es")?"es":"en";
 const ARCHIVE_INITIAL_ROWS=2;
 const ARCHIVE_PAGE_SIZE=20;
+const HOME_SELECTION=["001","011","016","031","036","046","061","071","076"];
 const isArchivePage=()=>document.body?.dataset.page==="archive";
 const pageFromUrl=()=>Math.max(1,parseInt(new URLSearchParams(location.search).get("page")||"1",10)||1);
 const state={
@@ -17,6 +18,8 @@ const state={
   cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
 };
 const WHATSAPP_NUMBER="";
+const PHOTO_LABELS={es:{previous:"FOTO ANTERIOR",next:"FOTO SIGUIENTE",link:"VER EN ARCHIVO ↗"},ca:{previous:"FOTO ANTERIOR",next:"FOTO SEGÜENT",link:"VEURE A L’ARXIU ↗"},en:{previous:"PREVIOUS PHOTO",next:"NEXT PHOTO",link:"VIEW IN ARCHIVE ↗"}};
+const photoLabel=key=>(PHOTO_LABELS[state.lang]||PHOTO_LABELS.es)[key];
 
 const T={
   es:{
@@ -27,9 +30,9 @@ const T={
     all:"TODAS",view:"VISTA",grid:"GRID",carousel:"CARRUSEL",now:"AHORA",photoDesign:"FOTO → DISEÑO",
     editionsNote:"Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.",
     makePhysical:"LLEVAR EL ARCHIVO A LO FÍSICO",
-    objectsNote:"Los objetos se producen a partir de fotografías y ediciones del archivo. Abre una fotografía para ver qué soportes están disponibles y preparar una consulta.",
+    objectsNote:"Los objetos nacen de fotografías del archivo. Materiales, técnicas y formatos se exploran por separado.",
     info1:"AFICIONADXS es un archivo fotográfico en curso. Algunas imágenes salen del archivo para convertirse en prints, postales, prendas y objetos.",
-    info2:"Algunas piezas existen en stock. Otras se producen solo después de una solicitud. La fotografía sigue siendo siempre el punto de partida.",
+    info2:"El archivo crece con el tiempo. Algunas fotografías se transforman en objetos; otras permanecen como imágenes.",
     footerLine:"FOTOGRAFÍA → OBJETO",name:"NOMBRE",countryPostcode:"PAÍS / CÓDIGO POSTAL",note:"NOTA",
     sendWhatsapp:"ENVIAR CONSULTA POR WHATSAPP →",clearRequest:"VACIAR CONSULTA",
     request:"CONSULTA",emptyRequest:"NO HAY PIEZAS EN LA CONSULTA.",
@@ -52,9 +55,9 @@ const T={
     all:"TOTES",view:"VISTA",grid:"GRAELLA",carousel:"CARRUSEL",now:"ARA",photoDesign:"FOTO → DISSENY",
     editionsNote:"Cada edició està vinculada a la fotografia original. L’aplicació sobre un objecte físic és una capa separada.",
     makePhysical:"PORTAR L’ARXIU AL MÓN FÍSIC",
-    objectsNote:"Els objectes es produeixen a partir de fotografies i edicions de l’arxiu. Obre una fotografia per veure quins suports estan disponibles i preparar una consulta.",
+    objectsNote:"Els objectes neixen de fotografies de l’arxiu. Materials, tècniques i formats s’exploren per separat.",
     info1:"AFICIONADXS és un arxiu fotogràfic en curs. Algunes imatges surten de l’arxiu per convertir-se en impressions, postals, peces de roba i objectes.",
-    info2:"Algunes peces estan en estoc. D’altres només es produeixen després d’una sol·licitud. La fotografia continua sent sempre el punt de partida.",
+    info2:"L’arxiu creix amb el temps. Algunes fotografies es transformen en objectes; d’altres continuen sent imatges.",
     footerLine:"FOTOGRAFIA → OBJECTE",name:"NOM",countryPostcode:"PAÍS / CODI POSTAL",note:"NOTA",
     sendWhatsapp:"ENVIAR CONSULTA PER WHATSAPP →",clearRequest:"BUIDAR CONSULTA",
     request:"CONSULTA",emptyRequest:"NO HI HA CAP PEÇA A LA CONSULTA.",
@@ -138,30 +141,40 @@ const displayOption=v=>{
 const editionVariant=e=>localizeEdition(e.variant||"");
 
 async function init(){
-  const[a,e,s,p]=await Promise.all([fetch("/data/archive.json?v=20261007-photos76"),fetch("/data/editions.json"),fetch("/data/support-designs.json"),fetch("/data/products.json?v=20261009-products02")]);
-  state.archive=await a.json();state.editions=await e.json();state.applications=await s.json();state.products=await p.json();
+  const [a,p]=await Promise.all([
+    fetch("/data/archive.json?v=20261007-photos76"),
+    fetch("/data/products.json?v=20261009-products02")
+  ]);
+  if(!a.ok||!p.ok)throw new Error("Archive data unavailable");
+  state.archive=await a.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
-  if(isArchivePage())window.addEventListener("popstate",()=>{state.archivePage=pageFromUrl();renderArchive()});
-  let archiveResizeTimer=null;
-  window.addEventListener("resize",()=>{
-    clearTimeout(archiveResizeTimer);
-    archiveResizeTimer=setTimeout(()=>{if(state.view==="grid")renderArchive()},120);
+  if(isArchivePage())window.addEventListener("popstate",()=>{
+    state.archivePage=pageFromUrl();
+    renderArchive();
+    const id=new URLSearchParams(location.search).get("photo");
+    if(id)openPhoto(id,{updateUrl:false});
+    else if($("#photo-dialog").open)$("#photo-dialog").close();
   });
+  let rt=null;
+  window.addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(renderArchive,120)});
   document.addEventListener("keydown",ev=>{
-    if(state.view==="carousel"&&!$("#photo-dialog").open&&!$("#cart-drawer").classList.contains("open")){
+    if($("#photo-dialog").open){
+      if(ev.key==="ArrowLeft"){ev.preventDefault();movePhoto(-1)}
+      if(ev.key==="ArrowRight"){ev.preventDefault();movePhoto(1)}
+    }else if(state.view==="carousel"){
       if(ev.key==="ArrowLeft")moveCarousel(-1);
       if(ev.key==="ArrowRight")moveCarousel(1);
     }
   });
+  const direct=new URLSearchParams(location.search).get("photo");
+  if(isArchivePage()&&direct)openPhoto(direct,{updateUrl:false});
 }
-function renderAll(){renderArchive();renderObjects();renderCart()}
+function renderAll(){renderArchive();renderObjects()}
 function applyLanguage(){
   document.documentElement.lang=state.lang;
   $$("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
   $$("[data-i18n-html]").forEach(el=>el.innerHTML=t(el.dataset.i18nHtml));
   $$(".lang-toggle").forEach(b=>b.classList.toggle("active",b.dataset.lang===state.lang));
-  $("#request-label").textContent=t("request");
-  $("#request-heading").textContent="// "+t("request");
 }
 function setLanguage(lang){
   state.lang=lang;localStorage.setItem("afcndxs-lang",lang);applyLanguage();renderAll();
@@ -170,12 +183,16 @@ function setLanguage(lang){
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
   $$(".filter").forEach(b=>b.addEventListener("click",()=>{
-    state.filter=b.dataset.filter;state.carouselIndex=0;state.archiveVisibleRows=ARCHIVE_INITIAL_ROWS;state.archivePage=1;
+    state.filter=b.dataset.filter;state.carouselIndex=0;state.archivePage=1;
     if(isArchivePage())replaceArchiveUrl(1);
     $$(".filter").forEach(x=>x.classList.toggle("active",x===b));renderArchive();
   }));
   $$(".view-toggle").forEach(b=>b.addEventListener("click",()=>{
-    state.view=b.dataset.view;localStorage.setItem("afcndxs-archive-view",state.view);
+    const v=b.dataset.view;
+    if(isArchivePage()&&v==="carousel")state.carouselIndex=(state.archivePage-1)*ARCHIVE_PAGE_SIZE;
+    if(isArchivePage()&&v==="grid")state.archivePage=Math.floor(state.carouselIndex/ARCHIVE_PAGE_SIZE)+1;
+    state.view=v;localStorage.setItem("afcndxs-archive-view",v);
+    if(isArchivePage()&&v==="grid")replaceArchiveUrl(state.archivePage);
     renderArchive();
   }));
   const prev=$("#archive-prev"),next=$("#archive-next");
@@ -183,15 +200,24 @@ function bindStaticEvents(){
   if(next)next.onclick=()=>setArchivePage(state.archivePage+1);
   $("#carousel-prev").onclick=()=>moveCarousel(-1);
   $("#carousel-next").onclick=()=>moveCarousel(1);
-  $("#open-cart").onclick=openCart;$("#close-cart").onclick=closeCart;$("#drawer-backdrop").onclick=closeCart;
-  $("#close-photo").onclick=()=>$("#photo-dialog").close();
-  $("#photo-dialog").addEventListener("click",ev=>{if(ev.target===$("#photo-dialog"))$("#photo-dialog").close()});
-  $("#clear-cart").onclick=()=>{state.cart=[];saveCart();renderCart()};
-  $("#send-request").onclick=sendRequest;
+  const dialog=$("#photo-dialog");
+  $("#close-photo").onclick=()=>dialog.close();
+  dialog.addEventListener("click",ev=>{if(ev.target===dialog)dialog.close()});
+  dialog.addEventListener("close",()=>{
+    state.activePhoto=null;
+    if(isArchivePage()&&new URLSearchParams(location.search).has("photo")){
+      const url=new URL(location.href);url.searchParams.delete("photo");
+      history.replaceState({},"",url.pathname+url.search+url.hash);
+    }
+  });
   document.addEventListener("contextmenu",ev=>{if(ev.target.closest(".archive-image,.detail-visual"))ev.preventDefault()});
   document.addEventListener("dragstart",ev=>{if(ev.target.tagName==="IMG")ev.preventDefault()});
 }
 function filteredArchive(){const published=state.archive.filter(p=>p.published!==false);return state.filter==="all"?published:published.filter(p=>p.countryCode===state.filter)}
+function visibleArchive(){
+ if(isArchivePage())return filteredArchive();
+ return HOME_SELECTION.map(id=>state.archive.find(p=>p.id===id&&p.published!==false)).filter(Boolean);
+}
 function photoEditions(photoId){return state.editions.filter(e=>e.archiveId===photoId&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK")}
 function photoHasEdition(photoId){return photoEditions(photoId).length>0}
 function archiveColumns(){return window.matchMedia("(max-width:560px)").matches?2:window.matchMedia("(max-width:900px)").matches?3:4}
@@ -211,7 +237,7 @@ function setArchivePage(page){
   $("#archive")?.scrollIntoView({behavior:"auto",block:"start"});
 }
 function renderArchive(){
-  const full=filteredArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
+  const full=visibleArchive(),grid=$("#archive-grid"),carousel=$("#archive-carousel");
   let list=full;
   if(isArchivePage()){
     const maxPage=Math.max(1,Math.ceil(full.length/ARCHIVE_PAGE_SIZE)),requested=state.archivePage;
@@ -219,15 +245,14 @@ function renderArchive(){
     if(state.archivePage!==requested)replaceArchiveUrl(state.archivePage);
     const start=(state.archivePage-1)*ARCHIVE_PAGE_SIZE;
     list=full.slice(start,start+ARCHIVE_PAGE_SIZE);
-  }else if(state.view==="grid"){
-    const visibleCount=Math.min(full.length,state.archiveVisibleRows*archiveColumns());
-    list=full.slice(0,visibleCount);
+  }else{
+    list=full.slice(0,archiveColumns()*ARCHIVE_INITIAL_ROWS);
   }
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);renderArchivePagination(full.length);return}
   grid.hidden=false;carousel.hidden=true;
   grid.innerHTML=list.map(p=>{
-    const ribbon=photoHasEdition(p.id)?'<span class="design-ribbon">'+t("designAvailable")+'</span>':"";
+    const ribbon="";
     return '<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image">'+ribbon+'<img src="'+p.image+'" alt="'+p.title+'" loading="lazy" draggable="false"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>';
   }).join("");
   grid.onclick=ev=>{const card=ev.target.closest(".archive-card");if(card)openPhoto(card.dataset.id)};grid.onkeydown=ev=>{const card=ev.target.closest(".archive-card");if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();openPhoto(card.dataset.id)}};
@@ -246,15 +271,15 @@ function renderArchivePagination(total){
   prev.disabled=state.archivePage<=1;
   next.disabled=end>=total;
 }
-function renderCarousel(list=filteredArchive()){
+function renderCarousel(list=visibleArchive()){
   if(!list.length){$("#carousel-stage").innerHTML="<p>"+t("noPhotographs")+"</p>";return}
   if(state.carouselIndex>=list.length)state.carouselIndex=0;if(state.carouselIndex<0)state.carouselIndex=list.length-1;
   const p=list[state.carouselIndex],pos=String(state.carouselIndex+1).padStart(2,"0"),total=String(list.length).padStart(2,"0");
-  const ribbon=photoHasEdition(p.id)?'<span class="design-ribbon carousel-ribbon">'+t("designAvailable")+'</span>':"";
+  const ribbon="";
   $("#carousel-stage").innerHTML='<div class="carousel-frame">'+ribbon+'<button type="button" class="carousel-photo" data-id="'+p.id+'"><img src="'+p.image+'" alt="'+p.title+'" draggable="false"></button><div class="carousel-meta"><span>['+p.id+']</span><span>'+p.title+'<br>'+p.city+' / '+countryName(p)+'</span><span>'+pos+' / '+total+'</span></div></div>';
   $(".carousel-photo").onclick=()=>openPhoto(p.id);
 }
-function moveCarousel(delta){const list=filteredArchive();if(!list.length)return;state.carouselIndex=(state.carouselIndex+delta+list.length)%list.length;renderCarousel(list)}
+function moveCarousel(delta){const list=visibleArchive();if(!list.length)return;state.carouselIndex=(state.carouselIndex+delta+list.length)%list.length;renderCarousel(list)}
 function editionArtwork(e,source){
   const cls=(e.variant||"").includes("WHITE")?"edition-artwork light":"edition-artwork";
   return '<div class="'+cls+'"><div class="edition-artwork-head"><span class="edition-artwork-title">['+e.id+'] '+e.title+'</span><span class="edition-cross">+</span></div><div class="edition-artwork-photo"><img src="'+source.image+'" alt="'+source.title+'"></div><div class="edition-artwork-foot"><span>'+source.city+' · '+formatDate(source.date)+'</span><span>// AFICIONADXS</span></div></div>';
@@ -287,19 +312,39 @@ function objectIcon(type){
 function renderObjects(){
   const list=$("#object-list");if(!list)return;
   list.innerHTML=state.products.map(p=>{
-    const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+t("models")+'</span>':"";
-    const consultLabel=state.lang==="en"?"ON REQUEST":state.lang==="ca"?"SOTA CONSULTA":"BAJO CONSULTA";
-    return '<article class="object-card"><div class="object-card-head"><span class="object-code">'+p.code+'</span><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div></div><div class="object-title"><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><p class="object-desc">'+prodDesc(p)+'</p><div class="object-status"><span>'+consultLabel+'</span></div></article>';
+    return '<article class="object-card"><div class="object-card-head"><span class="object-code">'+p.code+'</span><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div></div><div class="object-title"><strong>'+prodName(p)+'</strong></div><p class="object-desc">'+prodDesc(p)+'</p></article>';
   }).join("");
 }
 function dataRow(a,b){return b?'<div class="data-row"><span>'+a+'</span><span>'+b+'</span></div>':""}
-function openPhoto(id){
-  state.activePhoto=state.archive.find(p=>String(p.id)===String(id));state.selectedProduct=null;state.config={model:null,edition:null,size:null,color:null};
-  renderPhotoDetail();$("#photo-dialog").showModal();
+function photoPermalink(id){return "/archive.html?photo="+encodeURIComponent(id)}
+function syncPhotoUrl(id){
+  if(!isArchivePage())return;
+  const url=new URL(location.href);
+  url.searchParams.set("photo",id);
+  history.replaceState({},"",url.pathname+url.search+url.hash);
+}
+function openPhoto(id,{updateUrl=true}={}){
+  const photo=state.archive.find(p=>String(p.id)===String(id)&&p.published!==false);
+  if(!photo)return;
+  state.activePhoto=photo;
+  if(isArchivePage()){
+    const idx=filteredArchive().findIndex(p=>p.id===photo.id);
+    if(idx>=0)state.archivePage=Math.floor(idx/ARCHIVE_PAGE_SIZE)+1;
+  }
+  if(updateUrl)syncPhotoUrl(photo.id);
+  renderPhotoDetail();
+  if(!$("#photo-dialog").open)$("#photo-dialog").showModal();
+}
+function movePhoto(delta){
+  if(!state.activePhoto)return;
+  const list=visibleArchive(),idx=list.findIndex(p=>p.id===state.activePhoto.id);
+  if(idx<0||!list.length)return;
+  openPhoto(list[(idx+delta+list.length)%list.length].id);
 }
 function renderPhotoDetail(){
   const p=state.activePhoto;if(!p)return;
-  const avail=(p.available||[]).map(id=>state.products.find(x=>x.id===id)).filter(Boolean);
+  const list=visibleArchive(),idx=list.findIndex(x=>x.id===p.id);
+  const position=idx<0?"":(idx+1)+" / "+list.length;
   const meta=
     dataRow(t("date"),p.date?formatDate(p.date):null)+
     dataRow(t("time"),p.time)+
@@ -312,14 +357,9 @@ function renderPhotoDetail(){
     dataRow(t("temperature"),p.temperature)+
     dataRow(t("architect"),p.architect)+
     dataRow(t("event"),p.event);
-  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual photo-detail-visual"><img src="'+p.image+'" alt="'+p.title+'" draggable="false"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><div>'+[p.place,p.city+" / "+countryName(p)].filter(Boolean).join("<br>")+'</div><div class="data-table">'+meta+'</div><div class="physical-box"><h3>// '+t("makePhysical")+'</h3><div class="choice-group"><span class="choice-label">'+t("format")+'</span><div class="choice-buttons">'+avail.map(x=>'<button class="choice-button product-choice" data-product="'+x.id+'">'+prodName(x)+'</button>').join("")+'</div></div><div id="config-area"></div></div></div></div>';
-  $$(".product-choice").forEach(b=>b.onclick=()=>{
-    state.selectedProduct=state.products.find(x=>x.id===b.dataset.product);
-    const q=state.selectedProduct,m=q.models?.[0]||null;
-    state.config={model:m?.id||null,edition:q.editions?.[0]||null,size:(m?.sizes||q.sizes||[])[0]||null,color:(m?.colors||q.colors||[])[0]||null};
-    $$(".product-choice").forEach(x=>x.classList.toggle("active",x===b));
-    renderConfigurator();
-  });
+  $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual photo-detail-visual"><img src="'+p.image+'" alt="'+p.title+'" draggable="false"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><p class="photo-location">'+[p.place,p.city+" / "+countryName(p)].filter(Boolean).join("<br>")+'</p><div class="photo-detail-nav"><button id="photo-prev" type="button" aria-label="'+photoLabel("previous")+'">←</button><span>'+position+'</span><button id="photo-next" type="button" aria-label="'+photoLabel("next")+'">→</button></div><div class="data-table">'+meta+'</div><a class="photo-permalink" href="'+photoPermalink(p.id)+'">'+photoLabel("link")+'</a></div></div>';
+  $("#photo-prev").onclick=()=>movePhoto(-1);
+  $("#photo-next").onclick=()=>movePhoto(1);
 }
 function openEdition(id){state.activeEdition=state.editions.find(e=>e.id===id);renderEditionDetail();if($("#photo-dialog").open)$("#photo-dialog").close();$("#edition-dialog").showModal()}
 function renderEditionDetail(){
