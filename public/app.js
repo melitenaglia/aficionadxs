@@ -285,7 +285,8 @@ function objectIcon(type){
 }
 
 function renderObjects(){
-  $("#object-list").innerHTML=state.products.map(p=>{
+  const list=$("#object-list");if(!list)return;
+  list.innerHTML=state.products.map(p=>{
     const modelLabel=p.models?.length?'<span class="object-models">'+p.models.length+' '+t("models")+'</span>':"";
     const consultLabel=state.lang==="en"?"ON REQUEST":state.lang==="ca"?"SOTA CONSULTA":"BAJO CONSULTA";
     return '<article class="object-card"><div class="object-card-head"><span class="object-code">'+p.code+'</span><div class="object-thumb">'+objectIcon(p.thumbnailType||p.id)+'</div></div><div class="object-title"><strong>'+prodName(p)+'</strong>'+modelLabel+'</div><p class="object-desc">'+prodDesc(p)+'</p><div class="object-status"><span>'+consultLabel+'</span></div></article>';
