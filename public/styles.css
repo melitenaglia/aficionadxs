@@ -727,36 +727,15 @@ body[data-page="archive"] .section-head{align-items:flex-start}
   #objects,#info{scroll-margin-top:120px}
 }
 
-/* Separate Home introduction and Full Archive photography grid. */
-.archive-entry-section .section-head{align-items:baseline}
-.archive-entry{
-  min-height:clamp(260px,34vw,490px);
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:36px;
-  padding:clamp(32px,6vw,92px) 0 clamp(20px,2vw,32px);
-}
-.archive-entry p{
-  max-width:900px;
-  margin:0;
-  font-size:clamp(25px,4.7vw,72px);
-  line-height:1.05;
-  letter-spacing:-.055em;
-  font-weight:300;
-}
-.archive-entry-link{
-  display:inline-block;
-  padding:10px 0;
-  border-bottom:1px solid currentColor;
-  font-size:clamp(11px,1vw,13px);
-  letter-spacing:.02em;
-}
-.archive-entry-link:hover{opacity:.62}
-.archive-entry-link:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
+
+/* Staging: Home shows a short photographic sample; Archive retains complete gallery. */
+body:not([data-page="archive"]) #archive{scroll-margin-top:100px}
+body:not([data-page="archive"]) #archive .section-head{align-items:baseline}
+body:not([data-page="archive"]) #archive .archive-grid{padding-top:22px}
+body:not([data-page="archive"]) #archive .section-more{display:flex;justify-content:flex-end;margin-top:22px}
+body:not([data-page="archive"]) #archive .archive-more{display:inline-block;padding:10px 0;border-bottom:1px solid currentColor}
 @media(max-width:720px){
-  .archive-entry-section .section-head{flex-direction:row;align-items:baseline}
-  .archive-entry{min-height:250px;padding:34px 0 18px}
-  .archive-entry p{font-size:clamp(25px,7vw,43px);max-width:600px}
+  body:not([data-page="archive"]) #archive{scroll-margin-top:122px}
+  body:not([data-page="archive"]) #archive .section-head{flex-direction:row;align-items:baseline}
+  body:not([data-page="archive"]) #archive .section-more{margin-top:14px}
 }
