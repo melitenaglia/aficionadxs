@@ -709,3 +709,14 @@ body[data-page="archive"] .section-head{align-items:flex-start}
   .photo-detail-visual img{max-height:60svh!important}
   .footer-main,.footer-meta{align-items:center}
 }
+
+/* Stage layout fix: object rows no longer reserve an empty status column. */
+@media(max-width:560px){
+  .object-card{
+    grid-template-columns:50px minmax(0,1fr);
+    grid-template-areas:
+      "visual title"
+      "visual desc";
+  }
+  .object-card .object-desc{grid-area:desc;padding-left:0}
+}
