@@ -720,3 +720,9 @@ body[data-page="archive"] .section-head{align-items:flex-start}
   }
   .object-card .object-desc{grid-area:desc;padding-left:0}
 }
+
+/* Staging section links: keep target headings visible below the sticky header. */
+#objects,#info{scroll-margin-top:88px}
+@media(max-width:720px){
+  #objects,#info{scroll-margin-top:120px}
+}
