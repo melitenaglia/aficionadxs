@@ -22,8 +22,8 @@ const T={
   es:{
     navArchive:"ARCHIVO",navEditions:"EDICIONES",navObjects:"OBJETOS",
     heroTitle:"FOTOGRAFÍAS<br>RECOGIDAS<br>EN EL CAMINO.",
-    heroMeta:"ARCHIVO FOTOGRÁFICO EN CURSO",exploreArchive:"EXPLORAR ARCHIVO ↓",
-    archiveHeading:"// ARCHIVO",editionsHeading:"// EDICIONES",objectsHeading:"// OBJETOS",
+    heroMeta:"ARCHIVO FOTOGRÁFICO EN CURSO",exploreArchive:"EXPLORAR ARCHIVO ↗",
+    archiveHeading:"// ARCHIVO",archiveIntro:"FOTOGRAFÍAS RECOGIDAS EN EL CAMINO. UN ARCHIVO EN CURSO.",editionsHeading:"// EDICIONES",objectsHeading:"// OBJETOS",
     all:"TODAS",view:"VISTA",grid:"GRID",carousel:"CARRUSEL",now:"AHORA",photoDesign:"FOTO → DISEÑO",
     editionsNote:"Cada edición está vinculada a su fotografía original. La aplicación sobre un objeto físico es una capa separada.",
     makePhysical:"LLEVAR EL ARCHIVO A LO FÍSICO",
@@ -47,8 +47,8 @@ const T={
   ca:{
     navArchive:"ARXIU",navEditions:"EDICIONS",navObjects:"OBJECTES",
     heroTitle:"FOTOGRAFIES<br>RECOLLIDES<br>PEL CAMÍ.",
-    heroMeta:"ARXIU FOTOGRÀFIC EN CURS",exploreArchive:"EXPLORAR L’ARXIU ↓",
-    archiveHeading:"// ARXIU",editionsHeading:"// EDICIONS",objectsHeading:"// OBJECTES",
+    heroMeta:"ARXIU FOTOGRÀFIC EN CURS",exploreArchive:"EXPLORAR L’ARXIU ↗",
+    archiveHeading:"// ARXIU",archiveIntro:"FOTOGRAFIES RECOLLIDES PEL CAMÍ. UN ARXIU EN CURS.",editionsHeading:"// EDICIONS",objectsHeading:"// OBJECTES",
     all:"TOTES",view:"VISTA",grid:"GRAELLA",carousel:"CARRUSEL",now:"ARA",photoDesign:"FOTO → DISSENY",
     editionsNote:"Cada edició està vinculada a la fotografia original. L’aplicació sobre un objecte físic és una capa separada.",
     makePhysical:"PORTAR L’ARXIU AL MÓN FÍSIC",
@@ -73,8 +73,8 @@ const T={
   en:{
     navArchive:"ARCHIVE",navEditions:"EDITIONS",navObjects:"OBJECTS",
     heroTitle:"PHOTOGRAPHS<br>COLLECTED<br>ALONG THE WAY.",
-    heroMeta:"ONGOING PHOTOGRAPHIC ARCHIVE",exploreArchive:"EXPLORE ARCHIVE ↓",
-    archiveHeading:"// ARCHIVE",editionsHeading:"// EDITIONS",objectsHeading:"// OBJECTS",
+    heroMeta:"ONGOING PHOTOGRAPHIC ARCHIVE",exploreArchive:"EXPLORE ARCHIVE ↗",
+    archiveHeading:"// ARCHIVE",archiveIntro:"PHOTOGRAPHS COLLECTED ALONG THE WAY. AN ONGOING ARCHIVE.",editionsHeading:"// EDITIONS",objectsHeading:"// OBJECTS",
     all:"ALL",view:"VIEW",grid:"GRID",carousel:"CAROUSEL",now:"NOW",photoDesign:"PHOTO → DESIGN",
     editionsNote:"Each edition is linked back to its source photograph. Product applications are separate from the design itself.",
     makePhysical:"MAKE THE ARCHIVE PHYSICAL",
@@ -116,50 +116,52 @@ const formatDate=v=>{
 const prodName=p=>p["name_"+state.lang]||p.name_en||p.name||p.id;
 const prodDesc=p=>p["description_"+state.lang]||p.description_en||p.description||"";
 async function init(){
-  const [a,p]=await Promise.all([
-    fetch("/data/archive.json?v=20261007-photos76"),
-    fetch("/data/products.json?v=20261009-products02")
-  ]);
-  if(!a.ok||!p.ok)throw new Error("Archive data unavailable");
-  state.archive=await a.json();state.products=await p.json();
+  if(isArchivePage()){
+    const response=await fetch("/data/archive.json?v=20261007-photos76");
+    if(!response.ok)throw new Error("Archive data unavailable");
+    state.archive=await response.json();
+  }else{
+    const response=await fetch("/data/products.json?v=20261009-products02");
+    if(!response.ok)throw new Error("Objects data unavailable");
+    state.products=await response.json();
+  }
   bindStaticEvents();applyLanguage();renderAll();
-  restoreLandingAnchor();
-  if(isArchivePage())window.addEventListener("popstate",()=>{
-    state.archivePage=pageFromUrl();
-    renderArchive();
-    const id=new URLSearchParams(location.search).get("photo");
-    if(id)openPhoto(id,{updateUrl:false});
-    else if($("#photo-dialog").open)$("#photo-dialog").close();
-  });
-  let rt=null;
-  window.addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(renderArchive,120)});
-  document.addEventListener("keydown",ev=>{
-    if($("#photo-dialog").open){
-      if(ev.key==="ArrowLeft"){ev.preventDefault();movePhoto(-1)}
-      if(ev.key==="ArrowRight"){ev.preventDefault();movePhoto(1)}
-    }else if(state.view==="carousel"){
-      if(ev.key==="ArrowLeft")moveCarousel(-1);
-      if(ev.key==="ArrowRight")moveCarousel(1);
-    }
-  });
-  const direct=new URLSearchParams(location.search).get("photo");
-  if(isArchivePage()&&direct)openPhoto(direct,{updateUrl:false});
+  if(isArchivePage()){
+    window.addEventListener("popstate",()=>{
+      state.archivePage=pageFromUrl();
+      renderArchive();
+      const id=new URLSearchParams(location.search).get("photo");
+      if(id)openPhoto(id,{updateUrl:false});
+      else if($("#photo-dialog").open)$("#photo-dialog").close();
+    });
+    let resizeTimer=null;
+    window.addEventListener("resize",()=>{
+      clearTimeout(resizeTimer);
+      resizeTimer=setTimeout(renderArchive,120);
+    });
+    document.addEventListener("keydown",ev=>{
+      if($("#photo-dialog").open){
+        if(ev.key==="ArrowLeft"){ev.preventDefault();movePhoto(-1)}
+        if(ev.key==="ArrowRight"){ev.preventDefault();movePhoto(1)}
+      }else if(state.view==="carousel"){
+        if(ev.key==="ArrowLeft")moveCarousel(-1);
+        if(ev.key==="ArrowRight")moveCarousel(1);
+      }
+    });
+    const direct=new URLSearchParams(location.search).get("photo");
+    if(direct)openPhoto(direct,{updateUrl:false});
+  }else{
+    restoreLandingAnchor();
+  }
 }
-
-/* Reposition Home anchors after asynchronous photo cards have laid out. */
 function restoreLandingAnchor(){
-  if(isArchivePage()||!["#objects","#info"].includes(location.hash))return;
-  const target=document.getElementById(location.hash.slice(1));
-  if(!target)return;
-  const align=()=>requestAnimationFrame(()=>target.scrollIntoView({behavior:"instant",block:"start"}));
-  align();
-  const images=$("#archive-grid img");
-  Promise.all(images.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
-    img.addEventListener("load",resolve,{once:true});
-    img.addEventListener("error",resolve,{once:true});
-  }))).then(align);
+  const hash=location.hash.slice(1);
+  if(!["objects","info"].includes(hash))return;
+  const section=document.getElementById(hash);
+  if(!section)return;
+  requestAnimationFrame(()=>section.scrollIntoView({behavior:"instant",block:"start"}));
 }
-function renderAll(){renderArchive();renderObjects()}
+function renderAll(){if(isArchivePage())renderArchive();else renderObjects()}
 function applyLanguage(){
   document.documentElement.lang=state.lang;
   $$("[data-i18n]").forEach(el=>el.textContent=t(el.dataset.i18n));
@@ -168,7 +170,7 @@ function applyLanguage(){
 }
 function setLanguage(lang){
   state.lang=lang;localStorage.setItem("afcndxs-lang",lang);applyLanguage();renderAll();
-  if($("#photo-dialog").open&&state.activePhoto)renderPhotoDetail();
+  if(isArchivePage()&&$("#photo-dialog").open&&state.activePhoto)renderPhotoDetail();
 }
 function bindStaticEvents(){
   $$(".lang-toggle").forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
@@ -188,9 +190,10 @@ function bindStaticEvents(){
   const prev=$("#archive-prev"),next=$("#archive-next");
   if(prev)prev.onclick=()=>setArchivePage(state.archivePage-1);
   if(next)next.onclick=()=>setArchivePage(state.archivePage+1);
-  $("#carousel-prev").onclick=()=>moveCarousel(-1);
-  $("#carousel-next").onclick=()=>moveCarousel(1);
+  if($("#carousel-prev"))$("#carousel-prev").onclick=()=>moveCarousel(-1);
+  if($("#carousel-next"))$("#carousel-next").onclick=()=>moveCarousel(1);
   const dialog=$("#photo-dialog");
+  if(dialog){
   $("#close-photo").onclick=()=>dialog.close();
   dialog.addEventListener("click",ev=>{if(ev.target===dialog)dialog.close()});
   dialog.addEventListener("close",()=>{
@@ -200,6 +203,7 @@ function bindStaticEvents(){
       history.replaceState({},"",url.pathname+url.search+url.hash);
     }
   });
+  }
   document.addEventListener("contextmenu",ev=>{if(ev.target.closest(".archive-image,.detail-visual"))ev.preventDefault()});
   document.addEventListener("dragstart",ev=>{if(ev.target.tagName==="IMG")ev.preventDefault()});
 }
@@ -336,4 +340,4 @@ function renderPhotoDetail(){
   $("#photo-prev").onclick=()=>movePhoto(-1);
   $("#photo-next").onclick=()=>movePhoto(1);
 }
-init().catch(e=>{console.error(e);$("#archive-grid").innerHTML="<p>"+t("archiveLoadError")+"</p>"});
+init().catch(e=>{console.error(e);const container=$("#archive-grid")||$("#object-list");if(container)container.innerHTML="<p>"+t("archiveLoadError")+"</p>"});
