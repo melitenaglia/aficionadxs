@@ -8,16 +8,13 @@ const HOME_SELECTION=["001","011","016","031","036","046","061","071","076"];
 const isArchivePage=()=>document.body?.dataset.page==="archive";
 const pageFromUrl=()=>Math.max(1,parseInt(new URLSearchParams(location.search).get("page")||"1",10)||1);
 const state={
-  archive:[],editions:[],applications:[],products:[],
+  archive:[],products:[],
   filter:"all",
   view:localStorage.getItem("afcndxs-archive-view")||"grid",
   lang:localStorage.getItem("afcndxs-lang")||defaultLang,
-  carouselIndex:0,archiveVisibleRows:ARCHIVE_INITIAL_ROWS,archivePage:pageFromUrl(),
-  activePhoto:null,activeEdition:null,selectedProduct:null,
-  config:{model:null,edition:null,size:null,color:null},
-  cart:JSON.parse(localStorage.getItem("afcndxs-request")||"[]")
+  carouselIndex:0,archivePage:pageFromUrl(),
+  activePhoto:null
 };
-const WHATSAPP_NUMBER="";
 const PHOTO_LABELS={es:{previous:"FOTO ANTERIOR",next:"FOTO SIGUIENTE",link:"VER EN ARCHIVO ↗"},ca:{previous:"FOTO ANTERIOR",next:"FOTO SEGÜENT",link:"VEURE A L’ARXIU ↗"},en:{previous:"PREVIOUS PHOTO",next:"NEXT PHOTO",link:"VIEW IN ARCHIVE ↗"}};
 const photoLabel=key=>(PHOTO_LABELS[state.lang]||PHOTO_LABELS.es)[key];
 
@@ -81,9 +78,9 @@ const T={
     all:"ALL",view:"VIEW",grid:"GRID",carousel:"CAROUSEL",now:"NOW",photoDesign:"PHOTO → DESIGN",
     editionsNote:"Each edition is linked back to its source photograph. Product applications are separate from the design itself.",
     makePhysical:"MAKE THE ARCHIVE PHYSICAL",
-    objectsNote:"Objects are produced from photographs and editions in the archive. Open a photograph to see the available formats and prepare an enquiry.",
+    objectsNote:"Objects begin with photographs from the archive. Materials, techniques and formats are explored individually.",
     info1:"AFICIONADXS is an ongoing photographic archive. Selected images move from the archive into physical form: prints, postcards, garments and objects.",
-    info2:"Some pieces exist in stock. Others are produced only after a request. Every photograph remains the starting point.",
+    info2:"The archive keeps growing. Some photographs become objects; others remain images.",
     footerLine:"PHOTOGRAPHY → OBJECT",name:"NAME",countryPostcode:"COUNTRY / POSTCODE",note:"NOTE",
     sendWhatsapp:"SEND REQUEST VIA WHATSAPP →",clearRequest:"CLEAR ENQUIRY",
     request:"ENQUIRY",emptyRequest:"NO ITEMS IN REQUEST.",
@@ -118,28 +115,6 @@ const formatDate=v=>{
 };
 const prodName=p=>p["name_"+state.lang]||p.name_en||p.name||p.id;
 const prodDesc=p=>p["description_"+state.lang]||p.description_en||p.description||"";
-const prodPriceLabel=p=>p["priceLabel_"+state.lang]||p.priceLabel_en||p.priceLabel||t("toConfirm");
-const modelName=m=>m?m["name_"+state.lang]||m.name_en||m.name||m.id:"";
-const modelDesc=m=>m?m["description_"+state.lang]||m.description_en||m.description||"":"";
-const selectedModel=p=>p?.models?.find(m=>m.id===state.config.model)||p?.models?.[0]||null;
-const money=v=>v==null?t("toConfirm"):v.toFixed(0)+" EUR";
-const localizeEdition=v=>{
-  let out=v||"";
-  if(state.lang==="en")return out;
-  return out
-    .replaceAll("PHOTOGRAPH",t("photograph"))
-    .replaceAll("ARCHIVE EDITION",t("archiveEdition"))
-    .replaceAll("SUPPORT DESIGN",t("supportDesign"))
-    .replaceAll("WHITE",t("white"))
-    .replaceAll("BLACK",t("black"));
-};
-const displayOption=v=>{
-  if(state.lang!=="ca")return v;
-  const map={WHITE:"BLANC",BLACK:"NEGRE",ANTHRACITE:"ANTRACITA",NATURAL:"NATURAL","ONE SIZE":"TALLA ÚNICA",TBC:"A CONFIRMAR"};
-  return map[v]||v;
-};
-const editionVariant=e=>localizeEdition(e.variant||"");
-
 async function init(){
   const [a,p]=await Promise.all([
     fetch("/data/archive.json?v=20261007-photos76"),
@@ -218,8 +193,6 @@ function visibleArchive(){
  if(isArchivePage())return filteredArchive();
  return HOME_SELECTION.map(id=>state.archive.find(p=>p.id===id&&p.published!==false)).filter(Boolean);
 }
-function photoEditions(photoId){return state.editions.filter(e=>e.archiveId===photoId&&e.approved&&e.publicPreview&&String(e.variant||"").toUpperCase()!=="BLACK")}
-function photoHasEdition(photoId){return photoEditions(photoId).length>0}
 function archiveColumns(){return window.matchMedia("(max-width:560px)").matches?2:window.matchMedia("(max-width:900px)").matches?3:4}
 function archiveUrlForPage(page){
   const url=new URL(location.href);
@@ -280,22 +253,6 @@ function renderCarousel(list=visibleArchive()){
   $(".carousel-photo").onclick=()=>openPhoto(p.id);
 }
 function moveCarousel(delta){const list=visibleArchive();if(!list.length)return;state.carouselIndex=(state.carouselIndex+delta+list.length)%list.length;renderCarousel(list)}
-function editionArtwork(e,source){
-  const cls=(e.variant||"").includes("WHITE")?"edition-artwork light":"edition-artwork";
-  return '<div class="'+cls+'"><div class="edition-artwork-head"><span class="edition-artwork-title">['+e.id+'] '+e.title+'</span><span class="edition-cross">+</span></div><div class="edition-artwork-photo"><img src="'+source.image+'" alt="'+source.title+'"></div><div class="edition-artwork-foot"><span>'+source.city+' · '+formatDate(source.date)+'</span><span>// AFICIONADXS</span></div></div>';
-}
-function renderEditions(){
-  const approved=state.editions.filter(e=>e.approved&&e.publicPreview);
-  if(!approved.length){
-    $("#editions-grid").innerHTML='<p class="technical-note">'+t("previewsPreparing")+'</p>';
-    return;
-  }
-  $("#editions-grid").innerHTML=approved.map(e=>{
-    return '<article class="edition-card" data-id="'+e.id+'" tabindex="0" role="button"><div class="edition-image"><img src="'+e.publicPreview+'" alt="'+e.title+' '+e.variant+'" loading="lazy" draggable="false"></div><div class="edition-data"><span class="edition-id">['+e.id+']</span><strong>'+e.title+'</strong><span class="edition-variant">'+editionVariant(e)+'</span></div></article>';
-  }).join("");
-  $$(".edition-card").forEach(c=>{const o=()=>openEdition(c.dataset.id);c.onclick=o;c.onkeydown=ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();o()}}});
-}
-
 function objectIcon(type){
   const common='viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"';
   const icons={
@@ -329,7 +286,10 @@ function openPhoto(id,{updateUrl=true}={}){
   state.activePhoto=photo;
   if(isArchivePage()){
     const idx=filteredArchive().findIndex(p=>p.id===photo.id);
-    if(idx>=0)state.archivePage=Math.floor(idx/ARCHIVE_PAGE_SIZE)+1;
+    if(idx>=0){
+      const targetPage=Math.floor(idx/ARCHIVE_PAGE_SIZE)+1;
+      if(state.archivePage!==targetPage){state.archivePage=targetPage;renderArchive()}
+    }
   }
   if(updateUrl)syncPhotoUrl(photo.id);
   renderPhotoDetail();
@@ -360,60 +320,5 @@ function renderPhotoDetail(){
   $("#photo-detail").innerHTML='<div class="detail-shell"><div class="detail-visual photo-detail-visual"><img src="'+p.image+'" alt="'+p.title+'" draggable="false"></div><div class="detail-panel"><div class="detail-id">['+p.id+'] // AFICIONADXS ARCHIVE</div><h2>'+p.title+'</h2><p class="photo-location">'+[p.place,p.city+" / "+countryName(p)].filter(Boolean).join("<br>")+'</p><div class="photo-detail-nav"><button id="photo-prev" type="button" aria-label="'+photoLabel("previous")+'">←</button><span>'+position+'</span><button id="photo-next" type="button" aria-label="'+photoLabel("next")+'">→</button></div><div class="data-table">'+meta+'</div><a class="photo-permalink" href="'+photoPermalink(p.id)+'">'+photoLabel("link")+'</a></div></div>';
   $("#photo-prev").onclick=()=>movePhoto(-1);
   $("#photo-next").onclick=()=>movePhoto(1);
-}
-function openEdition(id){state.activeEdition=state.editions.find(e=>e.id===id);renderEditionDetail();if($("#photo-dialog").open)$("#photo-dialog").close();$("#edition-dialog").showModal()}
-function renderEditionDetail(){
-  const e=state.activeEdition,source=state.archive.find(p=>p.id===e.archiveId);
-  const appRows=state.applications.filter(a=>a.archiveId===e.archiveId&&a.approved);
-  const apps=appRows.map(a=>'<span class="application-tag">'+a.support.toUpperCase()+'</span>').join("");
-  $("#edition-detail").innerHTML='<div class="detail-shell"><div class="detail-visual">'+editionArtwork(e,source)+'</div><div class="detail-panel"><div class="detail-id">['+e.id+'] // AFICIONADXS EDITION</div><h2>'+e.title+'</h2><div>'+editionVariant(e)+'</div><div class="data-table">'+dataRow(t("sourcePhoto"),"["+source.id+"] "+source.title)+dataRow(t("place"),source.city+" / "+countryName(source))+dataRow(t("date"),formatDate(source.date))+'</div><button class="source-link" id="view-source" type="button">'+t("viewSource")+'</button><div class="related-editions"><h3>'+t("applications")+'</h3><div class="application-list">'+apps+'</div></div><p class="technical-note">'+t("editionNote")+'</p></div></div>';
-  $("#view-source").onclick=()=>{$("#edition-dialog").close();openPhoto(source.id)};
-}
-function renderConfigurator(){
-  const p=state.selectedProduct;if(!p)return;
-  const m=selectedModel(p);
-  const translateEdition=v=>localizeEdition(v);
-  const g=(label,field,vals,translate=false)=>!vals?.length?"":'<div class="choice-group"><span class="choice-label">'+label+'</span><div class="choice-buttons">'+vals.map(v=>'<button class="choice-button config-choice '+(state.config[field]===v?"active":"")+'" data-field="'+field+'" data-value="'+v+'">'+(translate?translateEdition(v):displayOption(v))+'</button>').join("")+'</div></div>';
-  const modelBlock=!p.models?.length?"":'<div class="choice-group"><span class="choice-label">'+t("model")+'</span><div class="choice-buttons">'+p.models.map(x=>'<button class="choice-button model-choice '+(state.config.model===x.id?"active":"")+'" data-model="'+x.id+'">'+modelName(x)+'</button>').join("")+'</div></div>';
-  const detail=m?'<div class="technical-note">'+modelDesc(m)+'</div>':"";
-  const sizes=m?.sizes||p.sizes||[],colors=m?.colors||p.colors||[];
-  $("#config-area").innerHTML=modelBlock+detail+g(t("edition"),"edition",p.editions,true)+g(t("size"),"size",sizes)+g(t("color"),"color",colors)+'<button class="primary-action" id="add-request">'+t("addRequest")+'</button>';
-  $$(".model-choice").forEach(b=>b.onclick=()=>{
-    state.config.model=b.dataset.model;
-    const nm=selectedModel(p);
-    state.config.size=(nm?.sizes||p.sizes||[])[0]||null;
-    state.config.color=(nm?.colors||p.colors||[])[0]||null;
-    renderConfigurator();
-  });
-  $$(".config-choice").forEach(b=>b.onclick=()=>{state.config[b.dataset.field]=b.dataset.value;renderConfigurator()});
-  $("#add-request").onclick=addToRequest;
-}
-function addToRequest(){
-  const a=state.activePhoto,p=state.selectedProduct;
-  const m=selectedModel(p);
-  state.cart.push({key:crypto.randomUUID(),photoId:a.id,title:a.title,productId:p.id,modelId:m?.id||null,edition:state.config.edition,size:state.config.size,color:state.config.color,price:m?.price??p.price});
-  saveCart();renderCart();$("#photo-dialog").close();openCart();
-}
-function saveCart(){localStorage.setItem("afcndxs-request",JSON.stringify(state.cart))}
-function renderCart(){
-  $("#cart-count").textContent="["+String(state.cart.length).padStart(2,"0")+"]";
-  $("#cart-items").innerHTML=state.cart.length?state.cart.map(i=>{
-    const p=state.products.find(x=>x.id===i.productId);
-    const m=p?.models?.find(x=>x.id===i.modelId);
-    return '<div class="cart-item"><div class="cart-item-top"><div><h3>['+i.photoId+'] '+i.title+'</h3><p>'+(p?prodName(p):(i.product||""))+(m?' · '+modelName(m):'')+'</p><p>'+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" / ")+'</p></div><button class="remove-item" data-key="'+i.key+'">'+t("remove")+'</button></div></div>';
-  }).join(""):'<div class="empty-cart">'+t("emptyRequest")+'</div>';
-  $$(".remove-item").forEach(b=>b.onclick=()=>{state.cart=state.cart.filter(x=>x.key!==b.dataset.key);saveCart();renderCart()});
-  const total=$("#cart-total");if(total){total.innerHTML="";total.hidden=true;}
-}
-function openCart(){$("#cart-drawer").classList.add("open");$("#drawer-backdrop").classList.add("open");$("#cart-drawer").setAttribute("aria-hidden","false")}
-function closeCart(){$("#cart-drawer").classList.remove("open");$("#drawer-backdrop").classList.remove("open");$("#cart-drawer").setAttribute("aria-hidden","true")}
-function sendRequest(){
-  if(!state.cart.length)return;
-  const name=$("#request-name").value.trim(),loc=$("#request-location").value.trim(),note=$("#request-note").value.trim(),lines=["// AFICIONADXS "+t("request"),""];
-  state.cart.forEach((i,n)=>{const p=state.products.find(x=>x.id===i.productId),m=p?.models?.find(x=>x.id===i.modelId);lines.push(String(n+1).padStart(2,"0")+" / ["+i.photoId+"] "+i.title);lines.push((p?prodName(p):(i.product||""))+(m?" · "+modelName(m):"")+" · "+[i.edition?localizeEdition(i.edition):null,i.color?displayOption(i.color):null,i.size?displayOption(i.size):null].filter(Boolean).join(" · "));lines.push("")});
-  if(name)lines.push(t("name")+" · "+name);if(loc)lines.push(t("countryPostcode")+" · "+loc);if(note)lines.push(t("note")+" · "+note);
-  lines.push("");lines.push(t("requestConfirm"));
-  const base=WHATSAPP_NUMBER?"https://wa.me/"+WHATSAPP_NUMBER:"https://wa.me/";
-  window.open(base+"?text="+encodeURIComponent(lines.join("\n")),"_blank","noopener,noreferrer");
 }
 init().catch(e=>{console.error(e);$("#archive-grid").innerHTML="<p>"+t("archiveLoadError")+"</p>"});
