@@ -123,6 +123,7 @@ async function init(){
   if(!a.ok||!p.ok)throw new Error("Archive data unavailable");
   state.archive=await a.json();state.products=await p.json();
   bindStaticEvents();applyLanguage();renderAll();
+  restoreLandingAnchor();
   if(isArchivePage())window.addEventListener("popstate",()=>{
     state.archivePage=pageFromUrl();
     renderArchive();
@@ -143,6 +144,20 @@ async function init(){
   });
   const direct=new URLSearchParams(location.search).get("photo");
   if(isArchivePage()&&direct)openPhoto(direct,{updateUrl:false});
+}
+
+/* Reposition Home anchors after asynchronous photo cards have laid out. */
+function restoreLandingAnchor(){
+  if(isArchivePage()||!["#objects","#info"].includes(location.hash))return;
+  const target=document.getElementById(location.hash.slice(1));
+  if(!target)return;
+  const align=()=>requestAnimationFrame(()=>target.scrollIntoView({behavior:"instant",block:"start"}));
+  align();
+  const images=$("#archive-grid img");
+  Promise.all(images.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
+    img.addEventListener("load",resolve,{once:true});
+    img.addEventListener("error",resolve,{once:true});
+  }))).then(align);
 }
 function renderAll(){renderArchive();renderObjects()}
 function applyLanguage(){
