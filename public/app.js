@@ -165,7 +165,7 @@ function restoreLandingAnchor(){
   if(!section)return;
   const align=()=>requestAnimationFrame(()=>section.scrollIntoView({behavior:"instant",block:"start"}));
   align();
-  const images=$("#archive-grid img");
+  const images=Array.from(document.querySelectorAll("#archive-grid img"));
   Promise.all(images.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{
     img.addEventListener("load",resolve,{once:true});
     img.addEventListener("error",resolve,{once:true});
