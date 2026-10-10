@@ -612,3 +612,130 @@ button,input,textarea{font:inherit;color:inherit} a{color:inherit;text-decoratio
 @media(max-width:560px){
   .footer-links{gap:11px}
 }
+
+/* Editorial staging — original photo proportions and quiet typography */
+.archive-grid{align-items:start}
+.archive-card{align-self:start}
+.archive-image{
+  aspect-ratio:auto!important;
+  display:block!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+.archive-image img{
+  width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+}
+.archive-data{padding-top:10px}
+.archive-place,.archive-id{font-size:11px}
+.archive-title{font-size:12px}
+#archive{scroll-margin-top:72px}
+body[data-page="archive"] .archive-section{padding-top:clamp(28px,4vw,62px)}
+body[data-page="archive"] .section-head{align-items:flex-start}
+.photo-location{line-height:1.65;margin:0}
+.photo-detail-nav{
+  display:grid;
+  grid-template-columns:48px 1fr 48px;
+  align-items:center;
+  text-align:center;
+  gap:10px;
+  margin:24px 0 12px;
+}
+.photo-detail-nav button{border:1px solid var(--line);width:48px;height:48px;font-size:20px}
+.photo-detail-nav button:hover{background:var(--ink);color:var(--paper)}
+.photo-detail-nav span{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.photo-permalink{display:inline-block;padding:11px 0;border-bottom:1px solid var(--ink);font-size:11px}
+.object-card{grid-template-rows:auto auto 1fr;min-height:0}
+.objects-intro,.object-card .object-desc{font-size:11px;line-height:1.6}
+.object-title strong{font-size:13px}
+.data-row{font-size:12px;grid-template-columns:minmax(105px,30%) 1fr;gap:12px;line-height:1.5}
+.data-row span:last-child{overflow-wrap:anywhere}
+.site-header a:focus-visible,
+.site-header button:focus-visible,
+.archive-card:focus-visible,
+.photo-detail-nav button:focus-visible,
+.archive-page-button:focus-visible,
+.filter:focus-visible,
+.view-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:900px){
+  .main-nav a{display:inline-block}
+}
+@media(max-width:720px){
+  .site-header{
+    position:sticky;
+    display:flex;
+    flex-wrap:wrap;
+    gap:4px;
+    min-height:0;
+    padding:12px 14px 8px;
+  }
+  .wordmark{display:block;width:100%;font-size:13px}
+  .main-nav{
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+    gap:clamp(12px,3.5vw,24px);
+    flex-wrap:wrap;
+    padding:4px 0;
+    font-size:11px;
+  }
+  .main-nav a{padding:7px 0}
+  .language-switch{margin-left:auto;gap:4px}
+  .lang-toggle{padding:7px 3px}
+  #archive{scroll-margin-top:115px}
+  .archive-controls{gap:6px}
+  .filter,.view-toggle{font-size:11px;padding:9px 10px;min-height:39px}
+  .view-controls>span{font-size:11px}
+  .archive-page-button{font-size:11px;min-height:44px}
+  .archive-page-range{font-size:11px}
+  .archive-id,.archive-place{font-size:10px}
+  .archive-title{font-size:11px}
+  .info-grid p{font-size:16px;line-height:1.5}
+  .object-card .object-desc{font-size:11px;line-height:1.55}
+  .object-title strong{font-size:12px}
+  .data-row{font-size:12px}
+  .site-footer{font-size:10px}
+  .footer-main,.footer-meta{flex-wrap:wrap;row-gap:8px}
+}
+@media(max-width:560px){
+  .archive-grid{gap:18px 10px}
+  .archive-data{padding:8px 0 0}
+  .detail-panel{padding:20px 15px 26px}
+  .photo-detail-nav{margin-top:20px}
+  .photo-permalink{font-size:12px}
+  .photo-detail-visual img{max-height:60svh!important}
+  .footer-main,.footer-meta{align-items:center}
+}
+
+/* Stage layout fix: object rows no longer reserve an empty status column. */
+@media(max-width:560px){
+  .object-card{
+    grid-template-columns:50px minmax(0,1fr);
+    grid-template-areas:
+      "visual title"
+      "visual desc";
+  }
+  .object-card .object-desc{grid-area:desc;padding-left:0}
+}
+
+/* Staging section links: keep target headings visible below the sticky header. */
+#objects,#info{scroll-margin-top:88px}
+@media(max-width:720px){
+  #objects,#info{scroll-margin-top:120px}
+}
+
+
+/* Staging: Home shows a short photographic sample; Archive retains complete gallery. */
+body:not([data-page="archive"]) #archive{scroll-margin-top:100px}
+body:not([data-page="archive"]) #archive .section-head{align-items:baseline}
+body:not([data-page="archive"]) #archive .archive-grid{padding-top:22px}
+body:not([data-page="archive"]) #archive .section-more{display:flex;justify-content:flex-end;margin-top:22px}
+body:not([data-page="archive"]) #archive .archive-more{display:inline-block;padding:10px 0;border-bottom:1px solid currentColor}
+@media(max-width:720px){
+  body:not([data-page="archive"]) #archive{scroll-margin-top:122px}
+  body:not([data-page="archive"]) #archive .section-head{flex-direction:row;align-items:baseline}
+  body:not([data-page="archive"]) #archive .section-more{margin-top:14px}
+}
