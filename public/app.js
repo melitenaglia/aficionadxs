@@ -252,7 +252,7 @@ function renderArchive(){
   }
   $$(".view-toggle").forEach(b=>b.classList.toggle("active",b.dataset.view===state.view));
   if(isArchivePage()&&state.view==="carousel"){grid.hidden=true;carousel.hidden=false;renderCarousel(full);renderArchivePagination(full.length);return}
-  grid.hidden=false;carousel.hidden=true;
+  grid.hidden=false;if(carousel)carousel.hidden=true;
   grid.innerHTML=list.map(p=>{
     const ribbon="";
     return '<article class="archive-card" data-id="'+p.id+'" tabindex="0" role="button"><div class="archive-image">'+ribbon+'<img src="'+p.image+'" alt="'+p.title+'" loading="'+(isArchivePage()?"lazy":"eager")+'" draggable="false"></div><div class="archive-data"><span class="archive-id">['+p.id+']</span><span class="archive-title">'+p.title+'</span><span class="archive-place">'+p.city+' / '+countryName(p)+' · '+formatDate(p.date)+'</span></div></article>';
