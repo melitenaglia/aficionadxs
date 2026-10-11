@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f1efe9">
+  <meta name="description" content="AFICIONADXS LAB — juega, mezcla y crea nuevas relaciones dentro del archivo fotográfico.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>// AFICIONADXS LAB — MAKE A GRID</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css?v=20261011-lab01">
+  <link rel="stylesheet" href="/lab.css?v=20261011-lab01">
+</head>
+<body data-page="lab">
+  <header class="site-header">
+    <a class="wordmark" href="/">// AFICIONADXS</a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="/archive.html" data-i18n="navArchive">ARCHIVO</a>
+      <a href="/#objects" data-i18n="navObjects">OBJETOS</a>
+      <a href="/lab.html" aria-current="page">LAB</a>
+      <a href="/#info">INFO</a>
+      <div class="language-switch" aria-label="Language">
+        <button class="lang-toggle" data-lang="es" type="button">ES</button>
+        <span>/</span>
+        <button class="lang-toggle" data-lang="ca" type="button">CA</button>
+        <span>/</span>
+        <button class="lang-toggle" data-lang="en" type="button">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="lab-main">
+    <section class="lab-intro">
+      <div class="lab-kicker">// AFCNDXS LAB / 001</div>
+      <h1 data-i18n-html="labTitle">MAKE<br>YOUR GRID.</h1>
+      <div class="lab-intro-meta">
+        <p data-i18n="labIntro">MEZCLA EL ARCHIVO. NO HAY UNA COMBINACIÓN CORRECTA.</p>
+        <p data-i18n="labHint">TOCA UNA FOTO PARA CAMBIAR SOLO ESA PIEZA.</p>
+      </div>
+    </section>
+
+    <section class="lab-workspace" aria-labelledby="grid-heading">
+      <div class="lab-section-head">
+        <h2 id="grid-heading">// MAKE A GRID</h2>
+        <span id="grid-count">09 PHOTOS</span>
+      </div>
+
+      <div class="lab-controls">
+        <fieldset class="lab-control-group">
+          <legend data-i18n="gridSize">TAMAÑO</legend>
+          <div class="lab-button-row" id="size-controls">
+            <button class="lab-choice" type="button" data-size="2">2×2</button>
+            <button class="lab-choice active" type="button" data-size="3">3×3</button>
+            <button class="lab-choice" type="button" data-size="4">4×4</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="lab-control-group">
+          <legend data-i18n="selection">SELECCIÓN</legend>
+          <div class="lab-button-row lab-mode-row" id="mode-controls">
+            <button class="lab-choice active" type="button" data-mode="random" data-i18n="random">RANDOM</button>
+            <button class="lab-choice" type="button" data-mode="warm" data-i18n="warm">CÁLIDO</button>
+            <button class="lab-choice" type="button" data-mode="cool" data-i18n="cool">FRÍO</button>
+            <button class="lab-choice" type="button" data-mode="light" data-i18n="light">CLARO</button>
+            <button class="lab-choice" type="button" data-mode="dark" data-i18n="dark">OSCURO</button>
+            <button class="lab-choice" type="button" data-mode="portrait" data-i18n="portrait">VERTICAL</button>
+            <button class="lab-choice" type="button" data-mode="landscape" data-i18n="landscape">HORIZONTAL</button>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="lab-actions">
+        <button class="lab-action primary" id="shuffle-grid" type="button" data-i18n="shuffle">MEZCLAR ↻</button>
+        <button class="lab-action" id="export-grid" type="button" data-i18n="export">EXPORTAR PNG ↗</button>
+      </div>
+
+      <div class="lab-status" id="lab-status" aria-live="polite"></div>
+
+      <div class="lab-grid-wrap">
+        <div class="lab-grid" id="lab-grid" data-size="3" aria-label="Aficionadxs photo grid"></div>
+      </div>
+
+      <div class="lab-selection-meta">
+        <span id="selection-mode">// RANDOM</span>
+        <span id="selection-ids"></span>
+      </div>
+    </section>
+
+    <section class="lab-note">
+      <span>// LAB NOTE</span>
+      <p data-i18n="labNote">ESTA COMPOSICIÓN NO CAMBIA EL ARCHIVO: SOLO PROPONE OTRA MANERA DE RECORRERLO.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <span>// AFICIONADXS LAB</span>
+      <div class="footer-links">
+        <a class="footer-domain" href="/">AFICIONADXS.ART</a>
+        <a class="footer-instagram" href="https://www.instagram.com/aficionadxs/" target="_blank" rel="noopener noreferrer">INSTAGRAM ↗</a>
+      </div>
+    </div>
+    <div class="footer-meta">
+      <span>PLAY WITH THE ARCHIVE</span>
+      <span>2017 — <span data-i18n="now">AHORA</span></span>
+    </div>
+  </footer>
+
+  <script type="module" src="/lab.js?v=20261011-lab01"></script>
+</body>
+</html>
