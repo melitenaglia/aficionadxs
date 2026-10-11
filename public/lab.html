@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20261011-lab03">
-  <link rel="stylesheet" href="/lab.css?v=20261011-lab03">
+  <link rel="stylesheet" href="/styles.css?v=20261011-lab04">
+  <link rel="stylesheet" href="/lab.css?v=20261011-lab04">
 </head>
 <body data-page="lab">
   <header class="site-header">
@@ -45,10 +45,7 @@
       </div>
     </section>
 
-    <nav class="lab-experiments" aria-label="Lab experiments">
-      <a class="active" href="/lab.html">001 / MAKE A GRID</a>
-      <a href="/guess.html">002 / GUESS THE PLACE →</a>
-    </nav>
+
 
     <section class="lab-workspace" aria-labelledby="grid-heading">
       <div class="lab-section-head">
@@ -60,8 +57,8 @@
         <fieldset class="lab-control-group">
           <legend data-i18n="gridSize">TAMAÑO</legend>
           <div class="lab-button-row" id="size-controls">
-            <button class="lab-choice active" type="button" data-layout="4x3">4×3</button>
-            <button class="lab-choice" type="button" data-layout="3x2">3×2</button>
+            <button class="lab-choice active" type="button" data-layout="3x4">3×4</button>
+            <button class="lab-choice" type="button" data-layout="2x3">2×3</button>
             <button class="lab-choice" type="button" data-layout="3x3">3×3</button>
             <button class="lab-choice" type="button" data-layout="2x2">2×2</button>
           </div>
@@ -69,17 +66,17 @@
 
         <fieldset class="lab-control-group">
           <legend data-i18n="selection">SELECCIÓN</legend>
-          <div class="lab-mode-block">
+          <div class="lab-mode-block" id="mode-controls">
             <span class="lab-mode-label" data-i18n="byColor">POR COLOR</span>
-            <div class="lab-button-row lab-mode-row" id="color-controls">
+            <div class="lab-button-row lab-mode-row">
               <button class="lab-choice active" type="button" data-mode="random" data-i18n="random">RANDOM</button>
               <button class="lab-choice" type="button" data-mode="green" data-i18n="green">VERDE</button>
               <button class="lab-choice" type="button" data-mode="orange" data-i18n="orange">NARANJA</button>
-              <button class="lab-choice" type="button" data-mode="whitegray" data-i18n="whitegray">BLANCO/GRIS</button>
+              <button class="lab-choice" type="button" data-mode="neutral" data-i18n="neutral">BLANCO/GRIS</button>
               <button class="lab-choice" type="button" data-mode="blue" data-i18n="blue">AZUL/CELESTE</button>
             </div>
             <span class="lab-mode-label" data-i18n="bySubject">POR TEMA</span>
-            <div class="lab-button-row lab-mode-row" id="theme-controls">
+            <div class="lab-button-row lab-mode-row">
               <button class="lab-choice" type="button" data-mode="nature" data-i18n="nature">NATURALEZA</button>
               <button class="lab-choice" type="button" data-mode="architecture" data-i18n="architecture">ARQUITECTURA</button>
               <button class="lab-choice" type="button" data-mode="objects" data-i18n="objects">OBJETOS</button>
@@ -97,7 +94,7 @@
       <div class="lab-status" id="lab-status" aria-live="polite"></div>
 
       <div class="lab-grid-wrap">
-        <div class="lab-grid" id="lab-grid" data-layout="4x3" aria-label="Aficionadxs photo grid"></div>
+        <div class="lab-grid" id="lab-grid" data-layout="3x4" aria-label="Aficionadxs photo grid"></div>
       </div>
 
       <div class="lab-selection-meta">
@@ -148,6 +145,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/lab.js?v=20261011-lab03"></script>
+  <script type="module" src="/lab.js?v=20261011-lab04"></script>
 </body>
 </html>
