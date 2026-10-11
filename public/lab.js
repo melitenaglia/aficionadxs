@@ -20,7 +20,7 @@ const THEME_TAGS={
 const T={
   es:{
     navArchive:"ARCHIVO",navObjects:"OBJETOS",labTitle:"MAKE<br>YOUR GRID.",
-    labIntro:"EMPIEZA CON UNA BASE Y HAZLA TUYA.",labHint:"TOCA CADA FOTO PARA ELEGIR OTRA DEL ARCHIVO.",
+    labIntro:"EMPIEZA CON UNA BASE Y HAZLA TUYA.",labHint:"TOCA CADA FOTO PARA ELEGIR OTRA DEL ARCHIVO.",desktopOnlyTitle:"MAKE YOUR GRID FUNCIONA EN DESKTOP.",desktopOnlyText:"PARA COMPONER Y ELEGIR FOTOGRAFÍAS CON PRECISIÓN, ABRE ESTE EXPERIMENTO EN UNA PANTALLA MÁS GRANDE.",
     gridSize:"FORMATO",selection:"BASE",byColor:"POR COLOR",bySubject:"POR TEMA",random:"RANDOM",green:"VERDE",orange:"NARANJA",neutral:"BLANCO / GRIS",blue:"AZUL / CELESTE",
     nature:"NATURALEZA",architecture:"ARQUITECTURA",objects:"OBJETOS",
     suggestBase:"BASE SUGERIDA ↻",export:"EXPORTAR WEB ↗",
@@ -32,7 +32,7 @@ const T={
   },
   ca:{
     navArchive:"ARXIU",navObjects:"OBJECTES",labTitle:"MAKE<br>YOUR GRID.",
-    labIntro:"COMENÇA AMB UNA BASE I FES-LA TEVA.",labHint:"TOCA CADA FOTO PER TRIAR-NE UNA ALTRA DE L’ARXIU.",
+    labIntro:"COMENÇA AMB UNA BASE I FES-LA TEVA.",labHint:"TOCA CADA FOTO PER TRIAR-NE UNA ALTRA DE L’ARXIU.",desktopOnlyTitle:"MAKE YOUR GRID FUNCIONA EN DESKTOP.",desktopOnlyText:"PER COMPONDRE I TRIAR FOTOGRAFIES AMB PRECISIÓ, OBRE AQUEST EXPERIMENT EN UNA PANTALLA MÉS GRAN.",
     gridSize:"FORMAT",selection:"BASE",byColor:"PER COLOR",bySubject:"PER TEMA",random:"RANDOM",green:"VERD",orange:"TARONJA",neutral:"BLANC / GRIS",blue:"BLAU / CEL",
     nature:"NATURA",architecture:"ARQUITECTURA",objects:"OBJECTES",
     suggestBase:"BASE SUGGERIDA ↻",export:"EXPORTAR WEB ↗",
@@ -44,7 +44,7 @@ const T={
   },
   en:{
     navArchive:"ARCHIVE",navObjects:"OBJECTS",labTitle:"MAKE<br>YOUR GRID.",
-    labIntro:"START WITH A BASE AND MAKE IT YOURS.",labHint:"TAP EACH PHOTO TO CHOOSE ANOTHER FROM THE ARCHIVE.",
+    labIntro:"START WITH A BASE AND MAKE IT YOURS.",labHint:"TAP EACH PHOTO TO CHOOSE ANOTHER FROM THE ARCHIVE.",desktopOnlyTitle:"MAKE YOUR GRID IS DESKTOP ONLY.",desktopOnlyText:"FOR PRECISE COMPOSITION AND PHOTO SELECTION, OPEN THIS EXPERIMENT ON A LARGER SCREEN.",
     gridSize:"FORMAT",selection:"BASE",byColor:"BY COLOR",bySubject:"BY SUBJECT",random:"RANDOM",green:"GREEN",orange:"ORANGE",neutral:"WHITE / GREY",blue:"BLUE / CYAN",
     nature:"NATURE",architecture:"ARCHITECTURE",objects:"OBJECTS",
     suggestBase:"SUGGESTED BASE ↻",export:"EXPORT WEB ↗",
@@ -75,24 +75,44 @@ function loadCachedColors(){try{const p=JSON.parse(localStorage.getItem(COLOR_CA
 function saveColorCache(){try{localStorage.setItem(COLOR_CACHE_KEY,JSON.stringify(state.colorData))}catch(_){}}
 function loadImage(src){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(new Error("image"));img.src=src})}
 function rgbToHsl(r,g,b){
-  r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b),l=(max+min)/2,d=max-min;
-  let h=0,s=0;if(d){s=d/(1-Math.abs(2*l-1));if(max===r)h=60*(((g-b)/d)%6);else if(max===g)h=60*((b-r)/d+2);else h=60*((r-g)/d+4);if(h<0)h+=360}
+  r/=255;g/=255;b/=255;
+  const max=Math.max(r,g,b),min=Math.min(r,g,b),l=(max+min)/2,d=max-min;
+  let h=0,s=0;
+  if(d){
+    s=d/(1-Math.abs(2*l-1));
+    if(max===r)h=60*(((g-b)/d)%6);
+    else if(max===g)h=60*((b-r)/d+2);
+    else h=60*((r-g)/d+4);
+    if(h<0)h+=360;
+  }
   return {h,s,l};
 }
 async function analyzePhoto(photo){
   if(state.colorData[photo.id])return state.colorData[photo.id];
-  const img=await loadImage(photo.image),canvas=document.createElement("canvas");canvas.width=32;canvas.height=32;
-  const ctx=canvas.getContext("2d",{willReadFrequently:true});ctx.drawImage(img,0,0,32,32);
-  const px=ctx.getImageData(0,0,32,32).data,scores={green:0,orange:0,neutral:0,blue:0};let total=0;
+  const img=await loadImage(photo.image),canvas=document.createElement("canvas");
+  canvas.width=36;canvas.height=36;
+  const ctx=canvas.getContext("2d",{willReadFrequently:true});
+  ctx.drawImage(img,0,0,36,36);
+  const px=ctx.getImageData(0,0,36,36).data;
+  const counts={green:0,orange:0,neutral:0,blue:0,other:0};
+  let total=0;
   for(let i=0;i<px.length;i+=4){
-    if(px[i+3]<180)continue;const {h,s,l}=rgbToHsl(px[i],px[i+1],px[i+2]);total++;
-    if(s<.16&&l>.34)scores.neutral+=1.2;
-    if(s>.18&&h>=72&&h<=168)scores.green++;
-    if(s>.22&&((h>=12&&h<=52)||(h>=350&&h<=360)))scores.orange++;
-    if(s>.16&&h>=176&&h<=235)scores.blue++;
+    if(px[i+3]<180)continue;
+    const {h,s,l}=rgbToHsl(px[i],px[i+1],px[i+2]);
+    if(l<.08||l>.98)continue;
+    total++;
+    if(s<.16)counts.neutral++;
+    else if(h>=72&&h<=168)counts.green++;
+    else if(h>=14&&h<=52)counts.orange++;
+    else if(h>=176&&h<=238)counts.blue++;
+    else counts.other++;
   }
-  total=Math.max(1,total);Object.keys(scores).forEach(k=>scores[k]=scores[k]/total);
-  state.colorData[photo.id]=scores;return scores;
+  total=Math.max(1,total);
+  const shares=Object.fromEntries(Object.entries(counts).map(([k,v])=>[k,v/total]));
+  const dominant=Object.entries(shares).sort((a,b)=>b[1]-a[1])[0][0];
+  const result={...shares,dominant};
+  state.colorData[photo.id]=result;
+  return result;
 }
 async function ensureColorData(){
   const missing=state.archive.filter(p=>!state.colorData[p.id]);if(!missing.length)return;
@@ -106,13 +126,15 @@ async function poolForMode(){
   if(THEME_TAGS[state.mode])return THEME_TAGS[state.mode].map(id=>all.find(p=>p.id===id)).filter(Boolean);
   if(["green","orange","neutral","blue"].includes(state.mode)){
     await ensureColorData();
-    return [...all].filter(p=>state.colorData[p.id]).sort((a,b)=>(state.colorData[b.id][state.mode]||0)-(state.colorData[a.id][state.mode]||0)).slice(0,Math.max(cellCount()*3,24));
+    return [...all]
+      .filter(p=>state.colorData[p.id]?.dominant===state.mode)
+      .sort((a,b)=>(state.colorData[b.id][state.mode]||0)-(state.colorData[a.id][state.mode]||0));
   }
   return all;
 }
 function chooseUnique(pool,count){
-  const primary=shuffle(pool),fallback=shuffle(state.archive),out=[],used=new Set();
-  for(const p of [...primary,...fallback]){if(out.length>=count)break;if(!used.has(p.id)){out.push(p);used.add(p.id)}}
+  const source=shuffle(pool),out=[],used=new Set();
+  for(const p of source){if(out.length>=count)break;if(!used.has(p.id)){out.push(p);used.add(p.id)}}
   return out;
 }
 async function buildGrid(){
