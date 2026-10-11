@@ -2,7 +2,7 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 
 const browserLang=(navigator.language||"").toLowerCase();
 const defaultLang=browserLang.startsWith("ca")?"ca":browserLang.startsWith("es")?"es":"en";
-const COLOR_CACHE_KEY="afcndxs-lab-colors-v2";
+const COLOR_CACHE_KEY="afcndxs-lab-colors-v3";
 
 const LAYOUTS={
   "3x4":{cols:3,rows:4},
