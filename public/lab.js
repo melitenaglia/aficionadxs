@@ -21,7 +21,7 @@ const T={
   es:{
     navArchive:"ARCHIVO",navObjects:"OBJETOS",labTitle:"MAKE<br>YOUR GRID.",
     labIntro:"EMPIEZA CON UNA BASE Y HAZLA TUYA.",labHint:"TOCA CADA FOTO PARA ELEGIR OTRA DEL ARCHIVO.",
-    gridSize:"FORMATO",selection:"BASE",random:"RANDOM",green:"VERDE",orange:"NARANJA",neutral:"BLANCO / GRIS",blue:"AZUL / CELESTE",
+    gridSize:"FORMATO",selection:"BASE",byColor:"POR COLOR",bySubject:"POR TEMA",random:"RANDOM",green:"VERDE",orange:"NARANJA",neutral:"BLANCO / GRIS",blue:"AZUL / CELESTE",
     nature:"NATURALEZA",architecture:"ARQUITECTURA",objects:"OBJETOS",
     suggestBase:"BASE SUGERIDA ↻",export:"EXPORTAR WEB ↗",
     exportNote:"EXPORTACIÓN WEB · MÁX. 720 PX · NO APTO PARA IMPRESIÓN",
@@ -33,7 +33,7 @@ const T={
   ca:{
     navArchive:"ARXIU",navObjects:"OBJECTES",labTitle:"MAKE<br>YOUR GRID.",
     labIntro:"COMENÇA AMB UNA BASE I FES-LA TEVA.",labHint:"TOCA CADA FOTO PER TRIAR-NE UNA ALTRA DE L’ARXIU.",
-    gridSize:"FORMAT",selection:"BASE",random:"RANDOM",green:"VERD",orange:"TARONJA",neutral:"BLANC / GRIS",blue:"BLAU / CEL",
+    gridSize:"FORMAT",selection:"BASE",byColor:"PER COLOR",bySubject:"PER TEMA",random:"RANDOM",green:"VERD",orange:"TARONJA",neutral:"BLANC / GRIS",blue:"BLAU / CEL",
     nature:"NATURA",architecture:"ARQUITECTURA",objects:"OBJECTES",
     suggestBase:"BASE SUGGERIDA ↻",export:"EXPORTAR WEB ↗",
     exportNote:"EXPORTACIÓ WEB · MÀX. 720 PX · NO APTE PER IMPRIMIR",
@@ -45,7 +45,7 @@ const T={
   en:{
     navArchive:"ARCHIVE",navObjects:"OBJECTS",labTitle:"MAKE<br>YOUR GRID.",
     labIntro:"START WITH A BASE AND MAKE IT YOURS.",labHint:"TAP EACH PHOTO TO CHOOSE ANOTHER FROM THE ARCHIVE.",
-    gridSize:"FORMAT",selection:"BASE",random:"RANDOM",green:"GREEN",orange:"ORANGE",neutral:"WHITE / GREY",blue:"BLUE / CYAN",
+    gridSize:"FORMAT",selection:"BASE",byColor:"BY COLOR",bySubject:"BY SUBJECT",random:"RANDOM",green:"GREEN",orange:"ORANGE",neutral:"WHITE / GREY",blue:"BLUE / CYAN",
     nature:"NATURE",architecture:"ARCHITECTURE",objects:"OBJECTS",
     suggestBase:"SUGGESTED BASE ↻",export:"EXPORT WEB ↗",
     exportNote:"WEB EXPORT · MAX. 720 PX · NOT FOR PRINT",
