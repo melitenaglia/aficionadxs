@@ -21,7 +21,7 @@
 .lab-action:disabled{opacity:.35;cursor:wait}
 .lab-status{min-height:22px;margin-bottom:8px;color:var(--muted);font-size:9px;text-align:right}
 .lab-export-note{text-align:right;color:var(--muted);font-size:8px;letter-spacing:.03em;padding-bottom:4px}
-.lab-grid-wrap{width:min(100%,1120px);margin:0 auto;padding:12px 0}
+.lab-grid-wrap{width:min(520px,82vw,calc(64svh * var(--grid-ratio, .75)));margin:0 auto;padding:12px 0}
 .lab-grid{--cols:4;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:clamp(8px,1.2vw,18px);background:var(--paper);padding:clamp(8px,1.2vw,18px)}
 .lab-cell{position:relative;aspect-ratio:1;overflow:hidden;background:var(--paper-2);padding:0;border:0;display:block;width:100%;cursor:pointer}
 .lab-cell img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .22s ease,opacity .2s ease}
@@ -112,4 +112,12 @@
   .place-photo img{max-height:none}
   .place-side{position:static}
   .place-option{min-height:52px;font-size:12px}
+}
+
+.lab-experiments{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:14px var(--pad);border-bottom:1px solid var(--line);font-size:10px}
+.lab-experiments a{padding:8px 0;color:var(--muted)}
+.lab-experiments a.active{color:var(--ink);border-bottom:1px solid var(--ink)}
+@media(max-width:720px){
+  .lab-grid-wrap{width:min(82vw,calc(58svh * var(--grid-ratio,.75)))}
+  .lab-experiments{font-size:9px}
 }
