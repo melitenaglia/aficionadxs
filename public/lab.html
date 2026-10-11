@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=20261011-lab01">
-  <link rel="stylesheet" href="/lab.css?v=20261011-lab01">
+  <link rel="stylesheet" href="/styles.css?v=20261011-lab02">
+  <link rel="stylesheet" href="/lab.css?v=20261011-lab02">
 </head>
 <body data-page="lab">
   <header class="site-header">
@@ -72,9 +72,10 @@
       </div>
 
       <div class="lab-actions">
-        <button class="lab-action primary" id="shuffle-grid" type="button" data-i18n="shuffle">MEZCLAR ↻</button>
-        <button class="lab-action" id="export-grid" type="button" data-i18n="export">EXPORTAR PNG ↗</button>
+        <button class="lab-action primary" id="shuffle-grid" type="button" data-i18n="suggestBase">BASE SUGERIDA ↻</button>
+        <button class="lab-action" id="export-grid" type="button" data-i18n="export">EXPORTAR WEB ↗</button>
       </div>
+      <div class="lab-export-note" data-i18n="exportNote">EXPORTACIÓN WEB · 720 × 720 PX · NO APTO PARA IMPRESIÓN</div>
 
       <div class="lab-status" id="lab-status" aria-live="polite"></div>
 
@@ -94,6 +95,28 @@
     </section>
   </main>
 
+  <dialog class="lab-picker" id="photo-picker">
+    <div class="lab-picker-head">
+      <div>
+        <span class="lab-picker-kicker">// ARCHIVE SELECTOR</span>
+        <h2 data-i18n="choosePhoto">ELIGE UNA FOTOGRAFÍA</h2>
+      </div>
+      <button class="lab-picker-close" id="picker-close" type="button" aria-label="Cerrar">×</button>
+    </div>
+    <div class="lab-picker-tools">
+      <label>
+        <span data-i18n="search">BUSCAR</span>
+        <input id="picker-search" type="search" autocomplete="off" placeholder="Madrid, Paris, 031…">
+      </label>
+      <label>
+        <span data-i18n="country">PAÍS</span>
+        <select id="picker-country"></select>
+      </label>
+    </div>
+    <div class="lab-picker-grid" id="picker-grid"></div>
+    <div class="lab-picker-meta" id="picker-meta" aria-live="polite"></div>
+  </dialog>
+
   <footer class="site-footer">
     <div class="footer-main">
       <span>// AFICIONADXS LAB</span>
@@ -108,6 +131,6 @@
     </div>
   </footer>
 
-  <script type="module" src="/lab.js?v=20261011-lab01"></script>
+  <script type="module" src="/lab.js?v=20261011-lab02"></script>
 </body>
 </html>
